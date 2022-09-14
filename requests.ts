@@ -1,5 +1,5 @@
 /** HTTP request method. */
-export type Method =
+export type HttpMethod =
   /** RFC 9110, 9.3.1 */
   | "GET"
   /** RFC 9110, 9.3.2 */
