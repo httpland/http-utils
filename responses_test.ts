@@ -1,5 +1,5 @@
-import { equalsResponse } from "./responses.ts";
-import { expect, Fn } from "./dev_deps.ts";
+import { equalsResponse, safeResponse } from "./responses.ts";
+import { describe, expect, Fn, it } from "./dev_deps.ts";
 
 Deno.test("equalsResponse should pass", () => {
   const table: Fn<typeof equalsResponse>[] = [
@@ -81,5 +81,67 @@ Deno.test("equalsResponse should pass", () => {
 
   table.forEach(([a, b, result]) => {
     expect(equalsResponse(a, b)).toEqual(result);
+  });
+});
+
+describe("safeResponse", () => {
+  it("should return 500 when the function throw error", async () => {
+    expect(
+      await safeResponse(() => {
+        throw Error();
+      }),
+    ).toEqualResponse(
+      new Response(null, {
+        status: 500,
+        statusText: "Internal Server Error",
+      }),
+    );
+  });
+
+  it("should return 500 when the async function throw error", async () => {
+    expect(
+      await safeResponse(() => Promise.reject("Error")),
+    ).toEqualResponse(
+      new Response(null, {
+        status: 500,
+        statusText: "Internal Server Error",
+      }),
+    );
+  });
+
+  it("should return response as it is", async () => {
+    expect(
+      await safeResponse(() => new Response()),
+    ).toEqualResponse(
+      new Response(null, {
+        status: 200,
+      }),
+    );
+  });
+
+  it("should return async response as it is", async () => {
+    expect(
+      await safeResponse(() => Promise.resolve(new Response())),
+    ).toEqualResponse(
+      new Response(null, {
+        status: 200,
+      }),
+    );
+  });
+
+  it("should expose error message to body when debug flag is true", async () => {
+    expect(
+      await safeResponse(() => {
+        throw Error("test");
+      }, true),
+    ).toEqualResponse(
+      new Response(null, {
+        status: 500,
+        statusText: "Internal Server Error",
+        headers: {
+          "content-type": "text/plain;charset=UTF-8",
+        },
+      }),
+    );
   });
 });

@@ -103,6 +103,32 @@ assertEquals(
 );
 ```
 
+## safeResponse
+
+Safely returns a Response object.
+
+Wraps operations that may cause errors and returns a 500 internal server error
+response if an error occurs.
+
+```ts
+import { safeResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+const successRes = await safeResponse(() => new Response());
+assertEquals(successRes.status, 200);
+
+const res = await safeResponse(() => {
+  throw Error();
+});
+assertEquals(res.status, 500);
+```
+
+### debug
+
+By default, the error information is not provided to response.
+
+If `debug` flag is `true`, the response will includes error information.
+
 ## License
 
 Copyright © 2022-present [httpland](https://github.com/httpland).
