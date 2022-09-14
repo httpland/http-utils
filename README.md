@@ -11,6 +11,30 @@ A collection of modules with one or more of the following characteristics:
 Each module will be split into a separate repository when it becomes
 classifiable.
 
+## equalsRequest
+
+Check two `Request` fields equality.
+
+```ts
+import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(
+  equalsRequest(
+    new Request("http://localhost"),
+    new Request("http://test"),
+  ),
+  false,
+);
+assertEquals(
+  equalsRequest(
+    new Request("http://test", { method: "POST" }),
+    new Request("http://test", { method: "PUT" }),
+  ),
+  false,
+);
+```
+
 ## equalsHeaders
 
 Check two `Headers` field name and field value equality.
