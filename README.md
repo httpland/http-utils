@@ -20,13 +20,25 @@ import { equalsHeaders } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
 import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
 
 assertEquals(
-  equalsHeaders(new Header({ a: "b" }), new Header({ a: "b" })),
+  equalsHeaders(new Headers({ a: "b" }), new Headers({ a: "b" })),
   true,
 );
 assertEquals(
-  equalsHeaders(new Header({ a: "b" }), new Header({ c: "d" })),
+  equalsHeaders(new Headers({ a: "b" }), new Headers({ c: "d" })),
   false,
 );
+```
+
+## isSingletonField
+
+Weather the field is singleton field or not.
+
+```ts
+import { isSingletonField } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(isSingletonField("Origin"), true);
+assertEquals(isSingletonField("Vary"), false);
 ```
 
 ## License

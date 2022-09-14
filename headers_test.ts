@@ -1,4 +1,4 @@
-import { equalsHeaders } from "./headers.ts";
+import { equalsHeaders, isSingletonField } from "./headers.ts";
 import { describe, expect, Fn, it } from "./dev_deps.ts";
 
 describe("equalsHeaders", () => {
@@ -38,4 +38,21 @@ describe("equalsHeaders", () => {
       expect(equalsHeaders(a, b)).toEqual(result)
     );
   });
+});
+
+Deno.test("isSingletonField should pass", () => {
+  const table: Fn<typeof isSingletonField>[] = [
+    ["origin", true],
+    ["Origin", true],
+    ["ORIGIN", true],
+    ["Access-Control-Allow-Origin", true],
+    ["access-control-allow-origin", true],
+
+    ["accessControlAllowOrigin", false],
+    ["unknown", false],
+  ];
+
+  table.forEach(([value, result]) =>
+    expect(isSingletonField(value)).toEqual(result)
+  );
 });
