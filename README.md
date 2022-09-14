@@ -29,6 +29,47 @@ assertEquals(
 );
 ```
 
+## mergeHeaders
+
+Merge two `Headers` object.
+
+The first `Headers` always takes precedence.
+
+When fields conflict, the first `Headers` takes precedence if it is a singleton
+field.
+
+If it is a list-based field and not empty, it is appended to the first `Headers`
+field.
+
+Invalid field names and field values are ignored.
+
+No destructive operation is performed on the arguments and returns a new
+`Headers` object.
+
+```ts
+import { mergeHeaders } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(
+  mergeHeaders(
+    new Headers({ accept: "text/html" }),
+    new Headers({ accept: "application/json", "content-type": "text/plain" }),
+  ),
+  new Headers({
+    accept: "text/html, application/json",
+    "content-type": "text/plain",
+  }),
+);
+assertEquals(
+  mergeHeaders(
+    new Headers({ origin: "http://test.test" }),
+    new Headers({ origin: "http://example.test" }),
+  ),
+  new Headers({ origin: "http://test.test" }),
+);
+// origin is singleton field
+```
+
 ## isSingletonField
 
 Weather the field is singleton field or not.

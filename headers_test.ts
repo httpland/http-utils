@@ -1,4 +1,4 @@
-import { equalsHeaders, isSingletonField } from "./headers.ts";
+import { equalsHeaders, isSingletonField, mergeHeaders } from "./headers.ts";
 import { describe, expect, Fn, it } from "./dev_deps.ts";
 
 describe("equalsHeaders", () => {
@@ -54,5 +54,37 @@ Deno.test("isSingletonField should pass", () => {
 
   table.forEach(([value, result]) =>
     expect(isSingletonField(value)).toEqual(result)
+  );
+});
+
+Deno.test("mergeHeaders should pass", () => {
+  const table: Fn<typeof mergeHeaders>[] = [
+    [new Headers(), new Headers(), new Headers()],
+    [new Headers({ a: "" }), new Headers(), new Headers({ a: "" })],
+    [new Headers({ a: "" }), new Headers({ a: "" }), new Headers({ a: "" })],
+    [
+      new Headers({ a: "abc" }),
+      new Headers({ a: "cdf" }),
+      new Headers({ a: "abc, cdf" }),
+    ],
+    [
+      new Headers({ origin: "http://localhost/" }),
+      new Headers({ origin: "http://example.test/" }),
+      new Headers({ origin: "http://localhost/" }),
+    ],
+    [
+      new Headers(),
+      new Headers({ a: "b" }),
+      new Headers({ a: "b" }),
+    ],
+    [
+      new Headers({ a: "b", c: "d", e: "f" }),
+      new Headers({ a: "c", b: "d", e: "g" }),
+      new Headers({ a: "b, c", b: "d", c: "d", e: "f, g" }),
+    ],
+  ];
+
+  table.forEach(([a, b, result]) =>
+    expect(mergeHeaders(a, b)).toEqualHeaders(result)
   );
 });
