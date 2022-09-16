@@ -1,4 +1,4 @@
-import { toLowerCase } from "./deps.ts";
+import { isTruthy, toLowerCase, trim } from "./deps.ts";
 
 const SingletonFields: string[] = [
   "Access-Control-Allow-Origin",
@@ -133,4 +133,26 @@ export function equalsHeaders(a: Headers, b: Headers): boolean {
   }
 
   return true;
+}
+
+/** Parse the header field value.
+ * Split field values by `<quoted-string>` or `<token>`.
+ *
+ * ```ts
+ * import { parseFieldValue } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(
+ *   parseFieldValue("text/html, image/webp;q=0.8"),
+ *   ["text/html", "image/webp;q=0.8"],
+ * );
+ * assertEquals(parseFieldValue(`"Sat, 04 May 1996", "Wed, 14 Sep 2005"`), [
+ *   `"Sat, 04 May 1996"`,
+ *   `"Wed, 14 Sep 2005"`,
+ * ]);
+ * ```
+ */
+export function parseFieldValue(fieldValue: string): string[] {
+  return (fieldValue.match(/((".+?")|[^,])*/g) ??
+    []).map(trim).filter(isTruthy);
 }
