@@ -52,9 +52,10 @@ Deno.test("isSingletonField should pass", () => {
     ["ORIGIN", true],
     ["Access-Control-Allow-Origin", true],
     ["access-control-allow-origin", true],
+    ["a-im", false],
 
-    ["accessControlAllowOrigin", false],
-    ["unknown", false],
+    ["accessControlAllowOrigin", true],
+    ["unknown", true],
   ];
 
   table.forEach(([value, result]) =>
@@ -64,34 +65,88 @@ Deno.test("isSingletonField should pass", () => {
 
 Deno.test("mergeHeaders should pass", () => {
   const table: Fn<typeof mergeHeaders>[] = [
-    [new Headers(), new Headers(), new Headers()],
-    [new Headers({ a: "" }), new Headers(), new Headers({ a: "" })],
-    [new Headers({ a: "" }), new Headers({ a: "" }), new Headers({ a: "" })],
+    [new Headers(), new Headers(), undefined, new Headers()],
+    [new Headers({ a: "" }), new Headers(), undefined, new Headers({ a: "" })],
+    [
+      new Headers({ a: "" }),
+      new Headers({ a: "" }),
+      undefined,
+      new Headers({ a: "" }),
+    ],
     [
       new Headers({ a: "abc" }),
       new Headers({ a: "cdf" }),
-      new Headers({ a: "abc, cdf" }),
+      undefined,
+      new Headers({ a: "abc" }),
     ],
     [
       new Headers({ origin: "http://localhost/" }),
       new Headers({ origin: "http://example.test/" }),
+      undefined,
       new Headers({ origin: "http://localhost/" }),
     ],
     [
       new Headers(),
       new Headers({ a: "b" }),
+      undefined,
       new Headers({ a: "b" }),
     ],
     [
       new Headers({ a: "b", c: "d", e: "f" }),
       new Headers({ a: "c", b: "d", e: "g" }),
-      new Headers({ a: "b, c", b: "d", c: "d", e: "f, g" }),
+      undefined,
+      new Headers({ a: "b", b: "d", c: "d", e: "f" }),
+    ],
+    [
+      new Headers({ accept: "image/png" }),
+      new Headers({ accept: "text/plain" }),
+      undefined,
+      new Headers({ accept: "image/png, text/plain" }),
+    ],
+    [
+      new Headers({ accept: "image/png" }),
+      new Headers({ accept: "" }),
+      undefined,
+      new Headers({ accept: "image/png" }),
+    ],
+    [
+      new Headers({ accept: "image/png" }),
+      new Headers({ accept: " " }),
+      undefined,
+      new Headers({ accept: "image/png" }),
+    ],
+    [
+      new Headers({ accept: "image/png" }),
+      new Headers({ accept: "text/plain" }),
+      {
+        definitions: {
+          accept: () => "abc",
+        },
+      },
+      new Headers({ accept: "abc" }),
+    ],
+    [
+      new Headers({ accept: "image/png" }),
+      new Headers({ accept: "text/plain" }),
+      {
+        definitions: {
+          accept: () => {
+            throw Error();
+          },
+        },
+      },
+      Error(),
     ],
   ];
 
-  table.forEach(([a, b, result]) =>
-    expect(mergeHeaders(a, b)).toEqualHeaders(result)
-  );
+  table.forEach(([a, b, options, result]) => {
+    const actual = mergeHeaders(a, b, options);
+    if (actual instanceof Error) {
+      expect(actual).toEqual(result);
+    } else {
+      expect(actual).toEqualHeaders(result as Headers);
+    }
+  });
 });
 
 Deno.test("parseFieldValue should pass", () => {

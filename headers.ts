@@ -1,34 +1,4 @@
-import { isTruthy, toLowerCase, trim } from "./deps.ts";
-
-const SingletonFields: string[] = [
-  "Access-Control-Allow-Origin",
-  "Authorization",
-  "Content-Language",
-  "Content-Length",
-  "Content-Location",
-  "Content-Range",
-  "Content-Type",
-  "Date",
-  "ETag",
-  "Expect",
-  "From",
-  "Host",
-  "If-Modified-Since",
-  "If-Range",
-  "If-Unmodified-Since",
-  "Last-Modified",
-  "Location",
-  "Max-Forwards",
-  "Origin",
-  "Range",
-  "Referer",
-  "Retry-After",
-  "Server",
-  "User-Agent",
-  "Proxy-Authorization",
-  "Age",
-  "Expires",
-];
+import { db, isTruthy, trim } from "./deps.ts";
 
 /** Weather the field is singleton field or not.
  *
@@ -43,10 +13,37 @@ const SingletonFields: string[] = [
 export function isSingletonField(
   fieldName: string,
 ): boolean {
-  return SingletonFields.map(toLowerCase).includes(
-    toLowerCase(fieldName),
-  );
+  fieldName = fieldName.toLowerCase();
+  const field = db[fieldName as keyof typeof db] as { listable?: boolean };
+
+  return !field?.listable;
 }
+
+/** Wellknown HTTP field name. */
+export type HttpFieldName = keyof typeof db;
+
+/** Header merge options. */
+export interface MergeHeadersOptions {
+  /** Merging definition map. */
+  readonly definitions?: Definitions;
+}
+
+export type Definitions =
+  | {
+    [k in string]: MergeFn;
+  }
+  | {
+    [k in HttpFieldName]: MergeFn;
+  };
+
+/** Custom merge definition. */
+export type MergeFn = (
+  sourceFieldValue: string,
+  destinationFieldValue: string,
+) => string;
+
+const defaultMergeFn: MergeFn = (sourceFieldValue, destinationFieldValue) =>
+  [sourceFieldValue, destinationFieldValue].join(", ");
 
 /** Merge two `Headers` object.
  * The first `Headers` always takes precedence.
@@ -83,26 +80,42 @@ export function isSingletonField(
  * ```
  */
 export function mergeHeaders(
-  primaryHeaders: Headers,
-  newHeaders: Headers,
-): Headers {
-  primaryHeaders = new Headers(primaryHeaders);
-  newHeaders = new Headers(newHeaders);
+  source: Headers,
+  destination: Headers,
+  { definitions }: MergeHeadersOptions = {},
+): Headers | TypeError {
+  try {
+    source = new Headers(source);
+    destination = new Headers(destination);
+  } catch (e) {
+    return e as TypeError;
+  }
 
-  newHeaders.forEach((value, key) => {
-    if (!value) return;
-    const has = primaryHeaders.has(key);
-    if (has && isSingletonField(key)) return;
+  try {
+    destination.forEach((destinationFieldValue, fieldName) => {
+      if (!destinationFieldValue) return;
 
-    try {
-      primaryHeaders.append(key, value);
-    } catch {
-      // When the key is invalid header name, throw error.
-      // But just ignore it.
-    }
-  });
+      const has = source.has(fieldName);
 
-  return primaryHeaders;
+      if (!has) {
+        source.append(fieldName, destinationFieldValue);
+        return;
+      }
+
+      if (isSingletonField(fieldName)) return;
+
+      const sourceFieldValue = source.get(fieldName)!;
+      const mergeFn = definitions?.[fieldName as HttpFieldName] ??
+        defaultMergeFn;
+      const fieldValue = mergeFn(sourceFieldValue, destinationFieldValue);
+
+      source.set(fieldName, fieldValue);
+    });
+  } catch (e) {
+    return e as TypeError;
+  }
+
+  return source;
 }
 
 /** Check two `Headers` field name and field value equality.
