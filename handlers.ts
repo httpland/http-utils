@@ -2,4 +2,6 @@
 // This module is browser compatible.
 
 /** HTTP request handler. */
-export type Handler = (req: Request) => Promise<Response> | Response;
+export interface HttpHandler {
+  (request: Request): Promise<Response> | Response;
+}

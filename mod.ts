@@ -2,7 +2,7 @@
 // This module is browser compatible.
 
 export { equalsRequest, type HttpMethod } from "./requests.ts";
-export { type Handler } from "./handlers.ts";
+export { type HttpHandler } from "./handlers.ts";
 export {
   equalsHeaders,
   type HttpFieldName,
