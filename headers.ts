@@ -1,3 +1,6 @@
+// Copyright 2022-latest the httpland authors. All rights reserved. MIT license.
+// This module is browser compatible.
+
 import { db, isTruthy, trim } from "./deps.ts";
 
 /** Weather the field is singleton field or not.

@@ -1,3 +1,6 @@
+// Copyright 2022-latest the httpland authors. All rights reserved. MIT license.
+// This module is browser compatible.
+
 import { equalsHeaders } from "./headers.ts";
 /** HTTP request method. */
 export type HttpMethod =
