@@ -1,3 +1,13 @@
+# [1.0.0-beta.3](https://github.com/httpland/http-utils/compare/1.0.0-beta.2...1.0.0-beta.3) (2022-10-02)
+
+
+### Features
+
+* **handlers:** rename types ([cdf2721](https://github.com/httpland/http-utils/commit/cdf27215e4a33289b744903ec1f4afa4ff3f28cb))
+* **headers:** add `parseFieldValue` function ([2dca3bd](https://github.com/httpland/http-utils/commit/2dca3bd26076c8982e15c4f65fc34c523361a003))
+* **headers:** add options to `mergeHeaders`, accept custom merge function ([e161c6d](https://github.com/httpland/http-utils/commit/e161c6d30cf3306d27b6c02bf4d54946bf16febc))
+* **responses:** change `safeResponse` interface ([ffd3ddc](https://github.com/httpland/http-utils/commit/ffd3ddc79d1ed3f7ca67b1e4ae0b02dbc50d69e8))
+
 # [1.0.0-beta.2](https://github.com/httpland/http-utils/compare/1.0.0-beta.1...1.0.0-beta.2) (2022-09-14)
 
 
