@@ -1,5 +1,5 @@
 import { equalsResponse, safeResponse } from "./responses.ts";
-import { describe, expect, Fn, it } from "./dev_deps.ts";
+import { describe, expect, Fn, fn, it } from "./dev_deps.ts";
 
 Deno.test("equalsResponse should pass", () => {
   const table: Fn<typeof equalsResponse>[] = [
@@ -129,19 +129,34 @@ describe("safeResponse", () => {
     );
   });
 
-  it("should expose error message to body when debug flag is true", async () => {
+  it("should catch error via onError", async () => {
     expect(
       await safeResponse(() => {
         throw Error("test");
-      }, true),
+      }, () => new Response()),
+    ).toEqualResponse(
+      new Response(null, {
+        status: 200,
+      }),
+    );
+  });
+
+  it("should return default response when onError throw error", async () => {
+    const mock = fn();
+    expect(
+      await safeResponse(() => {
+        throw Error("test");
+      }, (e) => {
+        mock(e);
+        throw e;
+      }),
     ).toEqualResponse(
       new Response(null, {
         status: 500,
         statusText: "Internal Server Error",
-        headers: {
-          "content-type": "text/plain;charset=UTF-8",
-        },
       }),
     );
+
+    expect(mock).toHaveBeenCalledWith(new Error());
   });
 });

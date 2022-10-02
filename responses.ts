@@ -1,3 +1,6 @@
+// Copyright 2022-latest the httpland authors. All rights reserved. MIT license.
+// This module is browser compatible.
+
 import { Status, STATUS_TEXT } from "./deps.ts";
 import { equalsHeaders } from "./headers.ts";
 
@@ -19,16 +22,22 @@ import { equalsHeaders } from "./headers.ts";
  */
 export async function safeResponse(
   fn: () => Response | Promise<Response>,
-  debug = false,
+  onError?: (error: unknown) => Response | Promise<Response>,
 ): Promise<Response> {
   try {
     return await fn();
   } catch (e) {
-    const body: string | null = debug ? Deno.inspect(e) : null;
-    return new Response(body, {
-      status: Status.InternalServerError,
-      statusText: STATUS_TEXT[Status.InternalServerError],
+    const status = Status.InternalServerError;
+    const response = new Response(null, {
+      status,
+      statusText: STATUS_TEXT[status],
     });
+
+    try {
+      return onError?.(e) ?? response;
+    } catch {
+      return response;
+    }
   }
 }
 
