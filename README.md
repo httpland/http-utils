@@ -35,6 +35,19 @@ assertEquals(
 );
 ```
 
+## isRequest
+
+Whether the value is `Request` or not.
+
+```ts
+import { isRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(isRequest(new Request("http://localhost")), true);
+assertEquals(isRequest({}), false);
+assertEquals(isRequest(null), false);
+```
+
 ## equalsHeaders
 
 Check two `Headers` field name and field value equality.

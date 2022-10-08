@@ -1,5 +1,5 @@
-import { equalsRequest } from "./requests.ts";
-import { expect, Fn } from "./dev_deps.ts";
+import { equalsRequest, isRequest } from "./requests.ts";
+import { describe, expect, Fn, it } from "./dev_deps.ts";
 
 const url = "http://a";
 
@@ -40,5 +40,37 @@ Deno.test("equalsRequest should pass", () => {
 
   table.forEach(([a, b, result]) => {
     expect(equalsRequest(a, b)).toEqual(result);
+  });
+});
+
+describe("isRequest", () => {
+  it("should return true", () => {
+    const table: unknown[] = [
+      new Request(url),
+      new Request(url, { method: "POST" }),
+    ];
+
+    table.forEach((value) => {
+      expect(isRequest(value)).toBeTruthy();
+    });
+  });
+
+  it("should return false", () => {
+    const table: unknown[] = [
+      {},
+      null,
+      undefined,
+      0,
+      NaN,
+      new Response(),
+      "",
+      false,
+      true,
+      [],
+    ];
+
+    table.forEach((value) => {
+      expect(isRequest(value)).toBeFalsy();
+    });
   });
 });

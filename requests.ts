@@ -62,3 +62,18 @@ export function equalsRequest(a: Request, b: Request): boolean {
     a.referrerPolicy === b.referrerPolicy &&
     equalsHeaders(a.headers, b.headers);
 }
+
+/** Whether the value is `Request` or not.
+ *
+ * ```ts
+ * import { isRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(isRequest(new Request("http://localhost")), true);
+ * assertEquals(isRequest({}), false);
+ * assertEquals(isRequest(null), false);
+ * ```
+ */
+export function isRequest(value: unknown): value is Request {
+  return value instanceof Request;
+}

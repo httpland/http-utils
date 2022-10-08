@@ -1,7 +1,7 @@
 // Copyright 2022-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-export { equalsRequest, type HttpMethod } from "./requests.ts";
+export { equalsRequest, type HttpMethod, isRequest } from "./requests.ts";
 export { type HttpHandler } from "./handlers.ts";
 export {
   equalsHeaders,
