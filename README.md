@@ -173,6 +173,19 @@ By default, the error information is not provided to response.
 
 If `debug` flag is `true`, the response will includes error information.
 
+## isResponse
+
+Whether the value is `Response` or not.
+
+```ts
+import { isResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(isResponse(new Response()), true);
+assertEquals(isResponse({}), false);
+assertEquals(isResponse(null), false);
+```
+
 ## License
 
 Copyright © 2022-present [httpland](https://github.com/httpland).

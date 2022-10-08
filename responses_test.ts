@@ -1,4 +1,4 @@
-import { equalsResponse, safeResponse } from "./responses.ts";
+import { equalsResponse, isResponse, safeResponse } from "./responses.ts";
 import { describe, expect, Fn, fn, it } from "./dev_deps.ts";
 
 Deno.test("equalsResponse should pass", () => {
@@ -158,5 +158,37 @@ describe("safeResponse", () => {
     );
 
     expect(mock).toHaveBeenCalledWith(new Error());
+  });
+});
+
+describe("isResponse", () => {
+  it("should return true", () => {
+    const table: unknown[] = [
+      new Response(),
+      new Response(""),
+    ];
+
+    table.forEach((value) => {
+      expect(isResponse(value)).toBeTruthy();
+    });
+  });
+
+  it("should return false", () => {
+    const table: unknown[] = [
+      {},
+      null,
+      undefined,
+      0,
+      NaN,
+      new Request("http://localhost"),
+      "",
+      false,
+      true,
+      [],
+    ];
+
+    table.forEach((value) => {
+      expect(isResponse(value)).toBeFalsy();
+    });
   });
 });

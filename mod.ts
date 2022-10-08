@@ -11,4 +11,4 @@ export {
   type MergeHeadersOptions,
   parseFieldValue,
 } from "./headers.ts";
-export { equalsResponse, safeResponse } from "./responses.ts";
+export { equalsResponse, isResponse, safeResponse } from "./responses.ts";

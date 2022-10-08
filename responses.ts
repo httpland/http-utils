@@ -70,3 +70,18 @@ export function equalsResponse(a: Response, b: Response): boolean {
     a.url === b.url &&
     equalsHeaders(a.headers, b.headers);
 }
+
+/** Whether the value is `Response` or not.
+ *
+ * ```ts
+ * import { isResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(isResponse(new Response()), true);
+ * assertEquals(isResponse({}), false);
+ * assertEquals(isResponse(null), false);
+ * ```
+ */
+export function isResponse(value: unknown): value is Response {
+  return value instanceof Response;
+}
