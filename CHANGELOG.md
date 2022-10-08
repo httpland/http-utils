@@ -1,3 +1,11 @@
+# [1.0.0-beta.4](https://github.com/httpland/http-utils/compare/1.0.0-beta.3...1.0.0-beta.4) (2022-10-08)
+
+
+### Features
+
+* **requests:** add `isRequest` function ([cf92dc1](https://github.com/httpland/http-utils/commit/cf92dc1440c40198ba2b8f48898e14dc145acf9d))
+* **responses:** add `isResponse` function ([176d614](https://github.com/httpland/http-utils/commit/176d61486ce7cc2e1f974c8925c15f6a440f1c03))
+
 # [1.0.0-beta.3](https://github.com/httpland/http-utils/compare/1.0.0-beta.2...1.0.0-beta.3) (2022-10-02)
 
 
