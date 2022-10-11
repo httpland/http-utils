@@ -30,14 +30,14 @@ export type HttpMethod =
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(
- *   equalsRequest(
+ *   await equalsRequest(
  *     new Request("http://localhost"),
  *     new Request("http://test"),
  *   ),
  *   false,
  * );
  * assertEquals(
- *   equalsRequest(
+ *   await equalsRequest(
  *     new Request("http://test", { method: "POST" }),
  *     new Request("http://test", { method: "PUT" }),
  *   ),
@@ -45,22 +45,33 @@ export type HttpMethod =
  * );
  * ```
  */
-export function equalsRequest(a: Request, b: Request): boolean {
-  return a.url === b.url &&
-    a.method === b.method &&
-    a.mode === b.mode &&
-    a.bodyUsed === b.bodyUsed &&
-    a.cache === b.cache &&
-    a.credentials === b.credentials &&
-    a.destination === b.destination &&
-    a.integrity === b.integrity &&
-    a.isHistoryNavigation === b.isHistoryNavigation &&
-    a.isReloadNavigation === b.isReloadNavigation &&
-    a.keepalive === b.keepalive &&
-    a.redirect === b.redirect &&
-    a.referrer === b.referrer &&
-    a.referrerPolicy === b.referrerPolicy &&
-    equalsHeaders(a.headers, b.headers);
+export async function equalsRequest(
+  left: Request,
+  right: Request,
+): Promise<boolean> {
+  try {
+    left = left.clone();
+    right = right.clone();
+
+    return left.url === right.url &&
+      left.method === right.method &&
+      left.mode === right.mode &&
+      left.bodyUsed === right.bodyUsed &&
+      left.cache === right.cache &&
+      left.credentials === right.credentials &&
+      left.destination === right.destination &&
+      left.integrity === right.integrity &&
+      left.isHistoryNavigation === right.isHistoryNavigation &&
+      left.isReloadNavigation === right.isReloadNavigation &&
+      left.keepalive === right.keepalive &&
+      left.redirect === right.redirect &&
+      left.referrer === right.referrer &&
+      left.referrerPolicy === right.referrerPolicy &&
+      equalsHeaders(left.headers, right.headers) &&
+      await left.text() === await right.text();
+  } catch {
+    return false;
+  }
 }
 
 /** Whether the value is `Request` or not.

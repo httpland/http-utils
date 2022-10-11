@@ -20,14 +20,14 @@ import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
 import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
 
 assertEquals(
-  equalsRequest(
+  await equalsRequest(
     new Request("http://localhost"),
     new Request("http://test"),
   ),
   false,
 );
 assertEquals(
-  equalsRequest(
+  await equalsRequest(
     new Request("http://test", { method: "POST" }),
     new Request("http://test", { method: "PUT" }),
   ),

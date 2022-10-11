@@ -4,7 +4,7 @@ import { describe, expect, Fn, it } from "./dev_deps.ts";
 const url = "http://a";
 
 Deno.test("equalsRequest should pass", () => {
-  const table: Fn<typeof equalsRequest>[] = [
+  const table: [...Parameters<typeof equalsRequest>, boolean][] = [
     [new Request(url), new Request(url), true],
     [
       new Request(url, { method: "POST" }),
@@ -35,11 +35,32 @@ Deno.test("equalsRequest should pass", () => {
       false,
     ],
 
+    [
+      new Request(url, { body: "", method: "POST" }),
+      new Request(url),
+      false,
+    ],
+    [
+      new Request(url, { body: "", method: "POST" }),
+      new Request(url, { body: "a", method: "POST" }),
+      false,
+    ],
+    [
+      new Request(url, { body: "", method: "POST" }),
+      new Request(url, { method: "POST" }),
+      false,
+    ],
+    [
+      new Request(url, { body: "", method: "POST" }),
+      new Request(url, { body: "", method: "POST" }),
+      true,
+    ],
+
     [new Request("http://a"), new Request("https://a"), false],
   ];
 
-  table.forEach(([a, b, result]) => {
-    expect(equalsRequest(a, b)).toEqual(result);
+  table.forEach(async ([a, b, result]) => {
+    expect(await equalsRequest(a, b)).toEqual(result);
   });
 });
 
