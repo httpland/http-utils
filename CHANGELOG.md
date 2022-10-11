@@ -1,3 +1,10 @@
+# [1.0.0-beta.5](https://github.com/httpland/http-utils/compare/1.0.0-beta.4...1.0.0-beta.5) (2022-10-11)
+
+
+### Features
+
+* **requests:** add checking request body equality ([4ddca1b](https://github.com/httpland/http-utils/commit/4ddca1b7c0fa7869fb37f76b561cc05cc1ede646))
+
 # [1.0.0-beta.4](https://github.com/httpland/http-utils/compare/1.0.0-beta.3...1.0.0-beta.4) (2022-10-08)
 
 
