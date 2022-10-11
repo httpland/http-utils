@@ -1,5 +1,5 @@
 import { equalsRequest, isRequest } from "./requests.ts";
-import { describe, expect, Fn, it } from "./dev_deps.ts";
+import { describe, expect, it } from "./dev_deps.ts";
 
 const url = "http://a";
 
