@@ -1,96 +1,118 @@
 import { equalsResponse, isResponse, safeResponse } from "./responses.ts";
-import { describe, expect, Fn, fn, it } from "./dev_deps.ts";
+import { assertEqualsResponse, describe, expect, fn, it } from "./dev_deps.ts";
 
-Deno.test("equalsResponse should pass", () => {
-  const table: Fn<typeof equalsResponse>[] = [
-    [new Response(), new Response(), true],
-    [new Response(null), new Response(), true],
-    [new Response(undefined), new Response(), true],
-    [
-      new Response(null, {
-        status: 500,
-      }),
-      new Response(null, {
-        status: 500,
-      }),
-      true,
-    ],
-    [
-      new Response(null, {
-        statusText: "",
-      }),
-      new Response(null, {
-        statusText: "",
-      }),
-      true,
-    ],
-    [
-      new Response(null, {
-        headers: {
-          a: "",
-        },
-      }),
-      new Response(null, {
-        headers: {
-          a: "",
-        },
-      }),
-      true,
-    ],
+describe("equalsResponse", () => {
+  it("should pass", async () => {
+    const table: [...Parameters<typeof equalsResponse>, boolean][] = [
+      [new Response(), new Response(), true],
+      [new Response(null), new Response(), true],
+      [new Response(undefined), new Response(), true],
+      [
+        new Response(null, {
+          status: 500,
+        }),
+        new Response(null, {
+          status: 500,
+        }),
+        true,
+      ],
+      [
+        new Response(null, {
+          statusText: "",
+        }),
+        new Response(null, {
+          statusText: "",
+        }),
+        true,
+      ],
+      [
+        new Response(null, {
+          headers: {
+            a: "",
+          },
+        }),
+        new Response(null, {
+          headers: {
+            a: "",
+          },
+        }),
+        true,
+      ],
 
-    [
-      new Response(null, {
-        headers: {
-          a: "test",
-        },
-      }),
-      new Response(null, {
-        headers: {
-          a: "",
-        },
-      }),
-      false,
-    ],
-    [
-      new Response(null, {
-        statusText: "",
-      }),
-      new Response(null, {
-        statusText: "a",
-      }),
-      false,
-    ],
-    [
-      new Response(null, {
-        status: 200,
-      }),
-      new Response(null, {
-        status: 201,
-      }),
-      false,
-    ],
-    [
-      new Response(null, {
-        status: 300,
-      }),
-      new Response(),
-      false,
-    ],
-    [new Response("test"), new Response(), false],
-  ];
+      [
+        new Response(null, {
+          headers: {
+            a: "test",
+          },
+        }),
+        new Response(null, {
+          headers: {
+            a: "",
+          },
+        }),
+        false,
+      ],
+      [
+        new Response(null, {
+          statusText: "",
+        }),
+        new Response(null, {
+          statusText: "a",
+        }),
+        false,
+      ],
+      [
+        new Response(null, {
+          status: 200,
+        }),
+        new Response(null, {
+          status: 201,
+        }),
+        false,
+      ],
+      [
+        new Response(null, {
+          status: 300,
+        }),
+        new Response(),
+        false,
+      ],
+      [new Response("test"), new Response(), false],
+      [new Response(""), new Response(""), true],
+      [new Response("a"), new Response(""), false],
+      [new Response("a"), new Response("a"), true],
+    ];
 
-  table.forEach(([a, b, result]) => {
-    expect(equalsResponse(a, b)).toEqual(result);
+    await Promise.all(table.map(async ([a, b, result]) => {
+      expect(await equalsResponse(a, b)).toEqual(result);
+    }));
+  });
+
+  it("should not throw when the response body has used", async () => {
+    const res = new Response("");
+
+    await res.text();
+
+    expect(res.bodyUsed).toBeTruthy();
+    expect(await equalsResponse(res, new Response(""))).toBeFalsy();
+  });
+
+  it("should use cloned response", async () => {
+    const res = new Response("");
+
+    expect(await equalsResponse(res, new Response(""))).toBeTruthy();
+
+    expect(res.bodyUsed).toBeFalsy();
+    expect(await res.text()).toBe("");
   });
 });
 
 describe("safeResponse", () => {
   it("should return 500 when the function throw error", async () => {
-    expect(
+    assertEqualsResponse(
       await safeResponse(() => {
         throw Error();
       }),
-    ).toEqualResponse(
       new Response(null, {
         status: 500,
         statusText: "Internal Server Error",
@@ -99,9 +121,8 @@ describe("safeResponse", () => {
   });
 
   it("should return 500 when the async function throw error", async () => {
-    expect(
+    assertEqualsResponse(
       await safeResponse(() => Promise.reject("Error")),
-    ).toEqualResponse(
       new Response(null, {
         status: 500,
         statusText: "Internal Server Error",
@@ -110,9 +131,8 @@ describe("safeResponse", () => {
   });
 
   it("should return response as it is", async () => {
-    expect(
+    assertEqualsResponse(
       await safeResponse(() => new Response()),
-    ).toEqualResponse(
       new Response(null, {
         status: 200,
       }),
@@ -120,9 +140,8 @@ describe("safeResponse", () => {
   });
 
   it("should return async response as it is", async () => {
-    expect(
+    assertEqualsResponse(
       await safeResponse(() => Promise.resolve(new Response())),
-    ).toEqualResponse(
       new Response(null, {
         status: 200,
       }),
@@ -130,11 +149,10 @@ describe("safeResponse", () => {
   });
 
   it("should catch error via onError", async () => {
-    expect(
+    assertEqualsResponse(
       await safeResponse(() => {
         throw Error("test");
       }, () => new Response()),
-    ).toEqualResponse(
       new Response(null, {
         status: 200,
       }),
@@ -143,20 +161,18 @@ describe("safeResponse", () => {
 
   it("should return default response when onError throw error", async () => {
     const mock = fn();
-    expect(
+    assertEqualsResponse(
       await safeResponse(() => {
         throw Error("test");
       }, (e) => {
         mock(e);
         throw e;
       }),
-    ).toEqualResponse(
       new Response(null, {
         status: 500,
         statusText: "Internal Server Error",
       }),
     );
-
     expect(mock).toHaveBeenCalledWith(new Error());
   });
 });
