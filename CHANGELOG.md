@@ -1,3 +1,10 @@
+# [1.0.0-beta.6](https://github.com/httpland/http-utils/compare/1.0.0-beta.5...1.0.0-beta.6) (2022-10-13)
+
+
+### Features
+
+* **responses:** add checking body content ([3c57c76](https://github.com/httpland/http-utils/commit/3c57c76fa85b85c6157c0c5a459aca0bee500f8e))
+
 # [1.0.0-beta.5](https://github.com/httpland/http-utils/compare/1.0.0-beta.4...1.0.0-beta.5) (2022-10-11)
 
 
