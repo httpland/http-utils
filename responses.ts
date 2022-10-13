@@ -48,27 +48,38 @@ export async function safeResponse(
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(
- *   equalsResponse(
+ *   await equalsResponse(
  *     new Response(null, { status: 204, headers: { "content-length": "0" } }),
  *     new Response(null, { status: 204, headers: { "content-length": "0" } }),
  *   ),
  *   true,
  * );
  * assertEquals(
- *   equalsResponse(new Response(), new Response(null, { status: 500 })),
+ *   await equalsResponse(new Response("test"), new Response("test2")),
  *   false,
  * );
  * ```
  */
-export function equalsResponse(a: Response, b: Response): boolean {
-  return a.ok === b.ok &&
-    a.bodyUsed === b.bodyUsed &&
-    a.redirected === b.redirected &&
-    a.status === b.status &&
-    a.statusText === b.statusText &&
-    a.type === b.type &&
-    a.url === b.url &&
-    equalsHeaders(a.headers, b.headers);
+export async function equalsResponse(
+  left: Response,
+  right: Response,
+): Promise<boolean> {
+  try {
+    left = left.clone();
+    right = right.clone();
+
+    return left.ok === right.ok &&
+      left.bodyUsed === right.bodyUsed &&
+      left.redirected === right.redirected &&
+      left.status === right.status &&
+      left.statusText === right.statusText &&
+      left.type === right.type &&
+      left.url === right.url &&
+      equalsHeaders(left.headers, right.headers) &&
+      await left.text() === await right.text();
+  } catch {
+    return false;
+  }
 }
 
 /** Whether the value is `Response` or not.

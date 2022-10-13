@@ -148,14 +148,14 @@ import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
 import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
 
 assertEquals(
-  equalsResponse(
+  await equalsResponse(
     new Response(null, { status: 204, headers: { "content-length": "0" } }),
     new Response(null, { status: 204, headers: { "content-length": "0" } }),
   ),
   true,
 );
 assertEquals(
-  equalsResponse(new Response(), new Response(null, { status: 500 })),
+  await equalsResponse(new Response(), new Response(null, { status: 500 })),
   false,
 );
 ```
