@@ -201,6 +201,6 @@ assertEquals(isResponse(null), false);
 
 ## License
 
-Copyright © 2022-present [httpland](https://github.com/httpland).
+Copyright © 2023-present [httpland](https://github.com/httpland).
 
 Released under the [MIT](./LICENSE) license
