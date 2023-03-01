@@ -145,18 +145,28 @@ Check two `Response` fields equality.
 
 ```ts
 import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
 
-assertEquals(
-  await equalsResponse(
+assert(
+  equalsResponse(
     new Response(null, { status: 204, headers: { "content-length": "0" } }),
     new Response(null, { status: 204, headers: { "content-length": "0" } }),
   ),
-  true,
 );
-assertEquals(
-  await equalsResponse(new Response(), new Response(null, { status: 500 })),
-  false,
+```
+
+If you also want to check the equivalence of the body, set the mode to strict.
+
+```ts
+import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(
+  await equalsResponse(
+    new Response("test1", { status: 200, headers: { "content-length": "5" } }),
+    new Response("test2", { status: 200, headers: { "content-length": "5" } }),
+    false,
+  ),
 );
 ```
 

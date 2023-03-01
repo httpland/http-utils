@@ -2,8 +2,8 @@ import { equalsResponse, isResponse, safeResponse } from "./responses.ts";
 import { assertEqualsResponse, describe, expect, fn, it } from "./dev_deps.ts";
 
 describe("equalsResponse", () => {
-  it("should pass", async () => {
-    const table: [...Parameters<typeof equalsResponse>, boolean][] = [
+  it("should pass cases", () => {
+    const table: [Response, Response, boolean][] = [
       [new Response(), new Response(), true],
       [new Response(null), new Response(), true],
       [new Response(undefined), new Response(), true],
@@ -38,7 +38,6 @@ describe("equalsResponse", () => {
         }),
         true,
       ],
-
       [
         new Response(null, {
           headers: {
@@ -79,12 +78,25 @@ describe("equalsResponse", () => {
       ],
       [new Response("test"), new Response(), false],
       [new Response(""), new Response(""), true],
-      [new Response("a"), new Response(""), false],
+      [new Response("a"), new Response(""), true],
       [new Response("a"), new Response("a"), true],
     ];
 
-    await Promise.all(table.map(async ([a, b, result]) => {
-      expect(await equalsResponse(a, b)).toEqual(result);
+    Promise.all(table.map(([left, right, result]) => {
+      expect(equalsResponse(left, right)).toEqual(result);
+    }));
+  });
+
+  it("should pass if strict mode", async () => {
+    const table: [Response, Response, boolean][] = [
+      [new Response(""), new Response(""), true],
+      [new Response("a"), new Response("a"), true],
+      [new Response("test"), new Response(), false],
+      [new Response("a"), new Response(""), false],
+    ];
+
+    await Promise.all(table.map(async ([left, right, result]) => {
+      expect(await equalsResponse(left, right, true)).toEqual(result);
     }));
   });
 
