@@ -1,7 +1,7 @@
 // Copyright 2022-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-import { db, isTruthy, trim } from "./deps.ts";
+import { db } from "./deps.ts";
 
 /** Weather the field is singleton field or not.
  *
@@ -170,5 +170,5 @@ export function equalsHeaders(a: Headers, b: Headers): boolean {
  */
 export function parseFieldValue(fieldValue: string): string[] {
   return (fieldValue.match(/((".+?")|[^,])*/g) ??
-    []).map(trim).filter(isTruthy);
+    []).map((value) => value.trim()).filter(Boolean);
 }
