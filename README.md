@@ -199,6 +199,39 @@ assertEquals(isResponse({}), false);
 assertEquals(isResponse(null), false);
 ```
 
+## isSafeMethod
+
+Whether the method is safe method or not.
+
+Defined in
+[RFC 9110, 9.2.1. Safe Methods](https://www.rfc-editor.org/rfc/rfc9110.html#name-safe-methods).
+
+```ts
+import { isSafeMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isSafeMethod("GET"));
+assert(isSafeMethod("HEAD"));
+assert(isSafeMethod("OPTIONS"));
+assert(isSafeMethod("TRACE"));
+```
+
+## isIdempotentMethod
+
+Whether the method is idempotent method or not.
+
+Defined in
+[RFC 9110, 9.2.2 Idempotent Methods](https://www.rfc-editor.org/rfc/rfc9110.html#name-idempotent-methods).
+
+```ts
+import { isIdempotentMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isIdempotentMethod("GET"));
+assert(isIdempotentMethod("PUT"));
+assert(isIdempotentMethod("DELETE"));
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).

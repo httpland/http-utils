@@ -12,4 +12,11 @@ export {
   parseFieldValue,
 } from "./headers.ts";
 export { equalsResponse, isResponse, safeResponse } from "./responses.ts";
-export { type HttpMethod, Method } from "./method.ts";
+export {
+  type HttpMethod,
+  type IdempotentMethod,
+  isIdempotentMethod,
+  isSafeMethod,
+  Method,
+  type SafeMethod,
+} from "./method.ts";

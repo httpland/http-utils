@@ -25,3 +25,52 @@ export const enum Method {
 
 /** HTTP request method. */
 export type HttpMethod = Uppercase<keyof typeof Method>;
+
+/** HTTP method that is read-only.
+ * @see [RFC 9110, 9.2.1. Safe Methods](https://www.rfc-editor.org/rfc/rfc9110.html#name-safe-methods)
+ */
+export type SafeMethod =
+  | Method.Get
+  | Method.Head
+  | Method.Options
+  | Method.Trace;
+
+/** HTTP method that is idempotent.
+ * @see [RFC 9110, 9.2.2 Idempotent Methods](https://www.rfc-editor.org/rfc/rfc9110.html#name-idempotent-methods)
+ */
+export type IdempotentMethod = Method.Put | Method.Delete | SafeMethod;
+
+/** Whether the method is {@link SafeMethod} or not.
+ *
+ * @example
+ * ```ts
+ * import { isSafeMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isSafeMethod("GET"));
+ * assert(isSafeMethod("HEAD"));
+ * assert(isSafeMethod("OPTIONS"));
+ * assert(isSafeMethod("TRACE"));
+ * ```
+ */
+export function isSafeMethod(method: string): method is SafeMethod {
+  return ([Method.Get, Method.Head, Method.Options, Method.Trace] as string[])
+    .includes(method);
+}
+
+/** Whether the method is {@link IdempotentMethod} or not.
+ *
+ * @example
+ * ```ts
+ * import { isIdempotentMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isIdempotentMethod("GET"));
+ * assert(isIdempotentMethod("PUT"));
+ * assert(isIdempotentMethod("DELETE"));
+ * ```
+ */
+export function isIdempotentMethod(method: string): method is IdempotentMethod {
+  return isSafeMethod(method) ||
+    ([Method.Put, Method.Delete] as string[]).includes(method);
+}
