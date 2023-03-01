@@ -1,3 +1,12 @@
+# [1.0.0-beta.7](https://github.com/httpland/http-utils/compare/1.0.0-beta.6...1.0.0-beta.7) (2023-03-01)
+
+
+### Features
+
+* **method:** add http method enum ([5e31439](https://github.com/httpland/http-utils/commit/5e31439fdeaf4ea5a25bee094cebacc7552a45b9))
+* **method:** add method utilities ([44a025c](https://github.com/httpland/http-utils/commit/44a025c7d6311bbd0f2e5e40ae8521527d7a26d4))
+* **responses:** add overload types to `equalsResponse` ([7af961b](https://github.com/httpland/http-utils/commit/7af961b06a8c56ef0b1c6931b95366bc740d0966))
+
 # [1.0.0-beta.6](https://github.com/httpland/http-utils/compare/1.0.0-beta.5...1.0.0-beta.6) (2022-10-13)
 
 
