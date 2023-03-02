@@ -1,8 +1,8 @@
 // Copyright 2022-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-export { equalsRequest, isRequest } from "./requests.ts";
-export { type HttpHandler } from "./handlers.ts";
+export { equalsRequest, isRequest } from "./request.ts";
+export { type HttpHandler } from "./handler.ts";
 export {
   equalsHeaders,
   type HttpFieldName,
@@ -10,8 +10,8 @@ export {
   mergeHeaders,
   type MergeHeadersOptions,
   parseFieldValue,
-} from "./headers.ts";
-export { equalsResponse, isResponse, safeResponse } from "./responses.ts";
+} from "./header.ts";
+export { equalsResponse, isResponse, safeResponse } from "./response.ts";
 export {
   type HttpMethod,
   type IdempotentMethod,

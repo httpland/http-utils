@@ -1,4 +1,4 @@
-import { equalsResponse, isResponse, safeResponse } from "./responses.ts";
+import { equalsResponse, isResponse, safeResponse } from "./response.ts";
 import { assertEqualsResponse, describe, expect, fn, it } from "./dev_deps.ts";
 
 describe("equalsResponse", () => {

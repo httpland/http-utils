@@ -2,7 +2,7 @@
 // This module is browser compatible.
 
 import { Status, STATUS_TEXT } from "./deps.ts";
-import { equalsHeaders } from "./headers.ts";
+import { equalsHeaders } from "./header.ts";
 
 /** Safely returns a Response object.
  * Wraps operations that may cause errors and returns a 500 internal server error response if an error occurs.

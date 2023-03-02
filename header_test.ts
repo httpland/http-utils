@@ -3,7 +3,7 @@ import {
   isSingletonField,
   mergeHeaders,
   parseFieldValue,
-} from "./headers.ts";
+} from "./header.ts";
 import { describe, expect, Fn, it } from "./dev_deps.ts";
 
 describe("equalsHeaders", () => {

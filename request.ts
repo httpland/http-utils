@@ -1,7 +1,7 @@
 // Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-import { equalsHeaders } from "./headers.ts";
+import { equalsHeaders } from "./header.ts";
 
 /** Check two `Request` fields equality.
  *

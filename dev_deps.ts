@@ -5,8 +5,8 @@ import {
   jestMatcherMap,
 } from "https://deno.land/x/unitest@v1.0.0-beta.82/mod.ts";
 export { fn } from "https://deno.land/x/unitest@v1.0.0-beta.82/mod.ts";
-import { equalsHeaders } from "./headers.ts";
-import { equalsResponse } from "./responses.ts";
+import { equalsHeaders } from "./header.ts";
+import { equalsResponse } from "./response.ts";
 import { AssertionError } from "https://deno.land/std@0.159.0/testing/asserts.ts";
 
 // deno-lint-ignore no-explicit-any
