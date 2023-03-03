@@ -170,6 +170,24 @@ assert(
 );
 ```
 
+### Throwing error
+
+In strict mode, if response body has already been read.
+
+```ts
+import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import {
+  assert,
+  assertThrows,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+const response = new Response("");
+await response.text();
+
+assert(response.bodyUsed);
+assertThrows(() => equalsResponse(response, response, true));
+```
+
 ## safeResponse
 
 Safely returns a Response object.

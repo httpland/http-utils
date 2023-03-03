@@ -72,6 +72,8 @@ export function equalsResponse(left: Response, right: Response): boolean;
  *   ),
  * );
  * ```
+ *
+ * @throws {Error} In strict mode, if response body has already been read.
  */
 export function equalsResponse(
   left: Response,
@@ -85,27 +87,26 @@ export function equalsResponse(
 ): boolean | Promise<boolean> {
   strict ??= false;
 
-  try {
-    left = left.clone();
-    right = right.clone();
+  const staticResult = left.ok === right.ok &&
+    left.bodyUsed === right.bodyUsed &&
+    left.redirected === right.redirected &&
+    left.status === right.status &&
+    left.statusText === right.statusText &&
+    left.type === right.type &&
+    left.url === right.url &&
+    equalsHeaders(left.headers, right.headers);
 
-    const staticResult = left.ok === right.ok &&
-      left.bodyUsed === right.bodyUsed &&
-      left.redirected === right.redirected &&
-      left.status === right.status &&
-      left.statusText === right.statusText &&
-      left.type === right.type &&
-      left.url === right.url &&
-      equalsHeaders(left.headers, right.headers);
+  if (!staticResult || !strict) return staticResult;
 
-    if (!staticResult || !strict) return staticResult;
-
-    return Promise.all([left.text(), right.text()]).then(([left, right]) =>
-      Object.is(left, right)
+  if (left.bodyUsed || right.bodyUsed) {
+    throw Error(
+      "response body has already been read and the body cannot be strictly compared",
     );
-  } catch {
-    return false;
   }
+
+  return Promise.all([left.clone().text(), right.clone().text()]).then((
+    [left, right],
+  ) => Object.is(left, right));
 }
 
 /** Whether the value is `Response` or not.

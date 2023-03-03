@@ -1,5 +1,13 @@
 import { equalsResponse, isResponse, safeResponse } from "./response.ts";
-import { assertEqualsResponse, describe, expect, fn, it } from "./dev_deps.ts";
+import {
+  assert,
+  assertEqualsResponse,
+  assertThrows,
+  describe,
+  expect,
+  fn,
+  it,
+} from "./dev_deps.ts";
 
 describe("equalsResponse", () => {
   it("should pass cases", () => {
@@ -98,6 +106,14 @@ describe("equalsResponse", () => {
     await Promise.all(table.map(async ([left, right, result]) => {
       expect(await equalsResponse(left, right, true)).toEqual(result);
     }));
+  });
+
+  it("should throw error if strict mode and the response body has been read", async () => {
+    const response = new Response("");
+    await response.text();
+
+    assert(response.bodyUsed);
+    assertThrows(() => equalsResponse(response, response, true));
   });
 
   it("should not throw when the response body has used", async () => {
