@@ -1,3 +1,10 @@
+# [1.0.0-beta.8](https://github.com/httpland/http-utils/compare/1.0.0-beta.7...1.0.0-beta.8) (2023-03-03)
+
+
+### Features
+
+* **response:** add throwing error pattern to `equalsResponse` ([d58690a](https://github.com/httpland/http-utils/commit/d58690a8f18ac8db1d108af9d849b49a8e68855b))
+
 # [1.0.0-beta.7](https://github.com/httpland/http-utils/compare/1.0.0-beta.6...1.0.0-beta.7) (2023-03-01)
 
 
