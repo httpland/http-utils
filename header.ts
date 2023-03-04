@@ -175,6 +175,14 @@ export function parseFieldValue(fieldValue: string): string[] {
 
 /** Representation header fields provide metadata about the representation.
  * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
+ *
+ * @example
+ * ```ts
+ * import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(RepresentationHeader.ContentType, "content-type");
+ * ```
  */
 export const enum RepresentationHeader {
   /**
@@ -215,6 +223,14 @@ export const enum RepresentationHeader {
 
 /** Caching header represents a header filed for HTTP caching.
  * @see [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111)
+ *
+ * @example
+ * ```ts
+ * import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(CachingHeader.CacheControl, "cache-control");
+ * ```
  */
 export const enum CachingHeader {
   /**
