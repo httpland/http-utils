@@ -107,34 +107,6 @@ assertEquals(
 // origin is singleton field
 ```
 
-## RepresentationHeader
-
-Representation header field enumeration provide metadata about the
-representation.
-
-Defined in
-[RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2).
-
-```ts
-import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(RepresentationHeader.ContentType, "content-type");
-```
-
-## CachingHeader
-
-Caching header represents a header filed for HTTP caching.
-
-Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
-
-```ts
-import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(CachingHeader.CacheControl, "cache-control");
-```
-
 ## parseFieldValue
 
 Parse the header field value.
@@ -165,6 +137,34 @@ import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts"
 
 assertEquals(isSingletonField("Origin"), true);
 assertEquals(isSingletonField("Vary"), false);
+```
+
+## RepresentationHeader
+
+Representation header field enumeration provide metadata about the
+representation.
+
+Defined in
+[RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2).
+
+```ts
+import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(RepresentationHeader.ContentType, "content-type");
+```
+
+## CachingHeader
+
+Caching header represents a header filed for HTTP caching.
+
+Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
+
+```ts
+import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(CachingHeader.CacheControl, "cache-control");
 ```
 
 ## equalsResponse
