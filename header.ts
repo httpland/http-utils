@@ -173,7 +173,7 @@ export function parseFieldValue(fieldValue: string): string[] {
     []).map((value) => value.trim()).filter(Boolean);
 }
 
-/** Representation header is an HTTP header that describes the particular representation of the resource sent in an HTTP message body.
+/** Representation header fields provide metadata about the representation.
  * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
  */
 export const enum RepresentationHeader {
