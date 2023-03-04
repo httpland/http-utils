@@ -165,7 +165,7 @@ assert(
   await equalsResponse(
     new Response("test1", { status: 200, headers: { "content-length": "5" } }),
     new Response("test2", { status: 200, headers: { "content-length": "5" } }),
-    false,
+    true,
   ),
 );
 ```
