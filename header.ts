@@ -286,6 +286,14 @@ export const enum AuthenticationHeader {
 
 /** HTTP content negotiation header fields.
  * @see [RFC 9110, 12. Content Negotiation](https://www.rfc-editor.org/rfc/rfc9110#section-12)
+ *
+ * @example
+ * ```ts
+ * import { ContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(ContentNegotiationHeader.Accept, "accept");
+ * ```
  */
 export const enum ContentNegotiationHeader {
   /**
