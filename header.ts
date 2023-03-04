@@ -176,7 +176,7 @@ export function parseFieldValue(fieldValue: string): string[] {
 /** Representation header is an HTTP header that describes the particular representation of the resource sent in an HTTP message body.
  * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
  */
-export enum RepresentationHeader {
+export const enum RepresentationHeader {
   /**
    * @see [RFC 9110, 8.3. Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.3)
    */
@@ -193,7 +193,22 @@ export enum RepresentationHeader {
   ContentLanguage = "content-language",
 
   /**
+   * @see [RFC 9110, 8.6. Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.6)
+   */
+  ContentLength = "content-length",
+
+  /**
    * @see [RFC 9110, 8.7. Content-Location](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.7)
    */
   ContentLocation = "content-location",
+
+  /**
+   * @see [RFC 9110, 8.8.2. Last-Modified](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.2)
+   */
+  LastModified = "last-modified",
+
+  /**
+   * @see [RFC 9110, 8.8.3. ETag](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.3)
+   */
+  ETag = "etag",
 }
