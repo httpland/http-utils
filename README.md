@@ -141,11 +141,18 @@ assertEquals(isSingletonField("Vary"), false);
 
 ## RepresentationHeader
 
-Representation header field enumeration provide metadata about the
-representation.
+HTTP representation data and metadata header fields.
 
-Defined in
+Compliant with
 [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2).
+
+- Content-Type
+- Content-Encoding
+- Content-Language
+- Content-Length
+- Content-Location
+- Last-Modified
+- ETag
 
 ```ts
 import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
@@ -156,9 +163,13 @@ assertEquals(RepresentationHeader.ContentType, "content-type");
 
 ## CachingHeader
 
-Caching header represents a header filed for HTTP caching.
+HTTP Caching header fields.
 
 Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
+
+- Age
+- Cache-Control
+- Expires
 
 ```ts
 import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
@@ -173,6 +184,13 @@ HTTP Authentication header fields.
 
 Compliant with
 [RFC 9110, 11. HTTP Authentication](https://www.rfc-editor.org/rfc/rfc9110#section-11).
+
+- WWW-Authenticate
+- Authorization
+- Authentication-Info
+- Proxy-Authenticate
+- Proxy-Authorization
+- Proxy-Authentication-Info
 
 ```ts
 import { AuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";

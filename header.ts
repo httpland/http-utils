@@ -173,7 +173,7 @@ export function parseFieldValue(fieldValue: string): string[] {
     []).map((value) => value.trim()).filter(Boolean);
 }
 
-/** Representation header fields provide metadata about the representation.
+/** HTTP representation data and metadata header fields.
  * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
  *
  * @example
@@ -221,7 +221,7 @@ export const enum RepresentationHeader {
   ETag = "etag",
 }
 
-/** Caching header represents a header filed for HTTP caching.
+/** HTTP Caching header fields.
  * @see [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111)
  *
  * @example
