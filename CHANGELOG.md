@@ -1,3 +1,10 @@
+# [1.0.0-beta.10](https://github.com/httpland/http-utils/compare/1.0.0-beta.9...1.0.0-beta.10) (2023-03-04)
+
+
+### Features
+
+* **header:** add caching header enum ([1844621](https://github.com/httpland/http-utils/commit/1844621b43293e362c41af24ef2f57dcf24eac4b))
+
 # [1.0.0-beta.9](https://github.com/httpland/http-utils/compare/1.0.0-beta.8...1.0.0-beta.9) (2023-03-04)
 
 
