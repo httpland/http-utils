@@ -212,3 +212,23 @@ export const enum RepresentationHeader {
    */
   ETag = "etag",
 }
+
+/** Caching header represents a header filed for HTTP caching.
+ * @see [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111)
+ */
+export const enum CachingHeader {
+  /**
+   * @see [RFC 9111, 5.1. Age](https://www.rfc-editor.org/rfc/rfc9111#section-5.1)
+   */
+  Age = "age",
+
+  /**
+   * @see [RFC 9111, 5.2. Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#section-5.2)
+   */
+  CacheControl = "cache-control",
+
+  /**
+   * @see [RFC 9111, 5.3. Expires](https://www.rfc-editor.org/rfc/rfc9111#section-5.3)
+   */
+  Expires = "expires",
+}
