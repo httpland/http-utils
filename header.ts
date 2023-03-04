@@ -309,3 +309,37 @@ export const enum ContentNegotiationHeader {
    */
   Vary = "vary",
 }
+
+/** HTTP conditional requests header fields.
+ * @see [RFC 9110, 13. Conditional Requests](https://www.rfc-editor.org/rfc/rfc9110#section-13)
+ *
+ * @example
+ * ```ts
+ * import { ConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
+ * ```
+ */
+export const enum ConditionalHeader {
+  /**
+   * @see [RFC 9110, 13.1.1. If-Match](https://www.rfc-editor.org/rfc/rfc9110#section-13.1.1)
+   */
+  IfMatch = "if-match",
+  /**
+   * @see [RFC 9110, 13.1.2. If-None-Match](https://www.rfc-editor.org/rfc/rfc9110#section-13.1.2)
+   */
+  IfNoneMatch = "if-none-match",
+  /**
+   * @see [RFC 9110, 13.1.3. If-Modified-Since](https://www.rfc-editor.org/rfc/rfc9110#section-13.1.3)
+   */
+  IfModifiedSince = "if-modified-since",
+  /**
+   * @see [RFC 9110, 13.1.4. If-Unmodified-Since](https://www.rfc-editor.org/rfc/rfc9110#section-13.1.4)
+   */
+  IfUnmodifiedSince = "if-unmodified-since",
+  /**
+   * @see [RFC 9110, 13.1.5. If-Range](https://www.rfc-editor.org/rfc/rfc9110#section-13.1.5)
+   */
+  IfRange = "if-range",
+}

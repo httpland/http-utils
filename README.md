@@ -219,6 +219,26 @@ import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts"
 assertEquals(ContentNegotiationHeader.Accept, "accept");
 ```
 
+## ConditionalHeader
+
+HTTP conditional requests header fields.
+
+Compliant with
+[RFC 9110, 13. Conditional Requests](https://www.rfc-editor.org/rfc/rfc9110#section-13).
+
+- If-Match
+- If-None-Match
+- If-Modified-Since
+- If-Unmodified-Since
+- If-Range
+
+```ts
+import { ConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
+```
+
 ## equalsResponse
 
 Check two `Response` fields equality.

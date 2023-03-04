@@ -6,6 +6,7 @@ export { type HttpHandler } from "./handler.ts";
 export {
   AuthenticationHeader,
   CachingHeader,
+  ConditionalHeader,
   ContentNegotiationHeader,
   equalsHeaders,
   type HttpFieldName,
