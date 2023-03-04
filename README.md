@@ -167,6 +167,20 @@ import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts"
 assertEquals(CachingHeader.CacheControl, "cache-control");
 ```
 
+## AuthenticationHeader
+
+HTTP Authentication header fields.
+
+Compliant with
+[RFC 9110, 11. HTTP Authentication](https://www.rfc-editor.org/rfc/rfc9110#section-11).
+
+```ts
+import { AuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(AuthenticationHeader.Authorization, "authorization");
+```
+
 ## equalsResponse
 
 Check two `Response` fields equality.

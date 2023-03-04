@@ -4,6 +4,7 @@
 export { equalsRequest, isRequest } from "./request.ts";
 export { type HttpHandler } from "./handler.ts";
 export {
+  AuthenticationHeader,
   CachingHeader,
   equalsHeaders,
   type HttpFieldName,

@@ -248,3 +248,38 @@ export const enum CachingHeader {
    */
   Expires = "expires",
 }
+
+/** HTTP Authentication header fields.
+ * @see [RFC 9110, 11. HTTP Authentication](https://www.rfc-editor.org/rfc/rfc9110#section-11)
+ */
+export const enum AuthenticationHeader {
+  /**
+   * @see [RFC 9110, 11.6.1. WWW-Authenticate](https://www.rfc-editor.org/rfc/rfc9110#section-11.6.1)
+   */
+  WWWAuthenticate = "www-authenticate",
+
+  /**
+   * @see [RFC 9110, 11.6.2. Authorization](https://www.rfc-editor.org/rfc/rfc9110#section-11.6.2)
+   */
+  Authorization = "authorization",
+
+  /**
+   * @see [RFC 9110, 11.6.3. Authentication-Info](https://www.rfc-editor.org/rfc/rfc9110#section-11.6.3)
+   */
+  AuthenticationInfo = "authentication-info",
+
+  /**
+   * @see [RFC 9110, 11.7.1. Proxy-Authenticate](https://www.rfc-editor.org/rfc/rfc9110#section-11.7.1)
+   */
+  ProxyAuthenticate = "proxy-authenticate",
+
+  /**
+   * @see [RFC 9110, 11.7.2. Proxy-Authorization](https://www.rfc-editor.org/rfc/rfc9110#section-11.7.2)
+   */
+  ProxyAuthorization = "proxy-authorization",
+
+  /**
+   * @see [RFC 9110, 11.7.3. Proxy-Authentication-Info](https://www.rfc-editor.org/rfc/rfc9110#section-11.7.3)
+   */
+  ProxyAuthenticationInfo = "proxy-authentication-info",
+}
