@@ -1,3 +1,11 @@
+# [1.0.0-beta.9](https://github.com/httpland/http-utils/compare/1.0.0-beta.8...1.0.0-beta.9) (2023-03-04)
+
+
+### Features
+
+* **header:** add fileld to representation header ([58965b2](https://github.com/httpland/http-utils/commit/58965b247926983b1e81462adcdb7eb69d2cc13e))
+* **header:** add representation header enum ([2561134](https://github.com/httpland/http-utils/commit/25611347552a620ea19bc301ca5357179ebb5533))
+
 # [1.0.0-beta.8](https://github.com/httpland/http-utils/compare/1.0.0-beta.7...1.0.0-beta.8) (2023-03-03)
 
 
