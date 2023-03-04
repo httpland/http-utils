@@ -172,3 +172,28 @@ export function parseFieldValue(fieldValue: string): string[] {
   return (fieldValue.match(/((".+?")|[^,])*/g) ??
     []).map((value) => value.trim()).filter(Boolean);
 }
+
+/** Representation header is an HTTP header that describes the particular representation of the resource sent in an HTTP message body.
+ * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
+ */
+export enum RepresentationHeader {
+  /**
+   * @see [RFC 9110, 8.3. Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.3)
+   */
+  ContentType = "content-type",
+
+  /**
+   * @see [RFC 9110, 8.4. Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.4)
+   */
+  ContentEncoding = "content-encoding",
+
+  /**
+   * @see [RFC 9110, 8.5. Content-Language](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.5)
+   */
+  ContentLanguage = "content-language",
+
+  /**
+   * @see [RFC 9110, 8.7. Content-Location](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.7)
+   */
+  ContentLocation = "content-location",
+}
