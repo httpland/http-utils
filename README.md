@@ -181,6 +181,26 @@ import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts"
 assertEquals(AuthenticationHeader.Authorization, "authorization");
 ```
 
+## ContentNegotiationHeader
+
+HTTP content negotiation header fields.
+
+Compliant with
+[RFC 9110, 12. Content Negotiation](https://www.rfc-editor.org/rfc/rfc9110#section-12).
+
+- Accept
+- Accept-Charset
+- Accept-Encoding
+- Accept-Language
+- Vary
+
+```ts
+import { ContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(ContentNegotiationHeader.Accept, "accept");
+```
+
 ## equalsResponse
 
 Check two `Response` fields equality.

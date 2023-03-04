@@ -283,3 +283,29 @@ export const enum AuthenticationHeader {
    */
   ProxyAuthenticationInfo = "proxy-authentication-info",
 }
+
+/** HTTP content negotiation header fields.
+ * @see [RFC 9110, 12. Content Negotiation](https://www.rfc-editor.org/rfc/rfc9110#section-12)
+ */
+export const enum ContentNegotiationHeader {
+  /**
+   * @see [RFC 9110, 12.5.1. Accept](https://www.rfc-editor.org/rfc/rfc9110#section-12.5.1)
+   */
+  Accept = "accept",
+  /**
+   * @see [RFC 9110, 12.5.2. Accept-Charset](https://www.rfc-editor.org/rfc/rfc9110#section-12.5.2)
+   */
+  AcceptCharset = "accept-charset",
+  /**
+   * @see [RFC 9110, 12.5.3. Accept-Encoding](https://www.rfc-editor.org/rfc/rfc9110#section-12.5.3)
+   */
+  AcceptEncoding = "accept-encoding",
+  /**
+   * @see [RFC 9110, 12.5.4. Accept-Language](https://www.rfc-editor.org/rfc/rfc9110#section-12.5.4)
+   */
+  AcceptLanguage = "accept-language",
+  /**
+   * @see [RFC 9110, 12.5.5. Vary](https://www.rfc-editor.org/rfc/rfc9110#section-12.5.5)
+   */
+  Vary = "vary",
+}
