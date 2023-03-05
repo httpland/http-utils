@@ -378,6 +378,24 @@ assert(isIdempotentMethod("PUT"));
 assert(isIdempotentMethod("DELETE"));
 ```
 
+## isRetrieveMethod
+
+Whether the method is retrieve method or not.
+
+Retrieve method is following:
+
+- GET
+- HEAD
+
+```ts
+import { isRetrieveMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isRetrieveMethod("GET"));
+assert(isRetrieveMethod("HEAD"));
+assert(!isRetrieveMethod("POST"));
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).

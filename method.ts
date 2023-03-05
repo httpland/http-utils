@@ -74,3 +74,24 @@ export function isIdempotentMethod(method: string): method is IdempotentMethod {
   return isSafeMethod(method) ||
     ([Method.Put, Method.Delete] as string[]).includes(method);
 }
+
+/** HTTP method that request retrieving data. */
+export type RetrieveMethod = Method.Get | Method.Head;
+
+/** Whether the method is {@link RetrieveMethod} or not.
+ *
+ * @param method Any method
+ *
+ * @example
+ * ```ts
+ * import { isRetrieveMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isRetrieveMethod("GET"));
+ * assert(isRetrieveMethod("HEAD"));
+ * assert(!isRetrieveMethod("POST"));
+ * ```
+ */
+export function isRetrieveMethod(method: string): method is RetrieveMethod {
+  return ([Method.Get, Method.Head] as string[]).includes(method);
+}

@@ -22,7 +22,9 @@ export {
   type HttpMethod,
   type IdempotentMethod,
   isIdempotentMethod,
+  isRetrieveMethod,
   isSafeMethod,
   Method,
+  type RetrieveMethod,
   type SafeMethod,
 } from "./method.ts";
