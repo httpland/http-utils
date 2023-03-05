@@ -239,6 +239,24 @@ import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts"
 assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
 ```
 
+## RangeHeader
+
+HTTP range requests header fields.
+
+Compliant with
+[RFC 9110, 14. Range Requests](https://www.rfc-editor.org/rfc/rfc9110#section-14).
+
+- Range
+- Accept-Ranges
+- Content-Range
+
+```ts
+import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(RangeHeader.Range, "range");
+```
+
 ## equalsResponse
 
 Check two `Response` fields equality.

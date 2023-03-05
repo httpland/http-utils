@@ -351,3 +351,29 @@ export const enum ConditionalHeader {
    */
   IfRange = "if-range",
 }
+
+/** HTTP range requests header fields.
+ * @see [RFC 9110, 14. Range Requests](https://www.rfc-editor.org/rfc/rfc9110#section-14)
+ *
+ * @example
+ * ```ts
+ * import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(RangeHeader.Range, "range");
+ * ```
+ */
+export const enum RangeHeader {
+  /**
+   * @see [RFC 9110, 14.2. Range](https://www.rfc-editor.org/rfc/rfc9110#section-14.2)
+   */
+  Range = "range",
+  /**
+   * @see [RFC 9110, 14.3. Accept-Ranges](https://www.rfc-editor.org/rfc/rfc9110#section-14.3)
+   */
+  AcceptRanges = "accept-ranges",
+  /**
+   * @see [RFC 9110, 14.4. Content-Range](https://www.rfc-editor.org/rfc/rfc9110#section-14.4)
+   */
+  ContentRange = "content-range",
+}
