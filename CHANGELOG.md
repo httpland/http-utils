@@ -1,3 +1,11 @@
+# [1.0.0-beta.12](https://github.com/httpland/http-utils/compare/1.0.0-beta.11...1.0.0-beta.12) (2023-03-05)
+
+
+### Features
+
+* **header:** add range requests header fields ([7c00c47](https://github.com/httpland/http-utils/commit/7c00c47fec3e0edd9cbf794b8ef602a0298d3eca))
+* **method:** add retrieve method checking function ([702f18f](https://github.com/httpland/http-utils/commit/702f18fb3caa68bf0366dd7636cd5ea73d6b7a21))
+
 # [1.0.0-beta.11](https://github.com/httpland/http-utils/compare/1.0.0-beta.10...1.0.0-beta.11) (2023-03-04)
 
 
