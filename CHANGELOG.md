@@ -1,3 +1,12 @@
+# [1.0.0-beta.11](https://github.com/httpland/http-utils/compare/1.0.0-beta.10...1.0.0-beta.11) (2023-03-04)
+
+
+### Features
+
+* **header:** add conditional header fields ([863f4cb](https://github.com/httpland/http-utils/commit/863f4cb905e0b981de616acc58b54be0512f437c))
+* **header:** add content negotiation header fields ([cc6c3d0](https://github.com/httpland/http-utils/commit/cc6c3d0eb0c3605d9b118e703fdda86c93b9237e))
+* **heaer:** add http authentication header fields ([5cfa316](https://github.com/httpland/http-utils/commit/5cfa3166e9eaa8a15e0f2c82779466e7a0bfb55b))
+
 # [1.0.0-beta.10](https://github.com/httpland/http-utils/compare/1.0.0-beta.9...1.0.0-beta.10) (2023-03-04)
 
 
