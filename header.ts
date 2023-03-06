@@ -196,6 +196,34 @@ export const enum MessageMetadataHeader {
   Trailer = "trailer",
 }
 
+/** HTTP Message Forwarding header fields.
+ * @see [RFC 9110, 7.6. Message Forwarding](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6)
+ *
+ * @example
+ * ```ts
+ * import { MessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(MessageForwardingHeader.Via, "via");
+ * ```
+ */
+export const enum MessageForwardingHeader {
+  /**
+   * @see [RFC 9110, 7.6.1. Connection](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6.1)
+   */
+  Connection = "connection",
+
+  /**
+   * @see [RFC 9110, 7.6.2. Max-Forwards](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6.2)
+   */
+  MaxForwards = "max-forwards",
+
+  /**
+   * @see [RFC 9110, 7.6.3. Via](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6.3)
+   */
+  Via = "via",
+}
+
 /** HTTP representation data and metadata header fields.
  * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
  *

@@ -156,6 +156,24 @@ import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts"
 assertEquals(MessageMetadataHeader.Date, "date");
 ```
 
+## MessageForwardingHeader
+
+HTTP Message Forwarding header fields.
+
+Compliant with
+[RFC 9110, 7.6. Message Forwarding](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6).
+
+- Connection
+- Max-Forwards
+- Via
+
+```ts
+import { MessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(MessageForwardingHeader.Via, "via");
+```
+
 ## RepresentationHeader
 
 HTTP representation data and metadata header fields.
