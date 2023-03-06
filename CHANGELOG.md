@@ -1,3 +1,11 @@
+# [1.0.0-beta.13](https://github.com/httpland/http-utils/compare/1.0.0-beta.12...1.0.0-beta.13) (2023-03-06)
+
+
+### Features
+
+* **header:** add message forwarding header fields ([f2a439f](https://github.com/httpland/http-utils/commit/f2a439fcfa629b11813d6e66d02482c3f53e9cb8))
+* **header:** add message metadata header fields ([75bb6ee](https://github.com/httpland/http-utils/commit/75bb6ee636af69c3814a79c19ac9a86ae781e498))
+
 # [1.0.0-beta.12](https://github.com/httpland/http-utils/compare/1.0.0-beta.11...1.0.0-beta.12) (2023-03-05)
 
 
