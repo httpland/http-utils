@@ -13,6 +13,8 @@ export {
   isSingletonField,
   mergeHeaders,
   type MergeHeadersOptions,
+  MessageForwardingHeader,
+  MessageMetadataHeader,
   parseFieldValue,
   RangeHeader,
   RepresentationHeader,
