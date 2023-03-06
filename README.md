@@ -1,6 +1,6 @@
 # http-utils
 
-HTTP implementation utility collection.
+HTTP utility collection for Fetch API.
 
 A collection of modules with one or more of the following characteristics:
 
