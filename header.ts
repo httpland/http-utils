@@ -173,6 +173,29 @@ export function parseFieldValue(fieldValue: string): string[] {
     []).map((value) => value.trim()).filter(Boolean);
 }
 
+/** HTTP Message Metadata header fields.
+ * @see [RFC 9110, 6.6. Message Metadata](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6)
+ *
+ * @example
+ * ```ts
+ * import { MessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(MessageMetadataHeader.Date, "date");
+ * ```
+ */
+export const enum MessageMetadataHeader {
+  /**
+   * @see [RFC 9110, 6.6.1. Date](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6.1)
+   */
+  Date = "date",
+
+  /**
+   * @see [RFC 9110, 6.6.2. Trailer](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6.2)
+   */
+  Trailer = "trailer",
+}
+
 /** HTTP representation data and metadata header fields.
  * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
  *

@@ -139,6 +139,23 @@ assertEquals(isSingletonField("Origin"), true);
 assertEquals(isSingletonField("Vary"), false);
 ```
 
+## MessageMetadataHeader
+
+HTTP Message Metadata header fields.
+
+Compliant with
+[RFC 9110, 6.6. Message Metadata](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6).
+
+- Date
+- Trailer
+
+```ts
+import { MessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(MessageMetadataHeader.Date, "date");
+```
+
 ## RepresentationHeader
 
 HTTP representation data and metadata header fields.
