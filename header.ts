@@ -225,7 +225,7 @@ export const enum MessageForwardingHeader {
 }
 
 /** HTTP representation data and metadata header fields.
- * @see [RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2)
+ * @see [RFC 9110, 8. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-8)
  *
  * @example
  * ```ts
@@ -270,34 +270,6 @@ export const enum RepresentationHeader {
    * @see [RFC 9110, 8.8.3. ETag](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.3)
    */
   ETag = "etag",
-}
-
-/** HTTP Caching header fields.
- * @see [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111)
- *
- * @example
- * ```ts
- * import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
- * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
- *
- * assertEquals(CachingHeader.CacheControl, "cache-control");
- * ```
- */
-export const enum CachingHeader {
-  /**
-   * @see [RFC 9111, 5.1. Age](https://www.rfc-editor.org/rfc/rfc9111#section-5.1)
-   */
-  Age = "age",
-
-  /**
-   * @see [RFC 9111, 5.2. Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#section-5.2)
-   */
-  CacheControl = "cache-control",
-
-  /**
-   * @see [RFC 9111, 5.3. Expires](https://www.rfc-editor.org/rfc/rfc9111#section-5.3)
-   */
-  Expires = "expires",
 }
 
 /** HTTP Authentication header fields.
@@ -427,4 +399,32 @@ export const enum RangeHeader {
    * @see [RFC 9110, 14.4. Content-Range](https://www.rfc-editor.org/rfc/rfc9110#section-14.4)
    */
   ContentRange = "content-range",
+}
+
+/** HTTP Caching header fields.
+ * @see [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111)
+ *
+ * @example
+ * ```ts
+ * import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assertEquals(CachingHeader.CacheControl, "cache-control");
+ * ```
+ */
+export const enum CachingHeader {
+  /**
+   * @see [RFC 9111, 5.1. Age](https://www.rfc-editor.org/rfc/rfc9111#section-5.1)
+   */
+  Age = "age",
+
+  /**
+   * @see [RFC 9111, 5.2. Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#section-5.2)
+   */
+  CacheControl = "cache-control",
+
+  /**
+   * @see [RFC 9111, 5.3. Expires](https://www.rfc-editor.org/rfc/rfc9111#section-5.3)
+   */
+  Expires = "expires",
 }

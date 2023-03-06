@@ -179,7 +179,7 @@ assertEquals(MessageForwardingHeader.Via, "via");
 HTTP representation data and metadata header fields.
 
 Compliant with
-[RFC 9110, 3.2. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-3.2).
+[RFC 9110, 8. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-8).
 
 - Content-Type
 - Content-Encoding
@@ -194,23 +194,6 @@ import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mo
 import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
 
 assertEquals(RepresentationHeader.ContentType, "content-type");
-```
-
-## CachingHeader
-
-HTTP Caching header fields.
-
-Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
-
-- Age
-- Cache-Control
-- Expires
-
-```ts
-import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(CachingHeader.CacheControl, "cache-control");
 ```
 
 ## AuthenticationHeader
@@ -290,6 +273,23 @@ import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
 import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
 
 assertEquals(RangeHeader.Range, "range");
+```
+
+## CachingHeader
+
+HTTP Caching header fields.
+
+Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
+
+- Age
+- Cache-Control
+- Expires
+
+```ts
+import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(CachingHeader.CacheControl, "cache-control");
 ```
 
 ## equalsResponse
