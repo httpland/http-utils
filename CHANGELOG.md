@@ -1,3 +1,12 @@
+# [1.0.0-beta.14](https://github.com/httpland/http-utils/compare/1.0.0-beta.13...1.0.0-beta.14) (2023-03-23)
+
+
+### Features
+
+* **handler:** remove handler module ([44c719f](https://github.com/httpland/http-utils/commit/44c719fb3a3da3ce93698f86fa30c24948d94282))
+* **header:** add filtering by header field name function ([84c402c](https://github.com/httpland/http-utils/commit/84c402c5ab224f12bbd42df662c5552628d26507))
+* **header:** add type guard for headers ([6622fa2](https://github.com/httpland/http-utils/commit/6622fa2bd0e5cea619a16cffadd43b308bf2417d))
+
 # [1.0.0-beta.13](https://github.com/httpland/http-utils/compare/1.0.0-beta.12...1.0.0-beta.13) (2023-03-06)
 
 
