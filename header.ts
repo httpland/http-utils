@@ -173,6 +173,32 @@ export function parseFieldValue(fieldValue: string): string[] {
     []).map((value) => value.trim()).filter(Boolean);
 }
 
+/** Returns a new {@link Headers} with all entries of the given headers except the ones that have a key(header name or field name) that does not match the given predicate.
+ *
+ * @example
+ * ```ts
+ * import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * const headers = filterKeys(
+ *   new Headers({
+ *     "date": "<date>",
+ *     "content-type": "<content-type>",
+ *   }),
+ *   (key) => key.startsWith("content"),
+ * );
+ *
+ * assert(headers.has("content-type"));
+ * assert(!headers.has("date"));
+ * ```
+ */
+export function filterKeys(
+  headers: Headers,
+  predicate: (key: string) => boolean,
+): Headers {
+  return new Headers([...headers].filter(([key]) => predicate(key)));
+}
+
 /** HTTP Message Metadata header fields.
  * @see [RFC 9110, 6.6. Message Metadata](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6)
  *

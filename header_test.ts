@@ -1,10 +1,11 @@
 import {
   equalsHeaders,
+  filterKeys,
   isSingletonField,
   mergeHeaders,
   parseFieldValue,
 } from "./header.ts";
-import { describe, expect, Fn, it } from "./dev_deps.ts";
+import { assert, describe, expect, Fn, it } from "./dev_deps.ts";
 
 describe("equalsHeaders", () => {
   it("should pass", () => {
@@ -210,5 +211,31 @@ Deno.test("parseFieldValue should pass", () => {
 
   table.forEach(([actual, expected]) => {
     expect(parseFieldValue(actual)).toEqual(expected);
+  });
+});
+
+describe("filterKeys", () => {
+  it("should return new headers filtered by predicate", () => {
+    const table: [Headers, (key: string) => boolean, Headers][] = [
+      [
+        new Headers({ "x-test": "test", "date": "xxx" }),
+        () => true,
+        new Headers({ "x-test": "test", "date": "xxx" }),
+      ],
+      [
+        new Headers({ "x-test": "test", "date": "xxx" }),
+        () => false,
+        new Headers(),
+      ],
+      [
+        new Headers({ "x-test": "test", "date": "xxx" }),
+        (key) => key === "date",
+        new Headers({ date: "xxx" }),
+      ],
+    ];
+
+    table.forEach(([headers, predicate, expected]) => {
+      assert(equalsHeaders(filterKeys(headers, predicate), expected));
+    });
   });
 });

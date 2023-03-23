@@ -8,6 +8,7 @@ export {
   ConditionalHeader,
   ContentNegotiationHeader,
   equalsHeaders,
+  filterKeys,
   type HttpFieldName,
   isSingletonField,
   mergeHeaders,
