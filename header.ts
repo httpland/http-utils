@@ -199,6 +199,178 @@ export function filterKeys(
   return new Headers([...headers].filter(([key]) => predicate(key)));
 }
 
+/** Whether the input is {@link MessageMetadataHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isMessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isMessageMetadataHeader("date"));
+ * assert(!isMessageMetadataHeader("<others>"));
+ * ```
+ */
+export function isMessageMetadataHeader(
+  input: string,
+): input is MessageMetadataHeader {
+  return ([
+    MessageMetadataHeader.Date,
+    MessageMetadataHeader.Trailer,
+  ] as string[]).includes(input);
+}
+
+/** Whether the input is {@link MessageForwardingHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isMessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isMessageForwardingHeader("connection"));
+ * assert(!isMessageForwardingHeader("<others>"));
+ * ```
+ */
+export function isMessageForwardingHeader(
+  input: string,
+): input is MessageForwardingHeader {
+  return ([
+    MessageForwardingHeader.Connection,
+    MessageForwardingHeader.MaxForwards,
+    MessageForwardingHeader.Via,
+  ] as string[]).includes(input);
+}
+
+/** Whether the input is {@link RepresentationHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isRepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isRepresentationHeader("content-type"));
+ * assert(!isRepresentationHeader("<others>"));
+ * ```
+ */
+export function isRepresentationHeader(
+  input: string,
+): input is RepresentationHeader {
+  return ([
+    RepresentationHeader.ContentEncoding,
+    RepresentationHeader.ContentLanguage,
+    RepresentationHeader.ContentLength,
+    RepresentationHeader.ContentLocation,
+    RepresentationHeader.ContentType,
+    RepresentationHeader.ETag,
+    RepresentationHeader.LastModified,
+  ] as string[]).includes(input);
+}
+
+/** Whether the input is {@link AuthenticationHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isAuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isAuthenticationHeader("authorization"));
+ * assert(!isAuthenticationHeader("<others>"));
+ * ```
+ */
+export function isAuthenticationHeader(
+  input: string,
+): input is AuthenticationHeader {
+  return ([
+    AuthenticationHeader.AuthenticationInfo,
+    AuthenticationHeader.Authorization,
+    AuthenticationHeader.ProxyAuthenticate,
+    AuthenticationHeader.ProxyAuthenticationInfo,
+    AuthenticationHeader.ProxyAuthorization,
+    AuthenticationHeader.WWWAuthenticate,
+  ] as string[]).includes(input);
+}
+
+/** Whether the input is {@link ContentNegotiationHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isContentNegotiationHeader("accept"));
+ * assert(!isContentNegotiationHeader("<others>"));
+ * ```
+ */
+export function isContentNegotiationHeader(
+  input: string,
+): input is ContentNegotiationHeader {
+  return ([
+    ContentNegotiationHeader.Accept,
+    ContentNegotiationHeader.AcceptCharset,
+    ContentNegotiationHeader.AcceptEncoding,
+    ContentNegotiationHeader.AcceptLanguage,
+    ContentNegotiationHeader.Vary,
+  ] as string[]).includes(input);
+}
+
+/** Whether the input is {@link ConditionalHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isConditionalHeader("if-match"));
+ * assert(!isConditionalHeader("<others>"));
+ * ```
+ */
+export function isConditionalHeader(input: string): input is ConditionalHeader {
+  return ([
+    ConditionalHeader.IfMatch,
+    ConditionalHeader.IfModifiedSince,
+    ConditionalHeader.IfNoneMatch,
+    ConditionalHeader.IfRange,
+    ConditionalHeader.IfUnmodifiedSince,
+  ] as string[]).includes(input);
+}
+
+/** Whether the input is {@link RangeHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isRangeHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isRangeHeader("range"));
+ * assert(!isRangeHeader("<others>"));
+ * ```
+ */
+export function isRangeHeader(input: string): input is RangeHeader {
+  return ([
+    RangeHeader.AcceptRanges,
+    RangeHeader.ContentRange,
+    RangeHeader.Range,
+  ] as string[]).includes(input);
+}
+
+/** Whether the input is {@link CachingHeader} or not.
+ *
+ * @example
+ * ```ts
+ * import { isCachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isCachingHeader("age"));
+ * assert(!isCachingHeader("<others>"));
+ * ```
+ */
+export function isCachingHeader(input: string): input is CachingHeader {
+  return ([
+    CachingHeader.Age,
+    CachingHeader.CacheControl,
+    CachingHeader.Expires,
+  ] as string[]).includes(input);
+}
+
 /** HTTP Message Metadata header fields.
  * @see [RFC 9110, 6.6. Message Metadata](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6)
  *

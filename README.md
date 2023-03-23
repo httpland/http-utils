@@ -139,10 +139,107 @@ assertEquals(isSingletonField("Origin"), true);
 assertEquals(isSingletonField("Vary"), false);
 ```
 
+## isMessageMetadataHeader
+
+Whether the input is [MessageMetadataHeader](#messagemetadataheader) or not.
+
+```ts
+import { isMessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isMessageMetadataHeader("date"));
+assert(!isMessageMetadataHeader("<others>"));
+```
+
+## isMessageForwardingHeader
+
+Whether the input is [MessageForwardingHeader](#messageforwardingheader) or not.
+
+```ts
+import { isMessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isMessageForwardingHeader("connection"));
+assert(!isMessageForwardingHeader("<others>"));
+```
+
+## isRepresentationHeader
+
+Whether the input is [RepresentationHeader](#representationheader) or not.
+
+```ts
+import { isRepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isRepresentationHeader("content-type"));
+assert(!isRepresentationHeader("<others>"));
+```
+
+## isAuthenticationHeader
+
+Whether the input is [AuthenticationHeader](#authenticationheader) or not.
+
+```ts
+import { isAuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isAuthenticationHeader("authorization"));
+assert(!isAuthenticationHeader("<others>"));
+```
+
+## isContentNegotiationHeader
+
+Whether the input is [ContentNegotiationHeader](#contentnegotiationheader) or
+not.
+
+```ts
+import { isContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isContentNegotiationHeader("accept"));
+assert(!isContentNegotiationHeader("<others>"));
+```
+
+## isConditionalHeader
+
+Whether the input is [ConditionalHeader](#conditionalheader) or not.
+
+```ts
+import { isConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isConditionalHeader("if-match"));
+assert(!isConditionalHeader("<others>"));
+```
+
+## isRangeHeader
+
+Whether the input is [RangeHeader](#rangeheader) or not.
+
+```ts
+import { isRangeHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isRangeHeader("range"));
+assert(!isRangeHeader("<others>"));
+```
+
+## isCachingHeader
+
+Whether the input is [CachingHeader](#cachingheader) or not.
+
+```ts
+import { isCachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isCachingHeader("age"));
+assert(!isCachingHeader("<others>"));
+```
+
 ## filterKeys
 
-Returns a new {@link Headers} with all entries of the given headers except the
-ones that have a key(header name or field name) that does not match the given
+Returns a new `Headers` with all entries of the given headers except the ones
+that have a key(header name or field name) that does not match the given
 predicate.
 
 ```ts
