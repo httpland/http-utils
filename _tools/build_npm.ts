@@ -1,4 +1,4 @@
-import { build, emptyDir } from "https://deno.land/x/dnt@0.30.0/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt@0.31.0/mod.ts";
 import { join } from "https://deno.land/std@0.151.0/path/mod.ts";
 import { makeOptions } from "./meta.ts";
 
