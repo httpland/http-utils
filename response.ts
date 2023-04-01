@@ -3,6 +3,7 @@
 
 import { Status, STATUS_TEXT } from "./deps.ts";
 import { equalsHeaders } from "./header.ts";
+import { equalsType } from "./_utils.ts";
 
 /** Safely returns a Response object.
  * Wraps operations that may cause errors and returns a 500 internal server error response if an error occurs.
@@ -94,6 +95,7 @@ export function equalsResponse(
     left.statusText === right.statusText &&
     left.type === right.type &&
     left.url === right.url &&
+    equalsType(left.body, right.body) &&
     equalsHeaders(left.headers, right.headers);
 
   if (!staticResult || !strict) return staticResult;
