@@ -93,6 +93,28 @@ assertEquals(
 );
 ```
 
+## filterKeys
+
+Returns a new `Headers` with all entries of the given headers except the ones
+that have a key(header name or field name) that does not match the given
+predicate.
+
+```ts
+import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+const headers = filterKeys(
+  new Headers({
+    "date": "<date>",
+    "content-type": "<content-type>",
+  }),
+  (key) => key.startsWith("content"),
+);
+
+assert(headers.has("content-type"));
+assert(!headers.has("date"));
+```
+
 ## isMessageMetadataHeader
 
 Whether the input is [MessageMetadataHeader](#messagemetadataheader) or not.
@@ -188,28 +210,6 @@ import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
 
 assert(isCachingHeader("age"));
 assert(!isCachingHeader("<others>"));
-```
-
-## filterKeys
-
-Returns a new `Headers` with all entries of the given headers except the ones
-that have a key(header name or field name) that does not match the given
-predicate.
-
-```ts
-import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-const headers = filterKeys(
-  new Headers({
-    "date": "<date>",
-    "content-type": "<content-type>",
-  }),
-  (key) => key.startsWith("content"),
-);
-
-assert(headers.has("content-type"));
-assert(!headers.has("date"));
 ```
 
 ## MessageMetadataHeader
