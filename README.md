@@ -37,7 +37,7 @@ assertEquals(
 
 ## isRequest
 
-Whether the value is `Request` or not.
+Whether the input is `Request` or not.
 
 ```ts
 import { isRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
@@ -488,7 +488,7 @@ If `debug` flag is `true`, the response will includes error information.
 
 ## isResponse
 
-Whether the value is `Response` or not.
+Whether the input is `Response` or not.
 
 ```ts
 import { isResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";

@@ -109,7 +109,7 @@ export function equalsResponse(
   ) => Object.is(left, right));
 }
 
-/** Whether the value is `Response` or not.
+/** Whether the input is `Response` or not.
  *
  * ```ts
  * import { isResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
@@ -120,6 +120,6 @@ export function equalsResponse(
  * assertEquals(isResponse(null), false);
  * ```
  */
-export function isResponse(value: unknown): value is Response {
-  return value instanceof Response;
+export function isResponse(input: unknown): input is Response {
+  return input instanceof Response;
 }

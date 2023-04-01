@@ -54,7 +54,7 @@ export async function equalsRequest(
   }
 }
 
-/** Whether the value is `Request` or not.
+/** Whether the input is `Request` or not.
  *
  * ```ts
  * import { isRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
@@ -65,6 +65,6 @@ export async function equalsRequest(
  * assertEquals(isRequest(null), false);
  * ```
  */
-export function isRequest(value: unknown): value is Request {
-  return value instanceof Request;
+export function isRequest(input: unknown): input is Request {
+  return input instanceof Request;
 }
