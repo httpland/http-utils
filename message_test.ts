@@ -1,5 +1,5 @@
 import { withHeader } from "./message.ts";
-import { assert, assertEquals, describe, it } from "./dev_deps.ts";
+import { assert, assertEquals, describe, it } from "./_dev_deps.ts";
 
 describe("withHeader", () => {
   const FIELD_NAME = "x-x";

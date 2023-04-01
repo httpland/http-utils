@@ -1,4 +1,4 @@
-import { assertEquals, describe, Fn, it } from "./dev_deps.ts";
+import { assertEquals, describe, Fn, it } from "./_dev_deps.ts";
 import {
   isIdempotentMethod,
   isRetrieveMethod,

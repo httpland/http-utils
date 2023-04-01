@@ -5,7 +5,7 @@ import {
   assertRejects,
   describe,
   it,
-} from "./dev_deps.ts";
+} from "./_dev_deps.ts";
 
 const url = "http://a";
 

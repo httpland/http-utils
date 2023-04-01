@@ -6,7 +6,7 @@ import {
   assertThrows,
   describe,
   it,
-} from "./dev_deps.ts";
+} from "./_dev_deps.ts";
 
 describe("equalsResponse", () => {
   it("should pass cases", () => {

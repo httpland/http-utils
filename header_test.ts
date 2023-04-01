@@ -18,7 +18,7 @@ import {
   RangeHeader,
   RepresentationHeader,
 } from "./header.ts";
-import { assert, assertEquals, describe, Fn, it } from "./dev_deps.ts";
+import { assert, assertEquals, describe, Fn, it } from "./_dev_deps.ts";
 
 describe("equalsHeaders", () => {
   it("should pass", () => {
