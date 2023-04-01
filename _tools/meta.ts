@@ -2,8 +2,9 @@ import { BuildOptions } from "https://deno.land/x/dnt@0.30.0/mod.ts";
 
 export const makeOptions = (version: string): BuildOptions => ({
   test: false,
-  shims: {
-    undici: true,
+  shims: {},
+  compilerOptions: {
+    lib: ["dom", "esnext", "dom.iterable"],
   },
   typeCheck: false,
   entryPoints: ["./mod.ts"],
@@ -35,4 +36,11 @@ export const makeOptions = (version: string): BuildOptions => ({
     },
   },
   packageManager: "pnpm",
+  mappings: {
+    "https://deno.land/x/prelude_js@1.0.0/to_lower_case.ts": {
+      name: "@miyauci/prelude",
+      version: "1.0.0",
+      subPath: "to_lower_case",
+    },
+  },
 });
