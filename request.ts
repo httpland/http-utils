@@ -2,56 +2,101 @@
 // This module is browser compatible.
 
 import { equalsHeaders } from "./header.ts";
+import { isNull } from "./deps.ts";
 
 /** Check two `Request` fields equality.
  *
+ * @example
  * ```ts
  * import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
- * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
- * assertEquals(
- *   await equalsRequest(
- *     new Request("http://localhost"),
- *     new Request("http://test"),
+ * declare const url: URL;
+ *
+ * assert(
+ *   equalsRequest(
+ *     new Request(url, { method: "HEAD" }),
+ *     new Request(url, { method: "HEAD" }),
  *   ),
- *   false,
- * );
- * assertEquals(
- *   await equalsRequest(
- *     new Request("http://test", { method: "POST" }),
- *     new Request("http://test", { method: "PUT" }),
- *   ),
- *   false,
  * );
  * ```
  */
-export async function equalsRequest(
+export function equalsRequest(
   left: Request,
   right: Request,
-): Promise<boolean> {
-  try {
-    left = left.clone();
-    right = right.clone();
+): boolean;
 
-    return left.url === right.url &&
-      left.method === right.method &&
-      left.mode === right.mode &&
-      left.bodyUsed === right.bodyUsed &&
-      left.cache === right.cache &&
-      left.credentials === right.credentials &&
-      left.destination === right.destination &&
-      left.integrity === right.integrity &&
-      left.isHistoryNavigation === right.isHistoryNavigation &&
-      left.isReloadNavigation === right.isReloadNavigation &&
-      left.keepalive === right.keepalive &&
-      left.redirect === right.redirect &&
-      left.referrer === right.referrer &&
-      left.referrerPolicy === right.referrerPolicy &&
-      equalsHeaders(left.headers, right.headers) &&
-      await left.text() === await right.text();
-  } catch {
-    return false;
+/** Strict check two `Request` fields equality.
+ *
+ * @example
+ * ```ts
+ * import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
+ *
+ * declare const url: URL;
+ *
+ * assert(
+ *   await equalsRequest(
+ *     new Request(url, { body: "", method: "POST" }),
+ *     new Request(url, { body: "", method: "POST" }),
+ *     true,
+ *   ),
+ * );
+ * ```
+ */
+export function equalsRequest(
+  left: Request,
+  right: Request,
+  strict: boolean,
+): Promise<boolean> | boolean;
+export function equalsRequest(
+  left: Request,
+  right: Request,
+  strict = false,
+): boolean | Promise<boolean> {
+  const staticResult = left.url === right.url &&
+    left.method === right.method &&
+    left.mode === right.mode &&
+    left.bodyUsed === right.bodyUsed &&
+    left.cache === right.cache &&
+    left.credentials === right.credentials &&
+    left.destination === right.destination &&
+    left.integrity === right.integrity &&
+    left.isHistoryNavigation === right.isHistoryNavigation &&
+    left.isReloadNavigation === right.isReloadNavigation &&
+    left.keepalive === right.keepalive &&
+    left.redirect === right.redirect &&
+    left.referrer === right.referrer &&
+    left.referrerPolicy === right.referrerPolicy &&
+    equalsType(left.body, right.body) &&
+    equalsHeaders(left.headers, right.headers);
+
+  if (!staticResult || !strict) return staticResult;
+
+  if (left.bodyUsed || right.bodyUsed) {
+    throw Error(
+      "request body has already been read and the body cannot be strictly compared.",
+    );
   }
+
+  return Promise.all([left.clone().text(), right.clone().text()]).then((
+    [left, right],
+  ) => Object.is(left, right));
+}
+
+function equalsType(
+  left: ReadableStream<Uint8Array> | null,
+  right: ReadableStream<Uint8Array> | null,
+): boolean {
+  if (isNull(left)) {
+    return isNull(right);
+  }
+
+  if (isNull(right)) {
+    return isNull(left);
+  }
+
+  return true;
 }
 
 /** Whether the input is `Request` or not.
