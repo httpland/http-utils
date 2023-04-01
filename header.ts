@@ -17,13 +17,15 @@
  * );
  * ```
  */
-export function equalsHeaders(a: Headers, b: Headers): boolean {
-  const header = [...a, ...b];
-  for (const [key, value] of header) {
-    if (!a.has(key) || !b.has(key)) {
+export function equalsHeaders(left: Headers, right: Headers): boolean {
+  const entries = [...left, ...right];
+
+  for (const [key, value] of entries) {
+    if (!left.has(key) || !right.has(key)) {
       return false;
     }
-    if (a.get(key) !== value || b.get(key) !== value) {
+
+    if (left.get(key) !== value || right.get(key) !== value) {
       return false;
     }
   }
