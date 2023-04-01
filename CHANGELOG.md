@@ -1,3 +1,18 @@
+# [1.0.0-beta.16](https://github.com/httpland/http-utils/compare/1.0.0-beta.15...1.0.0-beta.16) (2023-04-01)
+
+
+### Features
+
+* **header:** improve type guard ([7ce4075](https://github.com/httpland/http-utils/commit/7ce4075089bdbb745c2c5fe3bca859afc4a9e890))
+* **header:** remove irrelevant modules ([404620e](https://github.com/httpland/http-utils/commit/404620ef041b560e348129b838f5d474aa6caa8e))
+* **header:** stop const enum ([f416a82](https://github.com/httpland/http-utils/commit/f416a82cdd5a37dc6cb32d5ae86d3c684dc5d404))
+* **method:** improve types from enum ([a44845a](https://github.com/httpland/http-utils/commit/a44845a98b1912310517effb9127fb5d7aa87e46))
+* **mod:** remove index entry point ([c616b57](https://github.com/httpland/http-utils/commit/c616b57ec39786e410d1d626994fc332f99e9518))
+* **mod:** remove unnecessary module ([ee7b865](https://github.com/httpland/http-utils/commit/ee7b865c520bbc176b7db8da5410090da6f083e4))
+* remove `safeResponse` function ([d4fd65e](https://github.com/httpland/http-utils/commit/d4fd65eb42ab04d3d2ae8c1eab8a309cb74e53ef))
+* **request:** change `equalsRequest` interface ([d6afee9](https://github.com/httpland/http-utils/commit/d6afee9ff5c83886ae64f3428e2bd9c830c87b4e))
+* **response:** add checking body type to `equalsResponse` ([415bfee](https://github.com/httpland/http-utils/commit/415bfee5c53464f106bbfce98d778348740fe41d))
+
 # [1.0.0-beta.15](https://github.com/httpland/http-utils/compare/1.0.0-beta.14...1.0.0-beta.15) (2023-04-01)
 
 
