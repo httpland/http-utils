@@ -1,17 +1,20 @@
 # http-utils
 
+[![deno land](http://img.shields.io/badge/available%20on-deno.land/x-lightgrey.svg?logo=deno)](https://deno.land/x/http_utils)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/httpland/http_utils)](https://github.com/httpland/http_utils/releases)
+[![codecov](https://codecov.io/github/httpland/http-utils/branch/main/graph/badge.svg)](https://codecov.io/gh/httpland/http-utils)
+[![GitHub](https://img.shields.io/github/license/httpland/http-utils)](https://github.com/httpland/http-utils/blob/main/LICENSE)
+
+[![test](https://github.com/httpland/http-utils/actions/workflows/test.yaml/badge.svg)](https://github.com/httpland/http-utils/actions/workflows/test.yaml)
+[![NPM](https://nodei.co/npm/@httpland/http-utils.png?mini=true)](https://nodei.co/npm/@httpland/http-utils/)
+
 HTTP utility collection for Fetch API.
 
-A collection of modules with one or more of the following characteristics:
+## Request
 
-- Common to many projects
-- Too difficult to classify
-- Too small
+Utilities for `Request` object.
 
-Each module will be split into a separate repository when it becomes
-classifiable.
-
-## equalsRequest
+### equalsRequest
 
 Check two `Request` fields equality.
 
@@ -46,7 +49,7 @@ assert(
 );
 ```
 
-### Throwing error
+#### Throwing error
 
 In strict mode, if request body has already been read.
 
@@ -62,7 +65,7 @@ assert(request.bodyUsed);
 assertThrows(() => equalsRequest(request, request, true));
 ```
 
-## isRequest
+### isRequest
 
 Whether the input is `Request` or not.
 
@@ -75,297 +78,11 @@ assertEquals(isRequest({}), false);
 assertEquals(isRequest(null), false);
 ```
 
-## equalsHeaders
+## Response
 
-Check two `Headers` field name and field value equality.
+Utilities for `Response` object.
 
-```ts
-import { equalsHeaders } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(
-  equalsHeaders(new Headers({ a: "b" }), new Headers({ a: "b" })),
-  true,
-);
-assertEquals(
-  equalsHeaders(new Headers({ a: "b" }), new Headers({ c: "d" })),
-  false,
-);
-```
-
-## filterKeys
-
-Returns a new `Headers` with all entries of the given headers except the ones
-that have a key(header name or field name) that does not match the given
-predicate.
-
-```ts
-import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-const headers = filterKeys(
-  new Headers({
-    "date": "<date>",
-    "content-type": "<content-type>",
-  }),
-  (key) => key.startsWith("content"),
-);
-
-assert(headers.has("content-type"));
-assert(!headers.has("date"));
-```
-
-## isMessageMetadataHeader
-
-Whether the input is [MessageMetadataHeader](#messagemetadataheader) or not.
-
-```ts
-import { isMessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isMessageMetadataHeader("date"));
-assert(!isMessageMetadataHeader("<others>"));
-```
-
-## isMessageForwardingHeader
-
-Whether the input is [MessageForwardingHeader](#messageforwardingheader) or not.
-
-```ts
-import { isMessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isMessageForwardingHeader("connection"));
-assert(!isMessageForwardingHeader("<others>"));
-```
-
-## isRepresentationHeader
-
-Whether the input is [RepresentationHeader](#representationheader) or not.
-
-```ts
-import { isRepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isRepresentationHeader("content-type"));
-assert(!isRepresentationHeader("<others>"));
-```
-
-## isAuthenticationHeader
-
-Whether the input is [AuthenticationHeader](#authenticationheader) or not.
-
-```ts
-import { isAuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isAuthenticationHeader("authorization"));
-assert(!isAuthenticationHeader("<others>"));
-```
-
-## isContentNegotiationHeader
-
-Whether the input is [ContentNegotiationHeader](#contentnegotiationheader) or
-not.
-
-```ts
-import { isContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isContentNegotiationHeader("accept"));
-assert(!isContentNegotiationHeader("<others>"));
-```
-
-## isConditionalHeader
-
-Whether the input is [ConditionalHeader](#conditionalheader) or not.
-
-```ts
-import { isConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isConditionalHeader("if-match"));
-assert(!isConditionalHeader("<others>"));
-```
-
-## isRangeHeader
-
-Whether the input is [RangeHeader](#rangeheader) or not.
-
-```ts
-import { isRangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isRangeHeader("range"));
-assert(!isRangeHeader("<others>"));
-```
-
-## isCachingHeader
-
-Whether the input is [CachingHeader](#cachingheader) or not.
-
-```ts
-import { isCachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assert(isCachingHeader("age"));
-assert(!isCachingHeader("<others>"));
-```
-
-## MessageMetadataHeader
-
-HTTP Message Metadata header fields.
-
-Compliant with
-[RFC 9110, 6.6. Message Metadata](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6).
-
-- Date
-- Trailer
-
-```ts
-import { MessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(MessageMetadataHeader.Date, "date");
-```
-
-## MessageForwardingHeader
-
-HTTP Message Forwarding header fields.
-
-Compliant with
-[RFC 9110, 7.6. Message Forwarding](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6).
-
-- Connection
-- Max-Forwards
-- Via
-
-```ts
-import { MessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(MessageForwardingHeader.Via, "via");
-```
-
-## RepresentationHeader
-
-HTTP representation data and metadata header fields.
-
-Compliant with
-[RFC 9110, 8. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-8).
-
-- Content-Type
-- Content-Encoding
-- Content-Language
-- Content-Length
-- Content-Location
-- Last-Modified
-- ETag
-
-```ts
-import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(RepresentationHeader.ContentType, "content-type");
-```
-
-## AuthenticationHeader
-
-HTTP Authentication header fields.
-
-Compliant with
-[RFC 9110, 11. HTTP Authentication](https://www.rfc-editor.org/rfc/rfc9110#section-11).
-
-- WWW-Authenticate
-- Authorization
-- Authentication-Info
-- Proxy-Authenticate
-- Proxy-Authorization
-- Proxy-Authentication-Info
-
-```ts
-import { AuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(AuthenticationHeader.Authorization, "authorization");
-```
-
-## ContentNegotiationHeader
-
-HTTP content negotiation header fields.
-
-Compliant with
-[RFC 9110, 12. Content Negotiation](https://www.rfc-editor.org/rfc/rfc9110#section-12).
-
-- Accept
-- Accept-Charset
-- Accept-Encoding
-- Accept-Language
-- Vary
-
-```ts
-import { ContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(ContentNegotiationHeader.Accept, "accept");
-```
-
-## ConditionalHeader
-
-HTTP conditional requests header fields.
-
-Compliant with
-[RFC 9110, 13. Conditional Requests](https://www.rfc-editor.org/rfc/rfc9110#section-13).
-
-- If-Match
-- If-None-Match
-- If-Modified-Since
-- If-Unmodified-Since
-- If-Range
-
-```ts
-import { ConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
-```
-
-## RangeHeader
-
-HTTP range requests header fields.
-
-Compliant with
-[RFC 9110, 14. Range Requests](https://www.rfc-editor.org/rfc/rfc9110#section-14).
-
-- Range
-- Accept-Ranges
-- Content-Range
-
-```ts
-import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(RangeHeader.Range, "range");
-```
-
-## CachingHeader
-
-HTTP Caching header fields.
-
-Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
-
-- Age
-- Cache-Control
-- Expires
-
-```ts
-import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
-
-assertEquals(CachingHeader.CacheControl, "cache-control");
-```
-
-## equalsResponse
+### equalsResponse
 
 Check two `Response` fields equality.
 
@@ -396,7 +113,7 @@ assert(
 );
 ```
 
-### Throwing error
+#### Throwing error
 
 In strict mode, if response body has already been read.
 
@@ -414,7 +131,7 @@ assert(response.bodyUsed);
 assertThrows(() => equalsResponse(response, response, true));
 ```
 
-## isResponse
+### isResponse
 
 Whether the input is `Response` or not.
 
@@ -427,7 +144,305 @@ assertEquals(isResponse({}), false);
 assertEquals(isResponse(null), false);
 ```
 
-## isSafeMethod
+## Headers
+
+Utilities for `Headers` object.
+
+### equalsHeaders
+
+Check two `Headers` field name and field value equality.
+
+```ts
+import { equalsHeaders } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(
+  equalsHeaders(new Headers({ a: "b" }), new Headers({ a: "b" })),
+  true,
+);
+assertEquals(
+  equalsHeaders(new Headers({ a: "b" }), new Headers({ c: "d" })),
+  false,
+);
+```
+
+### filterKeys
+
+Returns a new `Headers` with all entries of the given headers except the ones
+that have a key(header name or field name) that does not match the given
+predicate.
+
+```ts
+import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+const headers = filterKeys(
+  new Headers({
+    "date": "<date>",
+    "content-type": "<content-type>",
+  }),
+  (key) => key.startsWith("content"),
+);
+
+assert(headers.has("content-type"));
+assert(!headers.has("date"));
+```
+
+### isMessageMetadataHeader
+
+Whether the input is [MessageMetadataHeader](#messagemetadataheader) or not.
+
+```ts
+import { isMessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isMessageMetadataHeader("date"));
+assert(!isMessageMetadataHeader("<others>"));
+```
+
+### isMessageForwardingHeader
+
+Whether the input is [MessageForwardingHeader](#messageforwardingheader) or not.
+
+```ts
+import { isMessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isMessageForwardingHeader("connection"));
+assert(!isMessageForwardingHeader("<others>"));
+```
+
+### isRepresentationHeader
+
+Whether the input is [RepresentationHeader](#representationheader) or not.
+
+```ts
+import { isRepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isRepresentationHeader("content-type"));
+assert(!isRepresentationHeader("<others>"));
+```
+
+### isAuthenticationHeader
+
+Whether the input is [AuthenticationHeader](#authenticationheader) or not.
+
+```ts
+import { isAuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isAuthenticationHeader("authorization"));
+assert(!isAuthenticationHeader("<others>"));
+```
+
+### isContentNegotiationHeader
+
+Whether the input is [ContentNegotiationHeader](#contentnegotiationheader) or
+not.
+
+```ts
+import { isContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isContentNegotiationHeader("accept"));
+assert(!isContentNegotiationHeader("<others>"));
+```
+
+### isConditionalHeader
+
+Whether the input is [ConditionalHeader](#conditionalheader) or not.
+
+```ts
+import { isConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isConditionalHeader("if-match"));
+assert(!isConditionalHeader("<others>"));
+```
+
+### isRangeHeader
+
+Whether the input is [RangeHeader](#rangeheader) or not.
+
+```ts
+import { isRangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isRangeHeader("range"));
+assert(!isRangeHeader("<others>"));
+```
+
+### isCachingHeader
+
+Whether the input is [CachingHeader](#cachingheader) or not.
+
+```ts
+import { isCachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isCachingHeader("age"));
+assert(!isCachingHeader("<others>"));
+```
+
+### MessageMetadataHeader
+
+HTTP Message Metadata header fields.
+
+Compliant with
+[RFC 9110, 6.6. Message Metadata](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6).
+
+- Date
+- Trailer
+
+```ts
+import { MessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(MessageMetadataHeader.Date, "date");
+```
+
+### MessageForwardingHeader
+
+HTTP Message Forwarding header fields.
+
+Compliant with
+[RFC 9110, 7.6. Message Forwarding](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6).
+
+- Connection
+- Max-Forwards
+- Via
+
+```ts
+import { MessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(MessageForwardingHeader.Via, "via");
+```
+
+### RepresentationHeader
+
+HTTP representation data and metadata header fields.
+
+Compliant with
+[RFC 9110, 8. Representations](https://www.rfc-editor.org/rfc/rfc9110.html#section-8).
+
+- Content-Type
+- Content-Encoding
+- Content-Language
+- Content-Length
+- Content-Location
+- Last-Modified
+- ETag
+
+```ts
+import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(RepresentationHeader.ContentType, "content-type");
+```
+
+### AuthenticationHeader
+
+HTTP Authentication header fields.
+
+Compliant with
+[RFC 9110, 11. HTTP Authentication](https://www.rfc-editor.org/rfc/rfc9110#section-11).
+
+- WWW-Authenticate
+- Authorization
+- Authentication-Info
+- Proxy-Authenticate
+- Proxy-Authorization
+- Proxy-Authentication-Info
+
+```ts
+import { AuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(AuthenticationHeader.Authorization, "authorization");
+```
+
+### ContentNegotiationHeader
+
+HTTP content negotiation header fields.
+
+Compliant with
+[RFC 9110, 12. Content Negotiation](https://www.rfc-editor.org/rfc/rfc9110#section-12).
+
+- Accept
+- Accept-Charset
+- Accept-Encoding
+- Accept-Language
+- Vary
+
+```ts
+import { ContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(ContentNegotiationHeader.Accept, "accept");
+```
+
+### ConditionalHeader
+
+HTTP conditional requests header fields.
+
+Compliant with
+[RFC 9110, 13. Conditional Requests](https://www.rfc-editor.org/rfc/rfc9110#section-13).
+
+- If-Match
+- If-None-Match
+- If-Modified-Since
+- If-Unmodified-Since
+- If-Range
+
+```ts
+import { ConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
+```
+
+### RangeHeader
+
+HTTP range requests header fields.
+
+Compliant with
+[RFC 9110, 14. Range Requests](https://www.rfc-editor.org/rfc/rfc9110#section-14).
+
+- Range
+- Accept-Ranges
+- Content-Range
+
+```ts
+import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(RangeHeader.Range, "range");
+```
+
+### CachingHeader
+
+HTTP Caching header fields.
+
+Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
+
+- Age
+- Cache-Control
+- Expires
+
+```ts
+import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
+import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assertEquals(CachingHeader.CacheControl, "cache-control");
+```
+
+## Method
+
+Utilities for HTTP method.
+
+### isSafeMethod
 
 Whether the method is safe method or not.
 
@@ -444,7 +459,7 @@ assert(isSafeMethod("OPTIONS"));
 assert(isSafeMethod("TRACE"));
 ```
 
-## isIdempotentMethod
+### isIdempotentMethod
 
 Whether the method is idempotent method or not.
 
@@ -460,7 +475,7 @@ assert(isIdempotentMethod("PUT"));
 assert(isIdempotentMethod("DELETE"));
 ```
 
-## isRetrieveMethod
+### isRetrieveMethod
 
 Whether the method is retrieve method or not.
 
@@ -478,7 +493,16 @@ assert(isRetrieveMethod("HEAD"));
 assert(!isRetrieveMethod("POST"));
 ```
 
-## withHeader
+## Message
+
+Utilities for HTTP message.
+
+HTTP message is following union types:
+
+- `Request`
+- `Response`
+
+### withHeader
 
 Return an instance with the provided value replacing the specified header. There
 are no side effects on the original target.
