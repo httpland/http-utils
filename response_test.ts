@@ -1,5 +1,12 @@
 import { equalsResponse, isResponse } from "./response.ts";
-import { assert, assertThrows, describe, expect, it } from "./dev_deps.ts";
+import {
+  assert,
+  assertEquals,
+  assertFalse,
+  assertThrows,
+  describe,
+  it,
+} from "./dev_deps.ts";
 
 describe("equalsResponse", () => {
   it("should pass cases", () => {
@@ -83,7 +90,7 @@ describe("equalsResponse", () => {
     ];
 
     Promise.all(table.map(([left, right, result]) => {
-      expect(equalsResponse(left, right)).toEqual(result);
+      assertEquals(equalsResponse(left, right), result);
     }));
   });
 
@@ -96,7 +103,7 @@ describe("equalsResponse", () => {
     ];
 
     await Promise.all(table.map(async ([left, right, result]) => {
-      expect(await equalsResponse(left, right, true)).toEqual(result);
+      assertEquals(await equalsResponse(left, right, true), result);
     }));
   });
 
@@ -113,17 +120,16 @@ describe("equalsResponse", () => {
 
     await res.text();
 
-    expect(res.bodyUsed).toBeTruthy();
-    expect(await equalsResponse(res, new Response(""))).toBeFalsy();
+    assert(res.bodyUsed);
+    assertFalse(equalsResponse(res, new Response("")));
   });
 
   it("should use cloned response", async () => {
     const res = new Response("");
 
-    expect(await equalsResponse(res, new Response(""))).toBeTruthy();
-
-    expect(res.bodyUsed).toBeFalsy();
-    expect(await res.text()).toBe("");
+    assert(equalsResponse(res, new Response("")));
+    assertFalse(res.bodyUsed);
+    assertEquals(await res.text(), "");
   });
 });
 
@@ -135,7 +141,7 @@ describe("isResponse", () => {
     ];
 
     table.forEach((value) => {
-      expect(isResponse(value)).toBeTruthy();
+      assert(isResponse(value));
     });
   });
 
@@ -154,7 +160,7 @@ describe("isResponse", () => {
     ];
 
     table.forEach((value) => {
-      expect(isResponse(value)).toBeFalsy();
+      assertFalse(isResponse(value));
     });
   });
 });

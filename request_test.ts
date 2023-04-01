@@ -4,7 +4,6 @@ import {
   assertFalse,
   assertRejects,
   describe,
-  expect,
   it,
 } from "./dev_deps.ts";
 
@@ -151,7 +150,7 @@ describe("isRequest", () => {
     ];
 
     table.forEach((value) => {
-      expect(isRequest(value)).toBeTruthy();
+      assert(isRequest(value));
     });
   });
 
@@ -170,7 +169,7 @@ describe("isRequest", () => {
     ];
 
     table.forEach((value) => {
-      expect(isRequest(value)).toBeFalsy();
+      assertFalse(isRequest(value));
     });
   });
 });

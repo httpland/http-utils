@@ -18,7 +18,7 @@ import {
   RangeHeader,
   RepresentationHeader,
 } from "./header.ts";
-import { assert, describe, expect, Fn, it } from "./dev_deps.ts";
+import { assert, assertEquals, describe, Fn, it } from "./dev_deps.ts";
 
 describe("equalsHeaders", () => {
   it("should pass", () => {
@@ -53,9 +53,9 @@ describe("equalsHeaders", () => {
       ],
     ];
 
-    table.forEach(([a, b, result]) =>
-      expect(equalsHeaders(a, b)).toEqual(result)
-    );
+    table.forEach(([a, b, result]) => {
+      assertEquals(equalsHeaders(a, b), result);
+    });
   });
 });
 
