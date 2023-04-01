@@ -1,13 +1,5 @@
-import { equalsResponse, isResponse, safeResponse } from "./response.ts";
-import {
-  assert,
-  assertEqualsResponse,
-  assertThrows,
-  describe,
-  expect,
-  fn,
-  it,
-} from "./dev_deps.ts";
+import { equalsResponse, isResponse } from "./response.ts";
+import { assert, assertThrows, describe, expect, it } from "./dev_deps.ts";
 
 describe("equalsResponse", () => {
   it("should pass cases", () => {
@@ -132,76 +124,6 @@ describe("equalsResponse", () => {
 
     expect(res.bodyUsed).toBeFalsy();
     expect(await res.text()).toBe("");
-  });
-});
-
-describe("safeResponse", () => {
-  it("should return 500 when the function throw error", async () => {
-    assertEqualsResponse(
-      await safeResponse(() => {
-        throw Error();
-      }),
-      new Response(null, {
-        status: 500,
-        statusText: "Internal Server Error",
-      }),
-    );
-  });
-
-  it("should return 500 when the async function throw error", async () => {
-    assertEqualsResponse(
-      await safeResponse(() => Promise.reject("Error")),
-      new Response(null, {
-        status: 500,
-        statusText: "Internal Server Error",
-      }),
-    );
-  });
-
-  it("should return response as it is", async () => {
-    assertEqualsResponse(
-      await safeResponse(() => new Response()),
-      new Response(null, {
-        status: 200,
-      }),
-    );
-  });
-
-  it("should return async response as it is", async () => {
-    assertEqualsResponse(
-      await safeResponse(() => Promise.resolve(new Response())),
-      new Response(null, {
-        status: 200,
-      }),
-    );
-  });
-
-  it("should catch error via onError", async () => {
-    assertEqualsResponse(
-      await safeResponse(() => {
-        throw Error("test");
-      }, () => new Response()),
-      new Response(null, {
-        status: 200,
-      }),
-    );
-  });
-
-  it("should return default response when onError throw error", async () => {
-    const mock = fn();
-    assertEqualsResponse(
-      await safeResponse(() => {
-        throw Error("test");
-      }, (e) => {
-        mock(e);
-        throw e;
-      }),
-      new Response(null, {
-        status: 500,
-        statusText: "Internal Server Error",
-      }),
-    );
-    expect(mock).toHaveBeenCalledWith(new Error());
   });
 });
 

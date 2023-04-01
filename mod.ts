@@ -27,7 +27,7 @@ export {
   RangeHeader,
   RepresentationHeader,
 } from "./header.ts";
-export { equalsResponse, isResponse, safeResponse } from "./response.ts";
+export { equalsResponse, isResponse } from "./response.ts";
 export {
   type IdempotentMethod,
   isIdempotentMethod,
