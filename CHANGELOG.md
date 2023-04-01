@@ -1,3 +1,10 @@
+# [1.0.0-beta.15](https://github.com/httpland/http-utils/compare/1.0.0-beta.14...1.0.0-beta.15) (2023-04-01)
+
+
+### Features
+
+* **message:** add `withHeader` function ([1f4260d](https://github.com/httpland/http-utils/commit/1f4260d8b6ed10a6057439264181c5844e7837e3))
+
 # [1.0.0-beta.14](https://github.com/httpland/http-utils/compare/1.0.0-beta.13...1.0.0-beta.14) (2023-03-23)
 
 
