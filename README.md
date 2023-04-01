@@ -46,6 +46,22 @@ assert(
 );
 ```
 
+### Throwing error
+
+In strict mode, if request body has already been read.
+
+```ts
+import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/request.ts";
+import { assert, assertThrows } from "https://deno.land/std/testing/asserts.ts";
+
+declare const url: URL;
+const request = new Request(url, { body: "" });
+await request.text();
+
+assert(request.bodyUsed);
+assertThrows(() => equalsRequest(request, request, true));
+```
+
 ## isRequest
 
 Whether the input is `Request` or not.

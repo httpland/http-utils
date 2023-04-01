@@ -2,7 +2,7 @@
 // This module is browser compatible.
 
 import { equalsHeaders } from "./header.ts";
-import { isNull } from "./deps.ts";
+import { equalsType } from "./_utils.ts";
 
 /** Check two `Request` fields equality.
  *
@@ -43,6 +43,8 @@ export function equalsRequest(
  *   ),
  * );
  * ```
+ *
+ * @throws {Error} If the request has already been read.
  */
 export function equalsRequest(
   left: Request,
@@ -82,21 +84,6 @@ export function equalsRequest(
   return Promise.all([left.clone().text(), right.clone().text()]).then((
     [left, right],
   ) => Object.is(left, right));
-}
-
-function equalsType(
-  left: ReadableStream<Uint8Array> | null,
-  right: ReadableStream<Uint8Array> | null,
-): boolean {
-  if (isNull(left)) {
-    return isNull(right);
-  }
-
-  if (isNull(right)) {
-    return isNull(left);
-  }
-
-  return true;
 }
 
 /** Whether the input is `Request` or not.
