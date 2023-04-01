@@ -16,9 +16,9 @@ import {
   MessageForwardingHeader,
   MessageMetadataHeader,
   RangeHeader,
+  RepresentationHeader,
 } from "./header.ts";
 import { assert, describe, expect, Fn, it } from "./dev_deps.ts";
-import { RepresentationHeader } from "./mod.ts";
 
 describe("equalsHeaders", () => {
   it("should pass", () => {

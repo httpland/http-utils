@@ -34,7 +34,7 @@ const RETRIEVE_METHODS = [Method.Get, Method.Head];
  *
  * @example
  * ```ts
- * import { isRetrieveMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isRetrieveMethod } from "https://deno.land/x/http_utils@$VERSION/method.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isRetrieveMethod("GET"));
@@ -62,7 +62,7 @@ const SAFE_METHODS = [...RETRIEVE_METHODS, Method.Options, Method.Trace];
  *
  * @example
  * ```ts
- * import { isSafeMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isSafeMethod } from "https://deno.land/x/http_utils@$VERSION/method.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isSafeMethod("GET"));
@@ -89,7 +89,7 @@ const IDEMPOTENT_METHODS = [...SAFE_METHODS, Method.Put, Method.Delete];
  *
  * @example
  * ```ts
- * import { isIdempotentMethod } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isIdempotentMethod } from "https://deno.land/x/http_utils@$VERSION/method.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isIdempotentMethod("GET"));

@@ -8,7 +8,7 @@ import { equalsType } from "./_utils.ts";
  *
  * @example
  * ```ts
- * import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/response.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(
@@ -24,7 +24,7 @@ export function equalsResponse(left: Response, right: Response): boolean;
  *
  * @example
  * ```ts
- * import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { equalsResponse } from "https://deno.land/x/http_utils@$VERSION/response.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(
@@ -76,7 +76,7 @@ export function equalsResponse(
 /** Whether the input is `Response` or not.
  *
  * ```ts
- * import { isResponse } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isResponse } from "https://deno.land/x/http_utils@$VERSION/response.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(isResponse(new Response()), true);

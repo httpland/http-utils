@@ -4,7 +4,7 @@
 /** Check two `Headers` field name and field value equality.
  *
  * ```ts
- * import { equalsHeaders } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { equalsHeaders } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(
@@ -37,7 +37,7 @@ export function equalsHeaders(left: Headers, right: Headers): boolean {
  *
  * @example
  * ```ts
- * import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * const headers = filterKeys(
@@ -64,7 +64,7 @@ export function filterKeys(
  *
  * @example
  * ```ts
- * import { MessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { MessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(MessageMetadataHeader.Date, "date");
@@ -87,7 +87,7 @@ export enum MessageMetadataHeader {
  *
  * @example
  * ```ts
- * import { MessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { MessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(MessageForwardingHeader.Via, "via");
@@ -115,7 +115,7 @@ export enum MessageForwardingHeader {
  *
  * @example
  * ```ts
- * import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(RepresentationHeader.ContentType, "content-type");
@@ -198,7 +198,7 @@ export enum AuthenticationHeader {
  *
  * @example
  * ```ts
- * import { ContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { ContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(ContentNegotiationHeader.Accept, "accept");
@@ -232,7 +232,7 @@ export enum ContentNegotiationHeader {
  *
  * @example
  * ```ts
- * import { ConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { ConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
@@ -266,7 +266,7 @@ export enum ConditionalHeader {
  *
  * @example
  * ```ts
- * import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(RangeHeader.Range, "range");
@@ -292,7 +292,7 @@ export enum RangeHeader {
  *
  * @example
  * ```ts
- * import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(CachingHeader.CacheControl, "cache-control");
@@ -324,7 +324,7 @@ const MESSAGE_METADATA_HEADERS = [
  *
  * @example
  * ```ts
- * import { isMessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isMessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isMessageMetadataHeader("date"));
@@ -347,7 +347,7 @@ const MESSAGE_FORWARDING_HEADERS = [
  *
  * @example
  * ```ts
- * import { isMessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isMessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isMessageForwardingHeader("connection"));
@@ -374,7 +374,7 @@ const REPRESENTATION_HEADERS = [
  *
  * @example
  * ```ts
- * import { isRepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isRepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isRepresentationHeader("content-type"));
@@ -400,7 +400,7 @@ const AUTHENTICATION_HEADERS = [
  *
  * @example
  * ```ts
- * import { isAuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isAuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isAuthenticationHeader("authorization"));
@@ -425,7 +425,7 @@ const CONTENT_NEGOTIATION_HEADERS = [
  *
  * @example
  * ```ts
- * import { isContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isContentNegotiationHeader("accept"));
@@ -450,7 +450,7 @@ const CONDITIONAL_HEADERS = [
  *
  * @example
  * ```ts
- * import { isConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isConditionalHeader("if-match"));
@@ -473,7 +473,7 @@ const RANGE_HEADERS = [
  *
  * @example
  * ```ts
- * import { isRangeHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isRangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isRangeHeader("range"));
@@ -494,7 +494,7 @@ const CACHING_HEADERS = [
  *
  * @example
  * ```ts
- * import { isCachingHeader } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isCachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
  * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isCachingHeader("age"));

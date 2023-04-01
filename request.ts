@@ -8,7 +8,7 @@ import { equalsType } from "./_utils.ts";
  *
  * @example
  * ```ts
- * import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/request.ts";
  * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * declare const url: URL;
@@ -30,7 +30,7 @@ export function equalsRequest(
  *
  * @example
  * ```ts
- * import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { equalsRequest } from "https://deno.land/x/http_utils@$VERSION/request.ts";
  * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * declare const url: URL;
@@ -89,7 +89,7 @@ export function equalsRequest(
 /** Whether the input is `Request` or not.
  *
  * ```ts
- * import { isRequest } from "https://deno.land/x/http_utils@$VERSION/mod.ts";
+ * import { isRequest } from "https://deno.land/x/http_utils@$VERSION/request.ts";
  * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assertEquals(isRequest(new Request("http://localhost")), true);
