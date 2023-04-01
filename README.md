@@ -550,6 +550,46 @@ assert(isRetrieveMethod("HEAD"));
 assert(!isRetrieveMethod("POST"));
 ```
 
+## withHeader
+
+Return an instance with the provided value replacing the specified header. There
+are no side effects on the original target.
+
+This was inspired by
+[PSR-7: HTTP message interfaces](https://www.php-fig.org/psr/psr-7/).
+
+`Request`:
+
+```ts
+import { withHeader } from "https://deno.land/x/http_utils@$VERSION/message.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+declare const init: Request;
+declare const header: string;
+declare const value: string;
+
+const request = withHeader(init, header, value);
+
+assert(request.headers.get(header), value);
+assert(init !== request);
+```
+
+`Response`:
+
+```ts
+import { withHeader } from "https://deno.land/x/http_utils@$VERSION/message.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+declare const init: Response;
+declare const header: string;
+declare const value: string;
+
+const response = withHeader(init, header, value);
+
+assert(response.headers.get(header), value);
+assert(init !== response);
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).

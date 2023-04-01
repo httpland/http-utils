@@ -38,3 +38,4 @@ export {
   type RetrieveMethod,
   type SafeMethod,
 } from "./method.ts";
+export { withHeader } from "./message.ts";
