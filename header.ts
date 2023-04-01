@@ -242,7 +242,7 @@ export function isCachingHeader(input: string): input is CachingHeader {
  * assertEquals(MessageMetadataHeader.Date, "date");
  * ```
  */
-export const enum MessageMetadataHeader {
+export enum MessageMetadataHeader {
   /**
    * @see [RFC 9110, 6.6.1. Date](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6.1)
    */
@@ -265,7 +265,7 @@ export const enum MessageMetadataHeader {
  * assertEquals(MessageForwardingHeader.Via, "via");
  * ```
  */
-export const enum MessageForwardingHeader {
+export enum MessageForwardingHeader {
   /**
    * @see [RFC 9110, 7.6.1. Connection](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6.1)
    */
@@ -293,7 +293,7 @@ export const enum MessageForwardingHeader {
  * assertEquals(RepresentationHeader.ContentType, "content-type");
  * ```
  */
-export const enum RepresentationHeader {
+export enum RepresentationHeader {
   /**
    * @see [RFC 9110, 8.3. Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.3)
    */
@@ -333,7 +333,7 @@ export const enum RepresentationHeader {
 /** HTTP Authentication header fields.
  * @see [RFC 9110, 11. HTTP Authentication](https://www.rfc-editor.org/rfc/rfc9110#section-11)
  */
-export const enum AuthenticationHeader {
+export enum AuthenticationHeader {
   /**
    * @see [RFC 9110, 11.6.1. WWW-Authenticate](https://www.rfc-editor.org/rfc/rfc9110#section-11.6.1)
    */
@@ -376,7 +376,7 @@ export const enum AuthenticationHeader {
  * assertEquals(ContentNegotiationHeader.Accept, "accept");
  * ```
  */
-export const enum ContentNegotiationHeader {
+export enum ContentNegotiationHeader {
   /**
    * @see [RFC 9110, 12.5.1. Accept](https://www.rfc-editor.org/rfc/rfc9110#section-12.5.1)
    */
@@ -410,7 +410,7 @@ export const enum ContentNegotiationHeader {
  * assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
  * ```
  */
-export const enum ConditionalHeader {
+export enum ConditionalHeader {
   /**
    * @see [RFC 9110, 13.1.1. If-Match](https://www.rfc-editor.org/rfc/rfc9110#section-13.1.1)
    */
@@ -444,7 +444,7 @@ export const enum ConditionalHeader {
  * assertEquals(RangeHeader.Range, "range");
  * ```
  */
-export const enum RangeHeader {
+export enum RangeHeader {
   /**
    * @see [RFC 9110, 14.2. Range](https://www.rfc-editor.org/rfc/rfc9110#section-14.2)
    */
@@ -470,7 +470,7 @@ export const enum RangeHeader {
  * assertEquals(CachingHeader.CacheControl, "cache-control");
  * ```
  */
-export const enum CachingHeader {
+export enum CachingHeader {
   /**
    * @see [RFC 9111, 5.1. Age](https://www.rfc-editor.org/rfc/rfc9111#section-5.1)
    */
