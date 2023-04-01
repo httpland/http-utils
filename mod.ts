@@ -29,7 +29,6 @@ export {
 } from "./header.ts";
 export { equalsResponse, isResponse, safeResponse } from "./response.ts";
 export {
-  type HttpMethod,
   type IdempotentMethod,
   isIdempotentMethod,
   isRetrieveMethod,
