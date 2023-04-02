@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "test": "deno test --doc"
+    "test": "deno test --import-map=./_test_import_map.json --doc",
+    "build:npm": "deno run -A _tools/build_npm.ts"
   },
   "fmt": {
     "files": {
@@ -16,6 +17,5 @@
     "files": {
       "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
     }
-  },
-  "importMap": "_test_import_map.json"
+  }
 }
