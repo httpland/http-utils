@@ -4,8 +4,6 @@ on:
   push:
     paths-ignore:
       - '_docs/**'
-  schedule:
-    - cron:  '* 9 * * *'
 jobs:
   lint:
     runs-on: ${{ matrix.os }}
