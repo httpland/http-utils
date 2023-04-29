@@ -65,7 +65,7 @@ export const makeOptions = (version: string): BuildOptions => ({
   compilerOptions: {
     lib: ["dom", "esnext", "dom.iterable"],
   },
-  typeCheck: false,
+  typeCheck: true,
   entryPoints,
   outDir: "./npm",
   package: {
@@ -102,10 +102,10 @@ export const makeOptions = (version: string): BuildOptions => ({
   },
   packageManager: "pnpm",
   mappings: {
-    "https://deno.land/x/isx@1.1.1/is_null.ts": {
+    "https://deno.land/x/isx@1.3.1/is_null.ts": {
       name: "@miyauci/isx",
-      version: "1.1.1",
-      subPath: "is_null",
+      version: "1.3.1",
+      subPath: "is_null.js",
     },
     "https://deno.land/x/prelude_js@1.2.0/trim.ts": {
       name: "@miyauci/prelude",
