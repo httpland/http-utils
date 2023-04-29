@@ -4,18 +4,15 @@
     "build:npm": "deno run -A _tools/build_npm.ts"
   },
   "fmt": {
-    "files": {
-      "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
-    }
+    "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
   },
   "lint": {
-    "files": {
-      "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
+    "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"],
+    "rules": {
+      "exclude": ["no-deprecated-deno-api"]
     }
   },
   "test": {
-    "files": {
-      "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
-    }
+    "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
   }
 }
