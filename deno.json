@@ -7,10 +7,7 @@
     "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
   },
   "lint": {
-    "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"],
-    "rules": {
-      "exclude": ["no-deprecated-deno-api"]
-    }
+    "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
   },
   "test": {
     "exclude": ["CHANGELOG.md", "CODE_OF_CONDUCT.md"]
