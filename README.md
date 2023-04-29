@@ -542,6 +542,46 @@ assert(response.headers.get(header), value);
 assert(init !== response);
 ```
 
+## Tokens
+
+Compliant with
+[RFC 9110, 5.6.2. Tokens](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2).
+
+### isTchar
+
+Whether the input is
+[tchar](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2-2) or not.
+
+```ts
+import { isTchar } from "https://deno.land/x/http_utils@$VERSION/token.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isTchar("!"));
+assert(isTchar("a"));
+assert(isTchar("Z"));
+assertFalse(isTchar(""));
+```
+
+### isToken
+
+Whether the input is
+[token](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2-2) or not.
+
+```ts
+import { isToken } from "https://deno.land/x/http_utils@$VERSION/token.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isToken("token"));
+assert(isTchar("*!~"));
+assertFalse(isToken(""));
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).
