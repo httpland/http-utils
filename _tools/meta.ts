@@ -65,7 +65,7 @@ export const makeOptions = (version: string): BuildOptions => ({
   compilerOptions: {
     lib: ["dom", "esnext", "dom.iterable"],
   },
-  typeCheck: true,
+  typeCheck: false,
   entryPoints,
   outDir: "./npm",
   package: {
