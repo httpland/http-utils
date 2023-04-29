@@ -30,3 +30,32 @@ const reQdtext = /^[\t \x21\x23-\x5B\x5D-\x7E\x80-\xFF]$/;
 export function isQdtext(input: string): boolean {
   return reQdtext.test(input);
 }
+
+/**
+ * ```abnf
+ * quoted-pair = "\" ( HTAB / SP / VCHAR / obs-text )
+ * ```
+ */
+const reQuotedPair = /^\\[\t \x21-\x7E\x80-\xFF]$/;
+
+/** [Quoted pair](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-4). */
+export type QuotedPair = `\\${string}`;
+
+/** Whether the input is [quoted-pair](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-4) or not.
+ *
+ * @example
+ * ```ts
+ * import { isQuotedPair } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
+ * import {
+ *   assert,
+ *   assertFalse,
+ * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isQuotedPair("\\\t"));
+ * assert(isQuotedPair("\\\xFF"));
+ * assertFalse(isQuotedPair("\\"));
+ * ```
+ */
+export function isQuotedPair(input: string): input is QuotedPair {
+  return reQuotedPair.test(input);
+}

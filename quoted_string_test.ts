@@ -1,4 +1,4 @@
-import { isQdtext } from "./quoted_string.ts";
+import { isQdtext, isQuotedPair } from "./quoted_string.ts";
 import {
   assert,
   assertEquals,
@@ -19,6 +19,9 @@ function charRange(start: string, end: string): string[] {
   );
 }
 
+const vchars = charRange("\x21", "\x7E");
+const obsTexts = charRange("\x80", "\xFF");
+
 describe("charRange", () => {
   it("should throw error is the range is invalid", () => {
     const table: [string, string, string[]][] = [
@@ -37,7 +40,7 @@ describe("charRange", () => {
   });
 });
 
-describe("describe", () => {
+describe("isQdtext", () => {
   it("should return true", () => {
     const table: string[] = [
       "\t",
@@ -45,7 +48,7 @@ describe("describe", () => {
       "\x21",
       ...charRange("\x23", "\x5B"),
       ...charRange("\x5D", "\x7E"),
-      ...charRange("\x80", "\xFF"),
+      ...obsTexts,
     ];
 
     table.forEach((input) => {
@@ -60,11 +63,47 @@ describe("describe", () => {
       ...charRange("\x10", "\x19"), // \x20 is " "
       "\x22",
       "\xFF" + 1,
-      "\x22\x22",
+      "\x21\x21",
     ];
 
     table.forEach((input) => {
       assertFalse(isQdtext(input), input);
+    });
+  });
+});
+
+describe("isQuotedPair", () => {
+  function slashed(input: string): `\\${string}` {
+    return `\\${input}`;
+  }
+
+  it("should return true", () => {
+    const table: string[] = [
+      "\\\t",
+      "\\ ",
+      ...vchars.map(slashed),
+      ...obsTexts.map(slashed),
+    ];
+
+    table.forEach((input) => {
+      assert(isQuotedPair(input));
+    });
+  });
+
+  it("should return false", () => {
+    const table: string[] = [
+      "",
+      "\\",
+      ...charRange("\x00", "\x08").map(slashed), // \x09 is "\t"
+      ...charRange("\x10", "\x19").map(slashed), // \x20 is " "
+      "\\\x7F",
+      "\\" + "\xFF" + 1,
+
+      "\\\x21\x21",
+    ];
+
+    table.forEach((input) => {
+      assertFalse(isQuotedPair(input), input);
     });
   });
 });
