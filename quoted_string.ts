@@ -1,9 +1,6 @@
 // Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-// export function isQuotedString(input: string): input is QuotedString {
-// }
-
 /**
  * ```abnf
  * obs-text = %x80-FF
@@ -33,6 +30,7 @@ export function isQdtext(input: string): boolean {
 
 /**
  * ```abnf
+ * obs-text = %x80-FF
  * quoted-pair = "\" ( HTAB / SP / VCHAR / obs-text )
  * ```
  */
@@ -58,4 +56,38 @@ export type QuotedPair = `\\${string}`;
  */
 export function isQuotedPair(input: string): input is QuotedPair {
   return reQuotedPair.test(input);
+}
+
+/** [quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2). */
+export type QuotedString = `"${string}"`;
+
+/**
+ * ```abnf
+ * quoted-string  = DQUOTE *( qdtext / quoted-pair ) DQUOTE
+ * qdtext         = HTAB / SP / %x21 / %x23-5B / %x5D-7E / obs-text
+ * quoted-pair    = "\" ( HTAB / SP / VCHAR / obs-text )
+ * obs-text       = %x80-FF
+ * ```
+ */
+const reQuotedString =
+  /^"(?:[\t \x21\x23-\x5B\x5D-\x7E\x80-\xFF]|\\[\t \x21-\x7E\x80-\xFF])*?"$/;
+
+/** Whether the input is [quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2).
+ *
+ * @example
+ * ```ts
+ * import { isQuotedString } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
+ * import {
+ *   assert,
+ *   assertFalse,
+ * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isQuotedString(`""`));
+ * assert(isQuotedString(`"qdtext"`));
+ * assert(isQuotedString(`"quoted-pair"`));
+ * assertFalse(isQuotedString(""));
+ * ```
+ */
+export function isQuotedString(input: string): input is QuotedString {
+  return reQuotedString.test(input);
 }

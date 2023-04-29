@@ -1,4 +1,4 @@
-import { isQdtext, isQuotedPair } from "./quoted_string.ts";
+import { isQdtext, isQuotedPair, isQuotedString } from "./quoted_string.ts";
 import {
   assert,
   assertEquals,
@@ -17,6 +17,18 @@ function charRange(start: string, end: string): string[] {
       i,
     ) => String.fromCharCode(start.charCodeAt(0) + i),
   );
+}
+
+function slashed(input: string): `\\${string}` {
+  return `\\${input}`;
+}
+
+function quoted(input: string): `"${string}"` {
+  return `"${input}"`;
+}
+
+function next(input: string): string {
+  return String.fromCharCode(input.charCodeAt(0) + 1);
 }
 
 const vchars = charRange("\x21", "\x7E");
@@ -73,10 +85,6 @@ describe("isQdtext", () => {
 });
 
 describe("isQuotedPair", () => {
-  function slashed(input: string): `\\${string}` {
-    return `\\${input}`;
-  }
-
   it("should return true", () => {
     const table: string[] = [
       "\\\t",
@@ -97,13 +105,59 @@ describe("isQuotedPair", () => {
       ...charRange("\x00", "\x08").map(slashed), // \x09 is "\t"
       ...charRange("\x10", "\x19").map(slashed), // \x20 is " "
       "\\\x7F",
-      "\\" + "\xFF" + 1,
+      "\\" + next("\xFF"),
 
       "\\\x21\x21",
     ];
 
     table.forEach((input) => {
       assertFalse(isQuotedPair(input), input);
+    });
+  });
+});
+
+describe("isQuotedString", () => {
+  it("should return true", () => {
+    const table: string[] = [
+      quoted(""),
+      quoted("\t"),
+      quoted(" "),
+      quoted("\x21"),
+      ...charRange("\x23", "\x5B").map(quoted),
+      ...charRange("\x5D", "\x7E").map(quoted),
+      ...obsTexts.map(quoted),
+      quoted(slashed("\t")),
+      quoted(slashed(" ")),
+      ...vchars.map(slashed).map(quoted),
+      ...obsTexts.map(slashed).map(quoted),
+
+      quoted(vchars.map(slashed).join("")),
+      quoted(obsTexts.map(slashed).join("")),
+      quoted(obsTexts.join("")),
+      quoted(charRange("\x23", "\x5B").join()),
+      quoted(charRange("\x23", "\x5B").join() + vchars.map(slashed).join("")),
+    ];
+
+    table.forEach((input) => {
+      assert(isQuotedString(input));
+    });
+  });
+
+  it("should return false", () => {
+    const table: string[] = [
+      "",
+      "''",
+      quoted("\\"),
+      quoted("\t\\"),
+      quoted(next("\xFF")),
+      quoted("あ"),
+      quoted(charRange(next("\xFF"), next(next("\xFF"))).join()),
+      quoted(vchars.join("")),
+      obsTexts.map(slashed).join(""),
+    ];
+
+    table.forEach((input) => {
+      assertFalse(isQuotedString(input));
     });
   });
 });

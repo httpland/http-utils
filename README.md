@@ -622,6 +622,24 @@ assert(isQuotedPair("\\\xFF"));
 assertFalse(isQuotedPair("\\"));
 ```
 
+### isQuotedString
+
+Whether the input is
+[quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2).
+
+```ts
+import { isQuotedString } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isQuotedString(`""`));
+assert(isQuotedString(`"qdtext"`));
+assert(isQuotedString(`"quoted-pair"`));
+assertFalse(isQuotedString(""));
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).
