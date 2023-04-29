@@ -542,6 +542,104 @@ assert(response.headers.get(header), value);
 assert(init !== response);
 ```
 
+## Tokens
+
+Compliant with
+[RFC 9110, 5.6.2. Tokens](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2).
+
+### isTchar
+
+Whether the input is
+[tchar](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2-2) or not.
+
+```ts
+import { isTchar } from "https://deno.land/x/http_utils@$VERSION/token.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isTchar("!"));
+assert(isTchar("a"));
+assert(isTchar("Z"));
+assertFalse(isTchar(""));
+```
+
+### isToken
+
+Whether the input is
+[token](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2-2) or not.
+
+```ts
+import { isToken } from "https://deno.land/x/http_utils@$VERSION/token.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isToken("token"));
+assert(isToken("*!~"));
+assertFalse(isToken(""));
+```
+
+## Quoted Strings
+
+Compliant with
+[RFC 9110, 5.6.4. Quoted Strings](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4).
+
+### isQdtext
+
+Whether the input is
+[qdtext](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2) or not.
+
+```ts
+import { isQdtext } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isQdtext("\t"));
+assert(isQdtext("\xFF"));
+assertFalse(isQdtext(`"`));
+```
+
+### isQuotedPair
+
+Whether the input is
+[quoted-pair](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-4) or
+not.
+
+```ts
+import { isQuotedPair } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isQuotedPair("\\\t"));
+assert(isQuotedPair("\\\xFF"));
+assertFalse(isQuotedPair("\\"));
+```
+
+### isQuotedString
+
+Whether the input is
+[quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2).
+
+```ts
+import { isQuotedString } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isQuotedString(`""`));
+assert(isQuotedString(`"qdtext"`));
+assert(isQuotedString(`"quoted-pair"`));
+assertFalse(isQuotedString(""));
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).
