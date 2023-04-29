@@ -64,6 +64,9 @@ export type Tchar =
  */
 const reToken = /^[\w!#$%&'*+.^`|~-]+$/;
 
+/** Representation of [token](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2-2). */
+export type Token = `${Tchar}${string}`;
+
 /** Whether the input is [token](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.2-2) or not.
  *
  * @example
@@ -79,7 +82,7 @@ const reToken = /^[\w!#$%&'*+.^`|~-]+$/;
  * assertFalse(isToken(""));
  * ```
  */
-export function isToken(input: string): input is `${Tchar}${string}` {
+export function isToken(input: string): input is Token {
   return reToken.test(input);
 }
 

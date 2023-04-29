@@ -72,7 +72,7 @@ export type QuotedString = `"${string}"`;
 const reQuotedString =
   /^"(?:[\t \x21\x23-\x5B\x5D-\x7E\x80-\xFF]|\\[\t \x21-\x7E\x80-\xFF])*?"$/;
 
-/** Whether the input is [quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2).
+/** Whether the input is [quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2) or not.
  *
  * @example
  * ```ts
