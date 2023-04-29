@@ -107,5 +107,10 @@ export const makeOptions = (version: string): BuildOptions => ({
       version: "1.1.1",
       subPath: "is_null",
     },
+    "https://deno.land/x/prelude_js@1.2.0/trim.ts": {
+      name: "@miyauci/prelude",
+      version: "1.2.0",
+      subPath: "trim.js",
+    },
   },
 });

@@ -542,6 +542,34 @@ assert(response.headers.get(header), value);
 assert(init !== response);
 ```
 
+## Lists
+
+Compliant with
+[RFC 9110, 5.6.1. Lists](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.1).
+
+### parseListFields
+
+Parse
+[list-based fields](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.5-7)
+into array.
+
+Strings enclosed in double quotes are safely handled.
+
+```ts
+import { parseListFields } from "https://deno.land/x/http_utils@$VERSION/list.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(parseListFields("foo , ,bar,charlie"), [
+  "foo",
+  "bar",
+  "charlie",
+]);
+assert(parseListFields(`"Sat, 04 May 1996", "Wed, 14 Sep 2005"`), [
+  `"Sat, 04 May 1996"`,
+  `"Wed, 14 Sep 2005"`,
+]);
+```
+
 ## Tokens
 
 Compliant with
