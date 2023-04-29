@@ -582,6 +582,28 @@ assert(isTchar("*!~"));
 assertFalse(isToken(""));
 ```
 
+## Quoted Strings
+
+Compliant with
+[RFC 9110, 5.6.4. Quoted Strings](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4).
+
+### isQdtext
+
+Whether the input is
+[qdtext](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2) or not.
+
+```ts
+import { isQdtext } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
+import {
+  assert,
+  assertFalse,
+} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isQdtext("\t"));
+assert(isQdtext("\xFF"));
+assertFalse(isQdtext(`"`));
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).
