@@ -9,14 +9,14 @@ import { trim } from "./deps.ts";
  * @example
  * ```ts
  * import { parseListFields } from "https://deno.land/x/http_utils@$VERSION/list.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
- * assert(parseListFields("foo , ,bar,charlie"), [
+ * assertEquals(parseListFields("foo , ,bar,charlie"), [
  *   "foo",
  *   "bar",
  *   "charlie",
  * ]);
- * assert(parseListFields(`"Sat, 04 May 1996", "Wed, 14 Sep 2005"`), [
+ * assertEquals(parseListFields(`"Sat, 04 May 1996", "Wed, 14 Sep 2005"`), [
  *   `"Sat, 04 May 1996"`,
  *   `"Wed, 14 Sep 2005"`,
  * ]);
