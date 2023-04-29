@@ -653,7 +653,8 @@ assertFalse(isQuotedPair("\\"));
 ### isQuotedString
 
 Whether the input is
-[quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2).
+[quoted-string](https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4-2) or
+not.
 
 ```ts
 import { isQuotedString } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
