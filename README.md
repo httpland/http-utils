@@ -1,7 +1,7 @@
 # http-utils
 
 [![deno land](http://img.shields.io/badge/available%20on-deno.land/x-lightgrey.svg?logo=deno)](https://deno.land/x/http_utils)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/httpland/http_utils)](https://github.com/httpland/http_utils/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/httpland/http-utils)](https://github.com/httpland/http-utils/releases)
 [![codecov](https://codecov.io/github/httpland/http-utils/branch/main/graph/badge.svg)](https://codecov.io/gh/httpland/http-utils)
 [![GitHub](https://img.shields.io/github/license/httpland/http-utils)](https://github.com/httpland/http-utils/blob/main/LICENSE)
 

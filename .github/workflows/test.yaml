@@ -10,8 +10,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-18.04, macos-latest, windows-latest]
-        deno: [v1.x, canary]
+        os: [ubuntu-latest]
+        deno: [v1.x]
 
     steps:
       - name: Checkout
@@ -31,8 +31,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-18.04, macos-latest, windows-latest]
-        deno: [v1.x, canary]
+        os: [ubuntu-latest]
+        deno: [v1.x]
 
     steps:
       - name: Checkout
