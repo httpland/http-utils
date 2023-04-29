@@ -1,3 +1,14 @@
+# [1.1.0](https://github.com/httpland/http-utils/compare/1.0.0...1.1.0) (2023-04-29)
+
+
+### Features
+
+* **quoted_string:** add `isQdtext` function ([dfcd316](https://github.com/httpland/http-utils/commit/dfcd3167b159f5515aed07adf97fa2a48239ce48))
+* **quoted_string:** add `isQuotedString` function ([ca5dee2](https://github.com/httpland/http-utils/commit/ca5dee2bdd585e5731c40980e3074e0ffd50a0fd))
+* **quoted_string:** add `isQuotedString` function ([3c2f5a9](https://github.com/httpland/http-utils/commit/3c2f5a9b5dda5d6042f7db51620054991f824bd6))
+* **token:** add http token utilities ([c11449f](https://github.com/httpland/http-utils/commit/c11449f772bd8e15abf51bb1ef68ff2e595ccb88))
+* **token:** improve type inference ([a2b87b9](https://github.com/httpland/http-utils/commit/a2b87b9a4759121204c65878cd152265b2c9769b))
+
 # [1.1.0-beta.1](https://github.com/httpland/http-utils/compare/1.0.0...1.1.0-beta.1) (2023-04-29)
 
 
