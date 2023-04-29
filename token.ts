@@ -79,7 +79,7 @@ const reToken = /^[\w!#$%&'*+.^`|~-]+$/;
  * assertFalse(isToken(""));
  * ```
  */
-export function isToken(input: string): boolean {
+export function isToken(input: string): input is `${Tchar}${string}` {
   return reToken.test(input);
 }
 
