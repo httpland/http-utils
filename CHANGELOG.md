@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/httpland/http-utils/compare/1.1.0...1.2.0) (2023-04-29)
+
+
+### Features
+
+* **list:** add parser for list-based fields ([47f69bd](https://github.com/httpland/http-utils/commit/47f69bda005ef4adfabf34ad02e94e35cb51e06a))
+* **token:** export related types ([35e0839](https://github.com/httpland/http-utils/commit/35e08398e1ac369f1c20f5365fe5668b1840f0ba))
+
 # [1.2.0-beta.1](https://github.com/httpland/http-utils/compare/1.1.0...1.2.0-beta.1) (2023-04-29)
 
 
