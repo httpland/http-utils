@@ -75,7 +75,7 @@ const reToken = /^[\w!#$%&'*+.^`|~-]+$/;
  * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
  *
  * assert(isToken("token"));
- * assert(isTchar("*!~"));
+ * assert(isToken("*!~"));
  * assertFalse(isToken(""));
  * ```
  */
