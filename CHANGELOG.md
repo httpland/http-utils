@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/httpland/http-utils/compare/1.2.0...1.3.0) (2023-05-09)
+
+
+### Features
+
+* mark as deprecated ([ab24b7d](https://github.com/httpland/http-utils/commit/ab24b7d2177aba3979a802fa02707a4a2a4ede9b))
+
 # [1.3.0-beta.1](https://github.com/httpland/http-utils/compare/1.2.0...1.3.0-beta.1) (2023-05-09)
 
 
