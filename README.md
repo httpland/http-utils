@@ -8,7 +8,9 @@
 [![test](https://github.com/httpland/http-utils/actions/workflows/test.yaml/badge.svg)](https://github.com/httpland/http-utils/actions/workflows/test.yaml)
 [![NPM](https://nodei.co/npm/@httpland/http-utils.png?mini=true)](https://nodei.co/npm/@httpland/http-utils/)
 
-HTTP utility collection for Fetch API.
+HTTP utility collection.
+
+Compliant with [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110).
 
 ## Request
 

@@ -17,5 +17,3 @@ export function equalsType(
 
   return true;
 }
-
-Object.constructor;
