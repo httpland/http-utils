@@ -18,6 +18,8 @@
  * assert(request.headers.get(header), value);
  * assert(init !== request);
  * ```
+ *
+ * @deprecated Move to [request-utils](https://github.com/httpland/request-utils).
  */
 export function withHeader(
   request: Request,
@@ -41,6 +43,8 @@ export function withHeader(
  * assert(response.headers.get(header), value);
  * assert(init !== response);
  * ```
+ *
+ * @deprecated Move to [response-utils](https://github.com/httpland/response-utils).
  */
 export function withHeader(
   response: Response,

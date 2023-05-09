@@ -18,6 +18,8 @@ import { equalsType } from "./_utils.ts";
  *   ),
  * );
  * ```
+ *
+ * @deprecated Move to [response-utils](https://github.com/httpland/response-utils).
  */
 export function equalsResponse(left: Response, right: Response): boolean;
 /** Strict check two `Response` fields equality.
@@ -83,6 +85,8 @@ export function equalsResponse(
  * assertEquals(isResponse({}), false);
  * assertEquals(isResponse(null), false);
  * ```
+ *
+ * @deprecated Move to [response-utils](https://github.com/httpland/response-utils).
  */
 export function isResponse(input: unknown): input is Response {
   return input instanceof Response;

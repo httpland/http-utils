@@ -16,6 +16,8 @@
  *   false,
  * );
  * ```
+ *
+ * @deprecated Move to [headers-utils](https://github.com/httpland/headers-utils).
  */
 export function equalsHeaders(left: Headers, right: Headers): boolean {
   const entries = [...left, ...right];
@@ -51,6 +53,8 @@ export function equalsHeaders(left: Headers, right: Headers): boolean {
  * assert(headers.has("content-type"));
  * assert(!headers.has("date"));
  * ```
+ *
+ * @deprecated Move to [headers-utils](https://github.com/httpland/headers-utils).
  */
 export function filterKeys(
   headers: Headers,

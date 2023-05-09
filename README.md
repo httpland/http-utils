@@ -8,11 +8,15 @@
 [![test](https://github.com/httpland/http-utils/actions/workflows/test.yaml/badge.svg)](https://github.com/httpland/http-utils/actions/workflows/test.yaml)
 [![NPM](https://nodei.co/npm/@httpland/http-utils.png?mini=true)](https://nodei.co/npm/@httpland/http-utils/)
 
-HTTP utility collection for Fetch API.
+HTTP utility collection.
+
+Compliant with [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110).
 
 ## Request
 
 Utilities for `Request` object.
+
+@deprecated Move to [request-utils](https://github.com/httpland/request-utils).
 
 ### equalsRequest
 
@@ -82,6 +86,9 @@ assertEquals(isRequest(null), false);
 
 Utilities for `Response` object.
 
+@deprecated Move to
+[response-utils](https://github.com/httpland/response-utils).
+
 ### equalsResponse
 
 Check two `Response` fields equality.
@@ -150,6 +157,8 @@ Utilities for `Headers` object.
 
 ### equalsHeaders
 
+@deprecated Move to [headers-utils](https://github.com/httpland/headers-utils).
+
 Check two `Headers` field name and field value equality.
 
 ```ts
@@ -167,6 +176,8 @@ assertEquals(
 ```
 
 ### filterKeys
+
+@deprecated Move to [headers-utils](https://github.com/httpland/headers-utils).
 
 Returns a new `Headers` with all entries of the given headers except the ones
 that have a key(header name or field name) that does not match the given
@@ -503,6 +514,10 @@ HTTP message is following union types:
 - `Response`
 
 ### withHeader
+
+@deprecated Move to [request-utils](https://github.com/httpland/request-utils).
+@deprecated Move to
+[response-utils](https://github.com/httpland/response-utils).
 
 Return an instance with the provided value replacing the specified header. There
 are no side effects on the original target.
