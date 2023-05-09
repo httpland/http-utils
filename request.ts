@@ -20,6 +20,8 @@ import { equalsType } from "./_utils.ts";
  *   ),
  * );
  * ```
+ *
+ * @deprecated Move to [request-utils](https://github.com/httpland/request-utils).
  */
 export function equalsRequest(
   left: Request,
@@ -96,6 +98,8 @@ export function equalsRequest(
  * assertEquals(isRequest({}), false);
  * assertEquals(isRequest(null), false);
  * ```
+ *
+ * @deprecated Move to [request-utils](https://github.com/httpland/request-utils).
  */
 export function isRequest(input: unknown): input is Request {
   return input instanceof Request;
