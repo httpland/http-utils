@@ -1,3 +1,5 @@
+// Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
+
 import { isTchar, isToken } from "./token.ts";
 import { assert, assertFalse, describe, it } from "./_dev_deps.ts";
 

@@ -1,3 +1,5 @@
+// Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
+
 import { parseListFields } from "./list.ts";
 import { assertEquals, describe, it } from "./_dev_deps.ts";
 

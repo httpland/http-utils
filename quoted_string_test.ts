@@ -1,3 +1,5 @@
+// Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
+
 import { isQdtext, isQuotedPair, isQuotedString } from "./quoted_string.ts";
 import {
   assert,

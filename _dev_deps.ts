@@ -1,3 +1,5 @@
+// Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
+
 export { describe, it } from "https://deno.land/std@0.186.0/testing/bdd.ts";
 export {
   assert,

@@ -1,3 +1,5 @@
+// Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
+
 import { assertEquals, describe, it } from "./_dev_deps.ts";
 import {
   isIdempotentMethod,
