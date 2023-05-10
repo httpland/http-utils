@@ -3,8 +3,6 @@ import {
   CachingHeader,
   ConditionalHeader,
   ContentNegotiationHeader,
-  equalsHeaders,
-  filterKeys,
   isAuthenticationHeader,
   isCachingHeader,
   isConditionalHeader,
@@ -18,72 +16,7 @@ import {
   RangeHeader,
   RepresentationHeader,
 } from "./header.ts";
-import { assert, assertEquals, describe, Fn, it } from "./_dev_deps.ts";
-
-describe("equalsHeaders", () => {
-  it("should pass", () => {
-    const table: Fn<typeof equalsHeaders>[] = [
-      [new Headers({ a: "" }), new Headers(), false],
-      [new Headers(), new Headers({ a: "" }), false],
-      [new Headers({ a: "" }), new Headers({ a: "", b: "" }), false],
-      [new Headers({ a: "", b: "c" }), new Headers({ a: "", d: "c" }), false],
-      [
-        new Headers({ a: "b", b: "c" }),
-        new Headers({ a: "b", b: "c", c: "d" }),
-        false,
-      ],
-
-      [new Headers(), new Headers(), true],
-      [new Headers({ a: "" }), new Headers({ a: "" }), true],
-      [new Headers([["a", ""]]), new Headers({ a: "" }), true],
-      [
-        new Headers({ a: "", b: "c", c: "abc" }),
-        new Headers({ a: "", b: "c", c: "abc" }),
-        true,
-      ],
-      [
-        new Headers({ a: " " }),
-        new Headers({ a: "" }),
-        true,
-      ],
-      [
-        new Headers({ a: "   a " }),
-        new Headers({ a: "        a       " }),
-        true,
-      ],
-    ];
-
-    table.forEach(([a, b, result]) => {
-      assertEquals(equalsHeaders(a, b), result);
-    });
-  });
-});
-
-describe("filterKeys", () => {
-  it("should return new headers filtered by predicate", () => {
-    const table: [Headers, (key: string) => boolean, Headers][] = [
-      [
-        new Headers({ "x-test": "test", "date": "xxx" }),
-        () => true,
-        new Headers({ "x-test": "test", "date": "xxx" }),
-      ],
-      [
-        new Headers({ "x-test": "test", "date": "xxx" }),
-        () => false,
-        new Headers(),
-      ],
-      [
-        new Headers({ "x-test": "test", "date": "xxx" }),
-        (key) => key === "date",
-        new Headers({ date: "xxx" }),
-      ],
-    ];
-
-    table.forEach(([headers, predicate, expected]) => {
-      assert(equalsHeaders(filterKeys(headers, predicate), expected));
-    });
-  });
-});
+import { assert, describe, it } from "./_dev_deps.ts";
 
 describe("isAuthenticationHeader", () => {
   it("should return true", () => {

@@ -99,11 +99,6 @@ export const makeOptions = (version: string): BuildOptions => ({
   },
   packageManager: "pnpm",
   mappings: {
-    "https://deno.land/x/isx@1.3.1/is_null.ts": {
-      name: "@miyauci/isx",
-      version: "1.3.1",
-      subPath: "is_null.js",
-    },
     "https://deno.land/x/prelude_js@1.2.0/trim.ts": {
       name: "@miyauci/prelude",
       version: "1.2.0",

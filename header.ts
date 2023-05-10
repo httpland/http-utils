@@ -1,68 +1,6 @@
 // Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-/** Check two `Headers` field name and field value equality.
- *
- * ```ts
- * import { equalsHeaders } from "https://deno.land/x/http_utils@$VERSION/header.ts";
- * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
- *
- * assertEquals(
- *   equalsHeaders(new Headers({ a: "b" }), new Headers({ a: "b" })),
- *   true,
- * );
- * assertEquals(
- *   equalsHeaders(new Headers({ a: "b" }), new Headers({ c: "d" })),
- *   false,
- * );
- * ```
- *
- * @deprecated Move to [headers-utils](https://github.com/httpland/headers-utils).
- */
-export function equalsHeaders(left: Headers, right: Headers): boolean {
-  const entries = [...left, ...right];
-
-  for (const [key, value] of entries) {
-    if (!left.has(key) || !right.has(key)) {
-      return false;
-    }
-
-    if (left.get(key) !== value || right.get(key) !== value) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-/** Returns a new {@link Headers} with all entries of the given headers except the ones that have a key(header name or field name) that does not match the given predicate.
- *
- * @example
- * ```ts
- * import { filterKeys } from "https://deno.land/x/http_utils@$VERSION/header.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
- *
- * const headers = filterKeys(
- *   new Headers({
- *     "date": "<date>",
- *     "content-type": "<content-type>",
- *   }),
- *   (key) => key.startsWith("content"),
- * );
- *
- * assert(headers.has("content-type"));
- * assert(!headers.has("date"));
- * ```
- *
- * @deprecated Move to [headers-utils](https://github.com/httpland/headers-utils).
- */
-export function filterKeys(
-  headers: Headers,
-  predicate: (key: string) => boolean,
-): Headers {
-  return new Headers([...headers].filter(([key]) => predicate(key)));
-}
-
 /** HTTP Message Metadata header fields.
  * @see [RFC 9110, 6.6. Message Metadata](https://www.rfc-editor.org/rfc/rfc9110.html#section-6.6)
  *

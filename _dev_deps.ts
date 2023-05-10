@@ -6,9 +6,3 @@ export {
   assertRejects,
   assertThrows,
 } from "https://deno.land/std@0.186.0/testing/asserts.ts";
-
-// deno-lint-ignore no-explicit-any
-export type Fn<F extends (...args: any) => any> = [
-  ...Parameters<F>,
-  ReturnType<F>,
-];

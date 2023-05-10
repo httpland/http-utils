@@ -1,4 +1,4 @@
-import { assertEquals, describe, Fn, it } from "./_dev_deps.ts";
+import { assertEquals, describe, it } from "./_dev_deps.ts";
 import {
   isIdempotentMethod,
   isRetrieveMethod,
@@ -7,7 +7,7 @@ import {
 
 describe("isSafeMethod", () => {
   it("should pass cases", () => {
-    const table: Fn<typeof isSafeMethod>[] = [
+    const table: [string, boolean][] = [
       ["", false],
       ["get", false],
       ["head", false],
@@ -33,7 +33,7 @@ describe("isSafeMethod", () => {
 
 describe("isIdempotentMethod", () => {
   it("should pass cases", () => {
-    const table: Fn<typeof isIdempotentMethod>[] = [
+    const table: [string, boolean][] = [
       ["", false],
       ["get", false],
       ["head", false],
@@ -59,7 +59,7 @@ describe("isIdempotentMethod", () => {
 
 describe("isRetrieveMethod", () => {
   it("should pass cases", () => {
-    const table: Fn<typeof isRetrieveMethod>[] = [
+    const table: [string, boolean][] = [
       ["", false],
       ["get", false],
       ["head", false],
