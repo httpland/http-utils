@@ -1,14 +1,14 @@
 import {
   BuildOptions,
   EntryPoint,
-} from "https://deno.land/x/dnt@0.31.0/mod.ts";
-import { expandGlobSync } from "https://deno.land/std@0.181.0/fs/expand_glob.ts";
+} from "https://deno.land/x/dnt@0.34.0/mod.ts";
+import { expandGlobSync } from "https://deno.land/std@0.186.0/fs/expand_glob.ts";
 import {
   fromFileUrl,
   join,
   parse,
   relative,
-} from "https://deno.land/std@0.181.0/path/mod.ts";
+} from "https://deno.land/std@0.186.0/path/mod.ts";
 
 interface ModuleInfo {
   readonly name: string;
@@ -71,15 +71,12 @@ export const makeOptions = (version: string): BuildOptions => ({
   package: {
     name: "@httpland/http-utils",
     version,
-    description: "HTTP utility collection for Fetch API",
+    description: "HTTP utility collection",
     keywords: [
       "http",
       "utility",
+      "utilities",
       "collection",
-      "fetch-api",
-      "headers",
-      "request",
-      "response",
     ],
     license: "MIT",
     homepage: "https://github.com/httpland/http-utils",
