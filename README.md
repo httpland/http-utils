@@ -488,6 +488,10 @@ An HTTP status that is a server error (5XX).
 Compliant with
 [RFC 9110, 15.6. Server Error 5xx](https://www.rfc-editor.org/rfc/rfc9110#section-15.6)
 
+### ErrorStatus
+
+An HTTP status that is an error (4XX and 5XX).
+
 ### Status
 
 Standard HTTP status codes.

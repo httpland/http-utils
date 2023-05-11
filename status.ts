@@ -199,6 +199,9 @@ export enum ServerErrorStatus {
   NetworkAuthenticationRequired = 511,
 }
 
+/** An HTTP status that is an error (4XX and 5XX). */
+export const ErrorStatus = { ...ClientErrorStatus, ...ServerErrorStatus };
+
 /** Standard HTTP status codes. */
 export const Status = {
   ...InformationalStatus,
