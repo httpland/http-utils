@@ -448,6 +448,50 @@ assert(isQuotedString(`"quoted-pair"`));
 assertFalse(isQuotedString(""));
 ```
 
+## HTTP Status code
+
+Compliant with
+[RFC 9110, 15. Status Codes](https://www.rfc-editor.org/rfc/rfc9110#section-15)
+
+### InformationalStatus
+
+An HTTP status that is a informational (1XX).
+
+Compliant with
+[RFC 9110, 15.2. Informational 1xx](https://www.rfc-editor.org/rfc/rfc9110#section-15.2)
+
+### SuccessfulStatus
+
+An HTTP status that is a success (2XX).
+
+Compliant with
+[RFC 9110, 15.3. Successful 2xx](https://www.rfc-editor.org/rfc/rfc9110#section-15.3)
+
+### RedirectionStatus
+
+An HTTP status that is a redirect (3XX).
+
+Compliant with
+[RFC 9110, 15.4. Redirection 3xx](https://www.rfc-editor.org/rfc/rfc9110#section-15.4)
+
+### ClientErrorStatus
+
+An HTTP status that is a client error (4XX).
+
+Compliant with
+[RFC 9110, 15.5. Client Error 4xx](https://www.rfc-editor.org/rfc/rfc9110#section-15.5)
+
+### ServerErrorStatus
+
+An HTTP status that is a server error (5XX).
+
+Compliant with
+[RFC 9110, 15.6. Server Error 5xx](https://www.rfc-editor.org/rfc/rfc9110#section-15.6)
+
+### Status
+
+Standard HTTP status codes.
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).
