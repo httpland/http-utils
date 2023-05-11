@@ -7,13 +7,13 @@ export enum InformationalStatus {
   Continue = 100,
 
   /** RFC 9110, 15.2.2 */
-  SwitchingProtocols = 101,
+  SwitchingProtocols,
 
   /** RFC 2518, 10.1 */
-  Processing = 102,
+  Processing,
 
   /** RFC 8297 **/
-  EarlyHints = 103,
+  EarlyHints,
 }
 
 /** An HTTP status that is a success (2XX). */
@@ -22,28 +22,28 @@ export enum SuccessfulStatus {
   OK = 200,
 
   /** RFC 9110, 15.3.2 */
-  Created = 201,
+  Created,
 
   /** RFC 9110, 15.3.3 */
-  Accepted = 202,
+  Accepted,
 
   /** RFC 9110, 15.3.4 */
-  NonAuthoritativeInfo = 203,
+  NonAuthoritativeInformation,
 
   /** RFC 9110, 15.3.5 */
-  NoContent = 204,
+  NoContent,
 
   /** RFC 9110, 15.3.6 */
-  ResetContent = 205,
+  ResetContent,
 
   /** RFC 9110, 15.3.7 */
-  PartialContent = 206,
+  PartialContent,
 
   /** RFC 4918, 11.1 */
-  MultiStatus = 207,
+  MultiStatus,
 
   /** RFC 5842, 7.1 */
-  AlreadyReported = 208,
+  AlreadyReported,
 
   /** RFC 3229, 10.4.1 */
   IMUsed = 226,
@@ -55,25 +55,25 @@ export enum RedirectionStatus {
   MultipleChoices = 300,
 
   /** RFC 9110, 15.4.2 */
-  MovedPermanently = 301,
+  MovedPermanently,
 
   /** RFC 9110, 15.4.3 */
-  Found = 302,
+  Found,
 
   /** RFC 9110, 15.4.4 */
-  SeeOther = 303,
+  SeeOther,
 
   /** RFC 9110, 15.4.5 */
-  NotModified = 304,
+  NotModified,
 
   /** RFC 9110, 15.4.6 */
-  UseProxy = 305,
+  UseProxy,
 
   /** RFC 9110, 15.4.8 */
   TemporaryRedirect = 307,
 
   /** RFC 9110, 15.4.9 */
-  PermanentRedirect = 308,
+  PermanentRedirect,
 }
 
 /** An HTTP status that is a client error (4XX). */
@@ -82,79 +82,79 @@ export enum ClientErrorStatus {
   BadRequest = 400,
 
   /** RFC 9110, 15.5.2 */
-  Unauthorized = 401,
+  Unauthorized,
 
   /** RFC 9110, 15.5.3 */
-  PaymentRequired = 402,
+  PaymentRequired,
 
   /** RFC 9110, 15.5.4 */
-  Forbidden = 403,
+  Forbidden,
 
   /** RFC 9110, 15.5.5 */
-  NotFound = 404,
+  NotFound,
 
   /** RFC 9110, 15.5.6 */
-  MethodNotAllowed = 405,
+  MethodNotAllowed,
 
   /** RFC 9110, 15.5.7 */
-  NotAcceptable = 406,
+  NotAcceptable,
 
   /** RFC 9110, 15.5.8 */
-  ProxyAuthRequired = 407,
+  ProxyAuthenticationRequired,
 
   /** RFC 9110, 15.5.9 */
-  RequestTimeout = 408,
+  RequestTimeout,
 
   /** RFC 9110, 15.5.10 */
-  Conflict = 409,
+  Conflict,
 
   /** RFC 9110, 15.5.11 */
-  Gone = 410,
+  Gone,
 
   /** RFC 9110, 15.5.12 */
-  LengthRequired = 411,
+  LengthRequired,
 
   /** RFC 9110, 15.5.13 */
-  PreconditionFailed = 412,
+  PreconditionFailed,
 
   /** RFC 9110, 15.5.14 */
-  RequestEntityTooLarge = 413,
+  ContentTooLarge,
 
   /** RFC 9110, 15.5.15 */
-  RequestURITooLong = 414,
+  URITooLong,
 
   /** RFC 9110, 15.5.16 */
-  UnsupportedMediaType = 415,
+  UnsupportedMediaType,
 
   /** RFC 9110, 15.5.17 */
-  RequestedRangeNotSatisfiable = 416,
+  RangeNotSatisfiable,
 
   /** RFC 9110, 15.5.18 */
-  ExpectationFailed = 417,
+  ExpectationFailed,
 
   /** RFC 9110, 15.5.20 */
   MisdirectedRequest = 421,
 
   /** RFC 9110, 15.5.21 */
-  UnprocessableContent = 422,
+  UnprocessableContent,
 
   /** RFC 4918, 11.3 */
-  Locked = 423,
+  Locked,
 
   /** RFC 4918, 11.4 */
-  FailedDependency = 424,
+  FailedDependency,
 
   /** RFC 8470, 5.2 */
-  TooEarly = 425,
+  TooEarly,
 
   /** RFC 9110, 15.5.22 */
-  UpgradeRequired = 426,
+  UpgradeRequired,
 
   /** RFC 6585, 3 */
   PreconditionRequired = 428,
 
   /** RFC 6585, 4 */
-  TooManyRequests = 429,
+  TooManyRequests,
 
   /** RFC 6585, 5 */
   RequestHeaderFieldsTooLarge = 431,
@@ -169,34 +169,34 @@ export enum ServerErrorStatus {
   InternalServerError = 500,
 
   /** RFC 9110, 15.6.2 */
-  NotImplemented = 501,
+  NotImplemented,
 
   /** RFC 9110, 15.6.3 */
-  BadGateway = 502,
+  BadGateway,
 
   /** RFC 9110, 15.6.4 */
-  ServiceUnavailable = 503,
+  ServiceUnavailable,
 
   /** RFC 9110, 15.6.5 */
-  GatewayTimeout = 504,
+  GatewayTimeout,
 
   /** RFC 9110, 15.6.6 */
-  HTTPVersionNotSupported = 505,
+  HTTPVersionNotSupported,
 
   /** RFC 2295, 8.1 */
-  VariantAlsoNegotiates = 506,
+  VariantAlsoNegotiates,
 
   /** RFC 4918, 11.5 */
-  InsufficientStorage = 507,
+  InsufficientStorage,
 
   /** RFC 5842, 7.2 */
-  LoopDetected = 508,
+  LoopDetected,
 
   /** RFC 2774, 7 */
   NotExtended = 510,
 
   /** RFC 6585, 6 */
-  NetworkAuthenticationRequired = 511,
+  NetworkAuthenticationRequired,
 }
 
 /** An HTTP status that is an error (4XX and 5XX). */
