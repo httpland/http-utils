@@ -9,7 +9,7 @@ import { trim } from "./deps.ts";
  * @example
  * ```ts
  * import { parseListFields } from "https://deno.land/x/http_utils@$VERSION/list.ts";
- * import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
  *
  * assertEquals(parseListFields("foo , ,bar,charlie"), [
  *   "foo",

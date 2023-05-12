@@ -75,7 +75,7 @@ export type Token = `${Tchar}${string}`;
  * import {
  *   assert,
  *   assertFalse,
- * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isToken("token"));
  * assert(isToken("*!~"));
@@ -104,7 +104,7 @@ const reTchar = /^[\w!#$%&'*+.^`|~-]$/;
  * import {
  *   assert,
  *   assertFalse,
- * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isTchar("!"));
  * assert(isTchar("a"));

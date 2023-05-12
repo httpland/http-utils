@@ -22,7 +22,7 @@ Whether the input is [MessageMetadataHeader](#messagemetadataheader) or not.
 
 ```ts
 import { isMessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isMessageMetadataHeader("date"));
 assert(!isMessageMetadataHeader("<others>"));
@@ -34,7 +34,7 @@ Whether the input is [MessageForwardingHeader](#messageforwardingheader) or not.
 
 ```ts
 import { isMessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isMessageForwardingHeader("connection"));
 assert(!isMessageForwardingHeader("<others>"));
@@ -46,7 +46,7 @@ Whether the input is [RepresentationHeader](#representationheader) or not.
 
 ```ts
 import { isRepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isRepresentationHeader("content-type"));
 assert(!isRepresentationHeader("<others>"));
@@ -58,7 +58,7 @@ Whether the input is [AuthenticationHeader](#authenticationheader) or not.
 
 ```ts
 import { isAuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isAuthenticationHeader("authorization"));
 assert(!isAuthenticationHeader("<others>"));
@@ -71,7 +71,7 @@ not.
 
 ```ts
 import { isContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isContentNegotiationHeader("accept"));
 assert(!isContentNegotiationHeader("<others>"));
@@ -83,7 +83,7 @@ Whether the input is [ConditionalHeader](#conditionalheader) or not.
 
 ```ts
 import { isConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isConditionalHeader("if-match"));
 assert(!isConditionalHeader("<others>"));
@@ -95,7 +95,7 @@ Whether the input is [RangeHeader](#rangeheader) or not.
 
 ```ts
 import { isRangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isRangeHeader("range"));
 assert(!isRangeHeader("<others>"));
@@ -107,7 +107,7 @@ Whether the input is [CachingHeader](#cachingheader) or not.
 
 ```ts
 import { isCachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isCachingHeader("age"));
 assert(!isCachingHeader("<others>"));
@@ -125,7 +125,7 @@ Compliant with
 
 ```ts
 import { MessageMetadataHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(MessageMetadataHeader.Date, "date");
 ```
@@ -143,7 +143,7 @@ Compliant with
 
 ```ts
 import { MessageForwardingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(MessageForwardingHeader.Via, "via");
 ```
@@ -165,7 +165,7 @@ Compliant with
 
 ```ts
 import { RepresentationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(RepresentationHeader.ContentType, "content-type");
 ```
@@ -186,7 +186,7 @@ Compliant with
 
 ```ts
 import { AuthenticationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(AuthenticationHeader.Authorization, "authorization");
 ```
@@ -206,7 +206,7 @@ Compliant with
 
 ```ts
 import { ContentNegotiationHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(ContentNegotiationHeader.Accept, "accept");
 ```
@@ -226,7 +226,7 @@ Compliant with
 
 ```ts
 import { ConditionalHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(ConditionalHeader.IfNoneMatch, "if-none-match");
 ```
@@ -244,7 +244,7 @@ Compliant with
 
 ```ts
 import { RangeHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(RangeHeader.Range, "range");
 ```
@@ -261,7 +261,7 @@ Compliant with [RFC 9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
 
 ```ts
 import { CachingHeader } from "https://deno.land/x/http_utils@$VERSION/header.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(CachingHeader.CacheControl, "cache-control");
 ```
@@ -279,7 +279,7 @@ Defined in
 
 ```ts
 import { isSafeMethod } from "https://deno.land/x/http_utils@$VERSION/method.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isSafeMethod("GET"));
 assert(isSafeMethod("HEAD"));
@@ -296,7 +296,7 @@ Defined in
 
 ```ts
 import { isIdempotentMethod } from "https://deno.land/x/http_utils@$VERSION/method.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isIdempotentMethod("GET"));
 assert(isIdempotentMethod("PUT"));
@@ -314,7 +314,7 @@ Retrieve method is following:
 
 ```ts
 import { isRetrieveMethod } from "https://deno.land/x/http_utils@$VERSION/method.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isRetrieveMethod("GET"));
 assert(isRetrieveMethod("HEAD"));
@@ -336,7 +336,7 @@ Strings enclosed in double quotes are safely handled.
 
 ```ts
 import { parseListFields } from "https://deno.land/x/http_utils@$VERSION/list.ts";
-import { assertEquals } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 assertEquals(parseListFields("foo , ,bar,charlie"), [
   "foo",
@@ -361,10 +361,7 @@ Whether the input is
 
 ```ts
 import { isTchar } from "https://deno.land/x/http_utils@$VERSION/token.ts";
-import {
-  assert,
-  assertFalse,
-} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert, assertFalse } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isTchar("!"));
 assert(isTchar("a"));
@@ -379,10 +376,7 @@ Whether the input is
 
 ```ts
 import { isToken } from "https://deno.land/x/http_utils@$VERSION/token.ts";
-import {
-  assert,
-  assertFalse,
-} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert, assertFalse } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isToken("token"));
 assert(isToken("*!~"));
@@ -401,10 +395,7 @@ Whether the input is
 
 ```ts
 import { isQdtext } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
-import {
-  assert,
-  assertFalse,
-} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert, assertFalse } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isQdtext("\t"));
 assert(isQdtext("\xFF"));
@@ -419,10 +410,7 @@ not.
 
 ```ts
 import { isQuotedPair } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
-import {
-  assert,
-  assertFalse,
-} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert, assertFalse } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isQuotedPair("\\\t"));
 assert(isQuotedPair("\\\xFF"));
@@ -437,10 +425,7 @@ not.
 
 ```ts
 import { isQuotedString } from "https://deno.land/x/http_utils@$VERSION/quoted_string.ts";
-import {
-  assert,
-  assertFalse,
-} from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert, assertFalse } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isQuotedString(`""`));
 assert(isQuotedString(`"qdtext"`));
@@ -502,7 +487,7 @@ Whether the input is [InformationalStatus](#informationalstatus) or not.
 
 ```ts
 import { isInformationalStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isInformationalStatus(100));
 assert(isInformationalStatus(101));
@@ -514,7 +499,7 @@ Whether the input is [SuccessfulStatus](#successfulstatus) or not.
 
 ```ts
 import { isSuccessfulStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isSuccessfulStatus(200));
 assert(isSuccessfulStatus(201));
@@ -526,7 +511,7 @@ Whether the input is [RedirectionStatus](#redirectionstatus) or not.
 
 ```ts
 import { isRedirectionStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isRedirectionStatus(300));
 assert(isRedirectionStatus(301));
@@ -538,7 +523,7 @@ Whether the input is [ClientErrorStatus](#clienterrorstatus) or not.
 
 ```ts
 import { isClientErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isClientErrorStatus(400));
 assert(isClientErrorStatus(401));
@@ -550,7 +535,7 @@ Whether the input is [ServerErrorStatus](#servererrorstatus) or not.
 
 ```ts
 import { isServerErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isServerErrorStatus(500));
 assert(isServerErrorStatus(501));
@@ -563,7 +548,7 @@ Whether the input is [ClientErrorStatus](#clienterrorstatus) or
 
 ```ts
 import { isErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
-import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+import { assert } from "https://deno.land/std/testing/asserts.ts";
 
 assert(isErrorStatus(400));
 assert(isErrorStatus(500));

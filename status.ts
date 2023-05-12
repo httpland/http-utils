@@ -223,7 +223,7 @@ const InformationalStatuses = [
  * @example
  * ```ts
  * import { isInformationalStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isInformationalStatus(100));
  * assert(isInformationalStatus(101));
@@ -253,7 +253,7 @@ const SuccessfulStatuses = [
  * @example
  * ```ts
  * import { isSuccessfulStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isSuccessfulStatus(200));
  * assert(isSuccessfulStatus(201));
@@ -281,7 +281,7 @@ const RedirectionStatuses = [
  * @example
  * ```ts
  * import { isRedirectionStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isRedirectionStatus(300));
  * assert(isRedirectionStatus(301));
@@ -343,7 +343,7 @@ const ClientErrorStatuses = [
  * @example
  * ```ts
  * import { isClientErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isClientErrorStatus(400));
  * assert(isClientErrorStatus(401));
@@ -360,7 +360,7 @@ export function isClientErrorStatus(
  * @example
  * ```ts
  * import { isServerErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isServerErrorStatus(500));
  * assert(isServerErrorStatus(501));
@@ -379,7 +379,7 @@ const ErrorStatuses = [...ClientErrorStatuses, ...ServerErrorStatues];
  * @example
  * ```ts
  * import { isErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
- * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * import { assert } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isErrorStatus(400));
  * assert(isErrorStatus(500));

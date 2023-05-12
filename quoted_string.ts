@@ -17,7 +17,7 @@ const reQdtext = /^[\t \x21\x23-\x5B\x5D-\x7E\x80-\xFF]$/;
  * import {
  *   assert,
  *   assertFalse,
- * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isQdtext("\t"));
  * assert(isQdtext("\xFF"));
@@ -47,7 +47,7 @@ export type QuotedPair = `\\${string}`;
  * import {
  *   assert,
  *   assertFalse,
- * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isQuotedPair("\\\t"));
  * assert(isQuotedPair("\\\xFF"));
@@ -80,7 +80,7 @@ const reQuotedString =
  * import {
  *   assert,
  *   assertFalse,
- * } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ * } from "https://deno.land/std/testing/asserts.ts";
  *
  * assert(isQuotedString(`""`));
  * assert(isQuotedString(`"qdtext"`));
