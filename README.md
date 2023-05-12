@@ -496,6 +496,79 @@ An HTTP status that is an error (4XX and 5XX).
 
 Standard HTTP status codes.
 
+### isInformationalStatus
+
+Whether the input is [InformationalStatus](#informationalstatus) or not.
+
+```ts
+import { isInformationalStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isInformationalStatus(100));
+assert(isInformationalStatus(101));
+```
+
+### isSuccessfulStatus
+
+Whether the input is [SuccessfulStatus](#successfulstatus) or not.
+
+```ts
+import { isSuccessfulStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isSuccessfulStatus(200));
+assert(isSuccessfulStatus(201));
+```
+
+### isRedirectionStatus
+
+Whether the input is [RedirectionStatus](#redirectionstatus) or not.
+
+```ts
+import { isRedirectionStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isRedirectionStatus(300));
+assert(isRedirectionStatus(301));
+```
+
+### isClientErrorStatus
+
+Whether the input is [ClientErrorStatus](#clienterrorstatus) or not.
+
+```ts
+import { isClientErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isClientErrorStatus(400));
+assert(isClientErrorStatus(401));
+```
+
+### isServerErrorStatus
+
+Whether the input is [ServerErrorStatus](#servererrorstatus) or not.
+
+```ts
+import { isServerErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isServerErrorStatus(500));
+assert(isServerErrorStatus(501));
+```
+
+### isErrorStatus
+
+Whether the input is [ClientErrorStatus](#clienterrorstatus) or
+[ServerErrorStatus](#servererrorstatus) or not.
+
+```ts
+import { isErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+
+assert(isErrorStatus(400));
+assert(isErrorStatus(500));
+```
+
 ## License
 
 Copyright © 2023-present [httpland](https://github.com/httpland).

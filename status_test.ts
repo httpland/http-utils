@@ -1,11 +1,17 @@
 import {
   ClientErrorStatus,
   InformationalStatus,
+  isClientErrorStatus,
+  isErrorStatus,
+  isInformationalStatus,
+  isRedirectionStatus,
+  isServerErrorStatus,
+  isSuccessfulStatus,
   RedirectionStatus,
   ServerErrorStatus,
   SuccessfulStatus,
 } from "./status.ts";
-import { assertEquals, describe, it } from "./_dev_deps.ts";
+import { assert, assertEquals, describe, it } from "./_dev_deps.ts";
 
 describe("InformationalStatus", () => {
   it("should equal status", () => {
@@ -119,6 +125,172 @@ describe("ServerErrorStatus", () => {
 
     table.forEach(([input, expected]) => {
       assertEquals(input, expected);
+    });
+  });
+});
+
+describe("isInformationalStatus", () => {
+  it("should return true", () => {
+    const table: number[] = [
+      InformationalStatus.Continue,
+      InformationalStatus.SwitchingProtocols,
+      InformationalStatus.Processing,
+      InformationalStatus.EarlyHints,
+    ];
+
+    table.forEach((status) => {
+      assert(isInformationalStatus(status));
+    });
+  });
+});
+
+describe("isSuccessfulStatus", () => {
+  it("should return true", () => {
+    const table: number[] = [
+      SuccessfulStatus.OK,
+      SuccessfulStatus.Created,
+      SuccessfulStatus.Accepted,
+      SuccessfulStatus.NonAuthoritativeInformation,
+      SuccessfulStatus.NoContent,
+      SuccessfulStatus.ResetContent,
+      SuccessfulStatus.PartialContent,
+      SuccessfulStatus.MultiStatus,
+      SuccessfulStatus.AlreadyReported,
+      SuccessfulStatus.IMUsed,
+    ];
+
+    table.forEach((status) => {
+      assert(isSuccessfulStatus(status));
+    });
+  });
+});
+
+describe("isRedirectionStatus", () => {
+  it("should return true", () => {
+    const table: number[] = [
+      RedirectionStatus.MultipleChoices,
+      RedirectionStatus.MovedPermanently,
+      RedirectionStatus.Found,
+      RedirectionStatus.SeeOther,
+      RedirectionStatus.NotModified,
+      RedirectionStatus.UseProxy,
+      RedirectionStatus.TemporaryRedirect,
+      RedirectionStatus.PermanentRedirect,
+    ];
+
+    table.forEach((status) => {
+      assert(isRedirectionStatus(status));
+    });
+  });
+});
+
+describe("isClientErrorStatus", () => {
+  it("should return true", () => {
+    const table: number[] = [
+      ClientErrorStatus.BadRequest,
+      ClientErrorStatus.Unauthorized,
+      ClientErrorStatus.PaymentRequired,
+      ClientErrorStatus.Forbidden,
+      ClientErrorStatus.NotFound,
+      ClientErrorStatus.MethodNotAllowed,
+      ClientErrorStatus.NotAcceptable,
+      ClientErrorStatus.ProxyAuthenticationRequired,
+      ClientErrorStatus.RequestTimeout,
+      ClientErrorStatus.Conflict,
+      ClientErrorStatus.Gone,
+      ClientErrorStatus.LengthRequired,
+      ClientErrorStatus.PreconditionFailed,
+      ClientErrorStatus.ContentTooLarge,
+      ClientErrorStatus.URITooLong,
+      ClientErrorStatus.UnsupportedMediaType,
+      ClientErrorStatus.RangeNotSatisfiable,
+      ClientErrorStatus.ExpectationFailed,
+      ClientErrorStatus.MisdirectedRequest,
+      ClientErrorStatus.UnprocessableContent,
+      ClientErrorStatus.Locked,
+      ClientErrorStatus.FailedDependency,
+      ClientErrorStatus.TooEarly,
+      ClientErrorStatus.UpgradeRequired,
+      ClientErrorStatus.PreconditionRequired,
+      ClientErrorStatus.TooManyRequests,
+      ClientErrorStatus.RequestHeaderFieldsTooLarge,
+      ClientErrorStatus.UnavailableForLegalReasons,
+    ];
+
+    table.forEach((status) => {
+      assert(isClientErrorStatus(status));
+    });
+  });
+});
+
+describe("isServerErrorStatus", () => {
+  it("should return true", () => {
+    const table: number[] = [
+      ServerErrorStatus.InternalServerError,
+      ServerErrorStatus.NotImplemented,
+      ServerErrorStatus.BadGateway,
+      ServerErrorStatus.ServiceUnavailable,
+      ServerErrorStatus.GatewayTimeout,
+      ServerErrorStatus.HTTPVersionNotSupported,
+      ServerErrorStatus.VariantAlsoNegotiates,
+      ServerErrorStatus.InsufficientStorage,
+      ServerErrorStatus.LoopDetected,
+      ServerErrorStatus.NotExtended,
+      ServerErrorStatus.NetworkAuthenticationRequired,
+    ];
+
+    table.forEach((status) => {
+      assert(isServerErrorStatus(status));
+    });
+  });
+});
+
+describe("isErrorStatus", () => {
+  it("should return true", () => {
+    const table: number[] = [
+      ClientErrorStatus.BadRequest,
+      ClientErrorStatus.Unauthorized,
+      ClientErrorStatus.PaymentRequired,
+      ClientErrorStatus.Forbidden,
+      ClientErrorStatus.NotFound,
+      ClientErrorStatus.MethodNotAllowed,
+      ClientErrorStatus.NotAcceptable,
+      ClientErrorStatus.ProxyAuthenticationRequired,
+      ClientErrorStatus.RequestTimeout,
+      ClientErrorStatus.Conflict,
+      ClientErrorStatus.Gone,
+      ClientErrorStatus.LengthRequired,
+      ClientErrorStatus.PreconditionFailed,
+      ClientErrorStatus.ContentTooLarge,
+      ClientErrorStatus.URITooLong,
+      ClientErrorStatus.UnsupportedMediaType,
+      ClientErrorStatus.RangeNotSatisfiable,
+      ClientErrorStatus.ExpectationFailed,
+      ClientErrorStatus.MisdirectedRequest,
+      ClientErrorStatus.UnprocessableContent,
+      ClientErrorStatus.Locked,
+      ClientErrorStatus.FailedDependency,
+      ClientErrorStatus.TooEarly,
+      ClientErrorStatus.UpgradeRequired,
+      ClientErrorStatus.PreconditionRequired,
+      ClientErrorStatus.TooManyRequests,
+      ClientErrorStatus.RequestHeaderFieldsTooLarge,
+      ClientErrorStatus.UnavailableForLegalReasons,
+      ServerErrorStatus.InternalServerError,
+      ServerErrorStatus.NotImplemented,
+      ServerErrorStatus.BadGateway,
+      ServerErrorStatus.ServiceUnavailable,
+      ServerErrorStatus.GatewayTimeout,
+      ServerErrorStatus.HTTPVersionNotSupported,
+      ServerErrorStatus.VariantAlsoNegotiates,
+      ServerErrorStatus.InsufficientStorage,
+      ServerErrorStatus.LoopDetected,
+      ServerErrorStatus.NotExtended,
+      ServerErrorStatus.NetworkAuthenticationRequired,
+    ];
+
+    table.forEach((status) => {
+      assert(isErrorStatus(status));
     });
   });
 });

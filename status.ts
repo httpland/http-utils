@@ -210,3 +210,183 @@ export const Status = {
   ...ClientErrorStatus,
   ...ServerErrorStatus,
 };
+
+const InformationalStatuses = [
+  InformationalStatus.Continue,
+  InformationalStatus.SwitchingProtocols,
+  InformationalStatus.Processing,
+  InformationalStatus.EarlyHints,
+];
+
+/** Whether the input is {@link InformationalStatus} or not.
+ *
+ * @example
+ * ```ts
+ * import { isInformationalStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isInformationalStatus(100));
+ * assert(isInformationalStatus(101));
+ * ```
+ */
+export function isInformationalStatus(
+  status: number,
+): status is InformationalStatus {
+  return InformationalStatuses.includes(status);
+}
+
+const SuccessfulStatuses = [
+  SuccessfulStatus.OK,
+  SuccessfulStatus.Created,
+  SuccessfulStatus.Accepted,
+  SuccessfulStatus.NonAuthoritativeInformation,
+  SuccessfulStatus.NoContent,
+  SuccessfulStatus.ResetContent,
+  SuccessfulStatus.PartialContent,
+  SuccessfulStatus.MultiStatus,
+  SuccessfulStatus.AlreadyReported,
+  SuccessfulStatus.IMUsed,
+];
+
+/** Whether the input is {@link SuccessfulStatus} or not.
+ *
+ * @example
+ * ```ts
+ * import { isSuccessfulStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isSuccessfulStatus(200));
+ * assert(isSuccessfulStatus(201));
+ * ```
+ */
+export function isSuccessfulStatus(
+  status: number,
+): status is ServerErrorStatus {
+  return SuccessfulStatuses.includes(status);
+}
+
+const RedirectionStatuses = [
+  RedirectionStatus.MultipleChoices,
+  RedirectionStatus.MovedPermanently,
+  RedirectionStatus.Found,
+  RedirectionStatus.SeeOther,
+  RedirectionStatus.NotModified,
+  RedirectionStatus.UseProxy,
+  RedirectionStatus.TemporaryRedirect,
+  RedirectionStatus.PermanentRedirect,
+];
+
+/** Whether the input is {@link RedirectionStatus} or not.
+ *
+ * @example
+ * ```ts
+ * import { isRedirectionStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isRedirectionStatus(300));
+ * assert(isRedirectionStatus(301));
+ * ```
+ */
+export function isRedirectionStatus(
+  status: number,
+): status is RedirectionStatus {
+  return RedirectionStatuses.includes(status);
+}
+
+const ServerErrorStatues = [
+  ServerErrorStatus.InternalServerError,
+  ServerErrorStatus.NotImplemented,
+  ServerErrorStatus.BadGateway,
+  ServerErrorStatus.ServiceUnavailable,
+  ServerErrorStatus.GatewayTimeout,
+  ServerErrorStatus.HTTPVersionNotSupported,
+  ServerErrorStatus.VariantAlsoNegotiates,
+  ServerErrorStatus.InsufficientStorage,
+  ServerErrorStatus.LoopDetected,
+  ServerErrorStatus.NotExtended,
+  ServerErrorStatus.NetworkAuthenticationRequired,
+];
+
+const ClientErrorStatuses = [
+  ClientErrorStatus.BadRequest,
+  ClientErrorStatus.Unauthorized,
+  ClientErrorStatus.PaymentRequired,
+  ClientErrorStatus.Forbidden,
+  ClientErrorStatus.NotFound,
+  ClientErrorStatus.MethodNotAllowed,
+  ClientErrorStatus.NotAcceptable,
+  ClientErrorStatus.ProxyAuthenticationRequired,
+  ClientErrorStatus.RequestTimeout,
+  ClientErrorStatus.Conflict,
+  ClientErrorStatus.Gone,
+  ClientErrorStatus.LengthRequired,
+  ClientErrorStatus.PreconditionFailed,
+  ClientErrorStatus.ContentTooLarge,
+  ClientErrorStatus.URITooLong,
+  ClientErrorStatus.UnsupportedMediaType,
+  ClientErrorStatus.RangeNotSatisfiable,
+  ClientErrorStatus.ExpectationFailed,
+  ClientErrorStatus.MisdirectedRequest,
+  ClientErrorStatus.UnprocessableContent,
+  ClientErrorStatus.Locked,
+  ClientErrorStatus.FailedDependency,
+  ClientErrorStatus.TooEarly,
+  ClientErrorStatus.UpgradeRequired,
+  ClientErrorStatus.PreconditionRequired,
+  ClientErrorStatus.TooManyRequests,
+  ClientErrorStatus.RequestHeaderFieldsTooLarge,
+  ClientErrorStatus.UnavailableForLegalReasons,
+];
+
+/** Whether the input is {@link ClientErrorStatus} or not.
+ *
+ * @example
+ * ```ts
+ * import { isClientErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isClientErrorStatus(400));
+ * assert(isClientErrorStatus(401));
+ * ```
+ */
+export function isClientErrorStatus(
+  status: number,
+): status is ClientErrorStatus {
+  return ClientErrorStatuses.includes(status);
+}
+
+/** Whether the input is {@link ServerErrorStatus} or not.
+ *
+ * @example
+ * ```ts
+ * import { isServerErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isServerErrorStatus(500));
+ * assert(isServerErrorStatus(501));
+ * ```
+ */
+export function isServerErrorStatus(
+  status: number,
+): status is ServerErrorStatus {
+  return ServerErrorStatues.includes(status);
+}
+
+const ErrorStatuses = [...ClientErrorStatuses, ...ServerErrorStatues];
+
+/** Whether the input is {@link ClientErrorStatus} or {@link ServerErrorStatus} or not.
+ *
+ * @example
+ * ```ts
+ * import { isErrorStatus } from "https://deno.land/x/http_utils@$VERSION/status.ts";
+ * import { assert } from "https://deno.land/std@$VERSION/testing/asserts.ts";
+ *
+ * assert(isErrorStatus(400));
+ * assert(isErrorStatus(500));
+ * ```
+ */
+export function isErrorStatus(
+  status: number,
+): status is ClientErrorStatus | ServerErrorStatus {
+  return ErrorStatuses.includes(status);
+}
