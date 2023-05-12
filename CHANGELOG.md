@@ -1,3 +1,19 @@
+# [2.0.0-beta.1](https://github.com/httpland/http-utils/compare/1.3.0...2.0.0-beta.1) (2023-05-12)
+
+
+### Features
+
+* remove all deprecated modules ([41837aa](https://github.com/httpland/http-utils/commit/41837aac040113f50ba74c10e88691832e8a6152))
+* **status:** add `ErrorStatus` enum ([4019655](https://github.com/httpland/http-utils/commit/401965598f13fba4687fa32f0f522234f3a13df7))
+* **status:** add HTTP status code enums ([1ab8b6e](https://github.com/httpland/http-utils/commit/1ab8b6edeff25802ef35092a58e6786b93cdb22f))
+* **status:** add type guard for HTTP status ([3416952](https://github.com/httpland/http-utils/commit/3416952ae693e23bde7b3d67ca532fd38e4b19bc))
+* **status:** rename enum keys ([e8447be](https://github.com/httpland/http-utils/commit/e8447be4440c83f377680de844c6477c6d457e24))
+
+
+### BREAKING CHANGES
+
+* remove deprecated modules
+
 # [1.3.0](https://github.com/httpland/http-utils/compare/1.2.0...1.3.0) (2023-05-09)
 
 
